@@ -322,6 +322,125 @@ footer{padding:26px 0 36px;border-top:1px solid var(--border);text-align:center;
 /* fade in */
 .fi{opacity:1;transform:translateY(0);transition:opacity .5s ease,transform .5s ease;}
 .fi.show{opacity:1;transform:translateY(0);}
+
+
+/* hamburger */
+.tb-hamburger{display:none;flex-direction:column;gap:4px;cursor:pointer;
+  padding:6px;margin-left:8px;border:none;background:none;}
+.tb-hamburger span{width:18px;height:2px;background:var(--ink2);display:block;transition:all .2s;}
+.mobile-nav{display:none;position:fixed;top:42px;left:0;right:0;
+  background:rgba(3,5,8,.98);border-bottom:1px solid var(--border2);
+  backdrop-filter:blur(16px);z-index:99;padding:8px 0;}
+.mobile-nav.open{display:block;}
+.mobile-nav a{display:block;padding:14px 24px;font-size:13px;font-weight:600;
+  letter-spacing:.10em;text-transform:uppercase;color:var(--ink2);
+  text-decoration:none;border-bottom:1px solid var(--border);
+  transition:color .2s,background .2s;}
+.mobile-nav a:hover{color:var(--amber);background:var(--amber-glow);}
+@media(max-width:860px){.tb-hamburger{display:flex;}}
+
+/* ══════════════════════════════════════════
+   RESPONSIVE — tablet (≤860px) & mobile (≤520px)
+   ══════════════════════════════════════════ */
+
+/* Tablet */
+@media(max-width:860px){
+  /* nav — hide text labels, keep dots + CV */
+  .tb-nav{display:none;}
+  .tb-cv{margin-left:auto;}
+  .tb-title{font-size:13px;}
+
+  /* statusbar — show fewer items */
+  .sb-sep:nth-child(n+4),.sb:nth-child(n+4){display:none;}
+
+  /* hero — stack vertically */
+  .hero-layout{grid-template-columns:1fr;gap:28px;}
+  #hero{padding:40px 0 28px;}
+  .id-bio{max-width:100%;}
+  .id-name{font-size:clamp(38px,8vw,64px);}
+
+  /* stats — 2 cols */
+  .statgrid{grid-template-columns:repeat(2,1fr);}
+
+  /* project card */
+  .pcard-top{grid-template-columns:1fr;}
+  .pside{border-left:none;border-top:1px solid var(--border);}
+
+  /* stack rows — stack label above value */
+  .stack-row{grid-template-columns:1fr;}
+  .stack-label{border-right:none;border-bottom:1px solid var(--border);}
+
+  /* skills — 2 cols */
+  .sg{grid-template-columns:1fr 1fr;}
+
+  /* contact — 1 col */
+  .cg{grid-template-columns:1fr;}
+
+  /* phase 2 */
+  .p2{flex-direction:column;align-items:flex-start;}
+  .p2::before{display:none;}
+
+  /* section spacing */
+  .section{padding:36px 0;}
+  .s-sub{margin-bottom:28px;}
+  .wrap{padding:0 18px;}
+}
+
+/* Mobile */
+@media(max-width:520px){
+  /* topbar — minimal */
+  .tb-dots{display:none;}
+  .tb-title{font-size:12px;}
+  .tb-cv{font-size:11px;padding:5px 10px;}
+
+  /* statusbar — only first 2 items */
+  .sb:nth-child(n+2){display:none;}
+  .statusbar{gap:10px;padding:0 12px;}
+
+  /* hero */
+  #hero{padding:32px 0 20px;}
+  .id-path{font-size:12px;margin-bottom:14px;}
+  .id-name{font-size:clamp(32px,10vw,52px);}
+  .id-tagline{font-size:11px;letter-spacing:.06em;flex-wrap:wrap;gap:4px;}
+  .id-bio{font-size:15px;}
+  .id-ctas{gap:7px;}
+  .btn{font-size:12px;padding:8px 14px;}
+
+  /* terminal — readable on small screen */
+  .tbody{font-size:12px;padding:12px 14px;}
+  .ttitle{font-size:11px;}
+
+  /* stats — 2 cols, tighter */
+  .statgrid{grid-template-columns:repeat(2,1fr);}
+  .stat-n{font-size:20px;}
+  .stat-l{font-size:10px;}
+
+  /* project card */
+  .pmain{padding:18px 16px;}
+  .ptitle{font-size:18px;}
+  .pdesc{font-size:14px;}
+  .stack-val{font-size:13px;}
+
+  /* skills — single col on very small screens */
+  .sg{grid-template-columns:1fr;}
+
+  /* video embed — full bleed */
+  .diagram-embed{margin:0 -18px;}
+
+  /* section */
+  .section{padding:28px 0;}
+  .wrap{padding:0 14px;}
+  .s-h{font-size:clamp(22px,7vw,34px);}
+  .s-sub{font-size:15px;margin-bottom:20px;}
+
+  /* contact cards */
+  .ccard{padding:16px 14px;}
+  .c-val{font-size:14px;}
+
+  /* p2 block */
+  .p2{padding:16px;}
+  .p2-title{font-size:16px;}
+}
 </style>
 </head>
 <body>
@@ -342,7 +461,7 @@ footer{padding:26px 0 36px;border-top:1px solid var(--border);text-align:center;
       <li><a href="#projects">projects</a></li>
       <li><a href="#skills">skills</a></li>
       <li><a href="#contact">contact</a></li>
-      <a class="tb-cv" href="/cdn-cgi/l/email-protection#284542495a4b4146471911684f45494144064b4745175b5d4a424d4b5c156b7e087a4d595d4d5b5c08caa8bc0865495a5108624751086b495b5c5a47">cv →</a>
+      <a class="tb-cv" href="mailto:mjarcino19@gmail.com">cv →</a>
     </ul></nav>
   </div>
 </div>
@@ -569,9 +688,9 @@ footer{padding:26px 0 36px;border-top:1px solid var(--border);text-align:center;
     <h2 class="s-h">Let's <em>Connect</em></h2>
     <p class="s-sub">Open to DevOps and Systems Administration roles.</p>
     <div class="cg">
-      <a class="ccard" href="/cdn-cgi/l/email-protection#cca1a6adbeafa5a2a3fdf58caba1ada5a0e2afa3a1">
+      <a class="ccard" href="mailto:mjarcino19@gmail.com">
         <div class="cico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#f5a623" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg></div>
-        <div><div class="c-lbl">Email</div><div class="c-val"><span class="__cf_email__" data-cfemail="e78a8d8695848e8988d6dea7808a868e8bc984888a">[email&#160;protected]</span></div></div>
+        <div><div class="c-lbl">Email</div><div class="c-val">mjarcino19@gmail.com</div></div>
       </a>
       <a class="ccard" href="https://www.linkedin.com/in/mjcastro-itops/" target="_blank">
         <div class="cico"><svg width="17" height="17" viewBox="0 0 24 24" fill="#00d97e"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></div>
@@ -581,7 +700,7 @@ footer{padding:26px 0 36px;border-top:1px solid var(--border);text-align:center;
         <div class="cico"><svg width="17" height="17" viewBox="0 0 24 24" fill="#4d9fff"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844a9.59 9.59 0 012.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg></div>
         <div><div class="c-lbl">GitHub</div><div class="c-val">mjec-explorer/devops-lab</div></div>
       </a>
-      <a class="ccard" href="/cdn-cgi/l/email-protection#5f32353e2d3c3631306e661f38323e3633713c3032602c2a3d353a3c2b621c097f0d3a2e2a3a2c2b7fbddfcb7f123e2d267f1530267f1c3e2c2b2d30">
+      <a class="ccard" href="mailto:mjarcino19@gmail.com?subject=Resume Request">
         <div class="cico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#ff4d4d" stroke-width="1.5" stroke-linecap="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
         <div><div class="c-lbl">Resume / CV</div><div class="c-val">Request via email</div></div>
       </a>
@@ -591,12 +710,15 @@ footer{padding:26px 0 36px;border-top:1px solid var(--border);text-align:center;
 
 <footer>
   <div class="wrap">
-    <p class="ft">Mary Joy Castro · <a href="/cdn-cgi/l/email-protection#563b3c3724353f3839676f16313b373f3a7835393b"><span class="__cf_email__" data-cfemail="462b2c2734252f2829777f06212b272f2a6825292b">[email&#160;protected]</span></a> · <a href="https://github.com/mjec-explorer/devops-lab" target="_blank">github</a> · <a href="https://www.linkedin.com/in/mjcastro-itops/" target="_blank">linkedin</a></p>
+    <p class="ft">Mary Joy Castro · <a href="mailto:mjarcino19@gmail.com">mjarcino19@gmail.com</a> · <a href="https://github.com/mjec-explorer/devops-lab" target="_blank">github</a> · <a href="https://www.linkedin.com/in/mjcastro-itops/" target="_blank">linkedin</a></p>
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 // cursor removed — using default browser cursor
+function toggleMobileNav(){
+  document.getElementById('mobileNav').classList.toggle('open');
+}
 
 // fade in — show immediately, no delay
 window.addEventListener('DOMContentLoaded',()=>{
