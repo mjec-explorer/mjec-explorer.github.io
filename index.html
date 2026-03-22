@@ -17,8 +17,8 @@
   --red:#ff4d4d;--blue:#4d9fff;--teal:#00c9b1;
 }
 html{scroll-behavior:smooth;}
-body{background:var(--bg);color:var(--ink);font-family:'JetBrains Mono',monospace;overflow-x:hidden;line-height:1.5;padding-bottom:24px;}
-body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9998;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.06) 2px,rgba(0,0,0,.06) 4px);}
+body{background:var(--bg);color:var(--ink);font-family:"JetBrains Mono",monospace;overflow-x:hidden;line-height:1.5;padding-bottom:24px;}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.06) 2px,rgba(0,0,0,.06) 4px);}
 .gbg{position:fixed;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(rgba(245,166,35,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(245,166,35,.025) 1px,transparent 1px);background-size:40px 40px;}
 .glow1{position:fixed;top:-300px;left:-200px;width:700px;height:700px;background:radial-gradient(circle,rgba(245,166,35,.03) 0%,transparent 65%);pointer-events:none;z-index:0;}
 .glow2{position:fixed;bottom:-200px;right:-100px;width:600px;height:600px;background:radial-gradient(circle,rgba(0,217,126,.03) 0%,transparent 65%);pointer-events:none;z-index:0;}
@@ -37,8 +37,8 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9998;b
 .tb-nav a{font-size:12px;font-weight:600;letter-spacing:.10em;text-transform:uppercase;color:var(--ink3);text-decoration:none;padding:0 14px;height:42px;display:flex;align-items:center;border-left:1px solid var(--border);transition:color .2s,background .2s;}
 .tb-nav a:hover{color:var(--amber);background:var(--amber-glow);}
 @media(max-width:600px){.tb-nav{display:none;}}
-.tb-cv{font-size:12px;font-weight:700;letter-spacing:.10em;text-transform:uppercase;color:var(--bg);background:var(--amber);padding:6px 14px;border-radius:2px;text-decoration:none;margin-left:10px;transition:background .2s,box-shadow .2s;}
-.tb-cv:hover{background:#d4901f;box-shadow:0 0 16px rgba(245,166,35,.3);}
+.tb-cv{font-size:12px;font-weight:700;letter-spacing:.10em;text-transform:uppercase;color:var(--bg);background:var(--amber);padding:6px 14px;border-radius:2px;text-decoration:none;margin-left:10px;transition:background .2s;}
+.tb-cv:hover{background:#d4901f;}
 
 /* STATUSBAR */
 .statusbar{position:fixed;bottom:0;left:0;right:0;z-index:100;height:24px;background:var(--amber);display:flex;align-items:center;padding:0 20px;gap:18px;overflow:hidden;}
@@ -49,43 +49,39 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9998;b
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.6)}}
 
 /* HERO */
-#hero{display:flex;align-items:center;padding:52px 0 36px;}
+#hero{padding:52px 0 36px;}
 .hero-layout{display:grid;grid-template-columns:1fr 420px;gap:52px;align-items:center;}
 @media(max-width:860px){.hero-layout{grid-template-columns:1fr;gap:36px;}}
 .id-path{font-size:14px;color:var(--ink3);letter-spacing:.05em;margin-bottom:24px;}
 .id-path span{color:var(--green);}
-.id-name{font-family:'Fira Code','JetBrains Mono',monospace;font-size:clamp(36px,5.5vw,72px);font-weight:800;line-height:1;letter-spacing:-.04em;margin-bottom:4px;color:var(--ink);}
+.id-name{font-family:"Fira Code","JetBrains Mono",monospace;font-size:clamp(36px,5.5vw,72px);font-weight:800;line-height:1;letter-spacing:-.04em;margin-bottom:4px;}
 .id-name .last{color:var(--amber);position:relative;display:inline-block;}
-.id-name .last::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--amber),transparent);opacity:.6;}
+.id-name .last::after{content:"";position:absolute;bottom:-4px;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--amber),transparent);opacity:.6;}
 .id-tagline{font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3);margin:20px 0 22px;display:flex;align-items:center;gap:8px;}
-.id-tagline::before{content:'';width:18px;height:1px;background:var(--amber);}
+.id-tagline::before{content:"";width:18px;height:1px;background:var(--amber);}
 .id-bio{font-size:15px;font-weight:300;color:var(--ink2);line-height:1.85;max-width:440px;margin-bottom:28px;border-left:2px solid rgba(245,166,35,.4);padding-left:14px;}
 .id-ctas{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:28px;}
-.btn{display:inline-flex;align-items:center;gap:6px;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;padding:9px 18px;border-radius:2px;border:1px solid;transition:all .22s;position:relative;overflow:hidden;}
-.btn span{position:relative;z-index:1;}
-.btn svg{position:relative;z-index:1;}
+.btn{display:inline-flex;align-items:center;gap:6px;font-family:"JetBrains Mono",monospace;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;padding:9px 18px;border-radius:2px;border:1px solid;transition:all .22s;}
 .btn-a{background:var(--amber);color:var(--bg);border-color:var(--amber);}
 .btn-a:hover{box-shadow:0 0 20px rgba(245,166,35,.25);transform:translateY(-2px);}
 .btn-b{background:transparent;color:var(--ink2);border-color:var(--border2);}
 .btn-b:hover{border-color:var(--amber);color:var(--amber);transform:translateY(-2px);}
-
-/* stats */
 .statgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border2);border:1px solid var(--border2);}
 .statcell{background:var(--panel);padding:14px 10px;text-align:center;transition:background .2s;}
 .statcell:hover{background:var(--panel2);}
-.stat-n{font-family:'Fira Code','JetBrains Mono',monospace;font-size:24px;font-weight:800;color:var(--amber);line-height:1;margin-bottom:5px;}
+.stat-n{font-family:"Fira Code",monospace;font-size:24px;font-weight:800;color:var(--amber);line-height:1;margin-bottom:5px;}
 .stat-l{font-size:11px;font-weight:500;letter-spacing:.10em;text-transform:uppercase;color:var(--ink3);}
 
-/* terminal */
+/* TERMINAL */
 .term{background:var(--panel);border:1px solid var(--border2);transition:border-color .3s,box-shadow .3s;}
 .term:hover{border-color:rgba(245,166,35,.25);box-shadow:0 0 30px rgba(245,166,35,.04);}
 .tbar{background:var(--panel2);padding:10px 14px;display:flex;align-items:center;gap:7px;border-bottom:1px solid var(--border2);}
 .ttd{width:9px;height:9px;border-radius:50%;}
 .ttd.r{background:#ff5f56;}.ttd.y{background:#ffbd2e;}.ttd.g{background:#27c93f;}
 .ttitle{font-size:13px;color:var(--ink3);margin-left:6px;letter-spacing:.04em;}
-.tbody{padding:16px 18px;font-size:12px;line-height:1.9;overflow:hidden;}
+.tbody{padding:16px 18px;font-size:12px;line-height:1.9;}
 .tl{display:flex;gap:8px;}
-.pr{color:var(--green);flex-shrink:0;font-size:13px;}
+.pr{color:var(--green);flex-shrink:0;}
 .cm{color:var(--ink);}
 .out{display:block;padding-left:16px;}
 .og{color:var(--green);}.oa{color:var(--amber);}.ob{color:var(--blue);}.od{color:var(--ink3);}
@@ -95,15 +91,14 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9998;b
 .divider{height:1px;background:linear-gradient(90deg,transparent,var(--border2),transparent);}
 .section{padding:48px 0;}
 .s-tag{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);background:var(--amber-dim);border:1px solid rgba(245,166,35,.2);padding:3px 11px;border-radius:1px;margin-bottom:12px;}
-.s-tag::before{content:'//';opacity:.5;font-size:12px;}
-.s-h{font-family:'Fira Code','JetBrains Mono',monospace;font-size:clamp(24px,3.5vw,42px);font-weight:800;letter-spacing:-.03em;line-height:1;margin-bottom:10px;}
+.s-tag::before{content:"//";opacity:.5;}
+.s-h{font-family:"Fira Code",monospace;font-size:clamp(24px,3.5vw,42px);font-weight:800;letter-spacing:-.03em;line-height:1;margin-bottom:10px;}
 .s-h em{font-style:normal;color:var(--amber);}
-.s-sub{font-size:15px;color:var(--ink2);font-weight:300;max-width:480px;line-height:1.7;margin-bottom:44px;}
+.s-sub{font-size:15px;color:var(--ink2);font-weight:300;max-width:480px;line-height:1.7;margin-bottom:32px;}
 
-/* chips */
+/* CHIPS */
 .chips{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:18px;}
 .chip{font-size:12px;font-weight:700;letter-spacing:.05em;padding:4px 10px;border-radius:1px;border:1px solid;transition:all .2s;}
-.chip:hover{filter:brightness(1.3);}
 .ca{color:var(--amber);border-color:rgba(245,166,35,.28);background:rgba(245,166,35,.04);}
 .cb{color:var(--blue);border-color:rgba(77,159,255,.22);background:rgba(77,159,255,.04);}
 .cg{color:var(--green);border-color:rgba(0,217,126,.22);background:rgba(0,217,126,.04);}
@@ -111,115 +106,115 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9998;b
 .cr{color:#f0673a;border-color:rgba(240,103,58,.22);background:rgba(240,103,58,.04);}
 
 /* PHASE TABS */
-.phase-tabs{display:flex;gap:0;border:1px solid var(--border2);margin-bottom:0;}
-.ptab{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:10px 20px;color:var(--ink3);background:var(--panel2);border:none;border-right:1px solid var(--border2);cursor:pointer;transition:all .2s;font-family:'JetBrains Mono',monospace;}
+.phase-tabs{display:flex;border:1px solid var(--border2);overflow-x:auto;}
+.ptab{font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:10px 16px;color:var(--ink3);background:var(--panel2);border:none;border-right:1px solid var(--border2);cursor:pointer;transition:all .2s;font-family:"JetBrains Mono",monospace;white-space:nowrap;flex-shrink:0;}
 .ptab:last-child{border-right:none;}
 .ptab.active{color:var(--amber);background:var(--amber-dim);border-bottom:2px solid var(--amber);}
 .ptab:hover:not(.active){color:var(--ink);background:var(--panel);}
-@media(max-width:600px){.ptab{padding:8px 12px;font-size:11px;}}
 .phase-content{display:none;}
 .phase-content.active{display:block;}
 
 /* PROJECT CARD */
-.pcard{border:1px solid var(--border2);background:var(--panel);transition:border-color .3s,box-shadow .3s;border-top:none;}
-.pcard:hover{border-color:rgba(245,166,35,.2);box-shadow:0 0 40px rgba(245,166,35,.04);}
-.pcard-top{display:grid;grid-template-columns:1fr 190px;}
+.pcard{border:1px solid var(--border2);border-top:none;background:var(--panel);transition:border-color .3s;}
+.pcard-top{display:grid;grid-template-columns:1fr 180px;}
 @media(max-width:640px){.pcard-top{grid-template-columns:1fr;}}
-.pmain{padding:26px 28px;}
-.pbadge{font-size:12px;font-weight:700;letter-spacing:.10em;text-transform:uppercase;color:var(--green);background:var(--green-dim);border:1px solid rgba(0,217,126,.22);padding:2px 9px;border-radius:1px;display:inline-flex;align-items:center;gap:5px;margin-bottom:14px;}
-.pbadge::before{content:'●';font-size:9px;animation:pulse 1.8s ease-in-out infinite;}
-.pbadge-amber{font-size:12px;font-weight:700;letter-spacing:.10em;text-transform:uppercase;color:var(--amber);background:var(--amber-dim);border:1px solid rgba(245,166,35,.22);padding:2px 9px;border-radius:1px;display:inline-flex;align-items:center;gap:5px;margin-bottom:14px;}
-.pbadge-blue{font-size:12px;font-weight:700;letter-spacing:.10em;text-transform:uppercase;color:var(--blue);background:rgba(77,159,255,.1);border:1px solid rgba(77,159,255,.22);padding:2px 9px;border-radius:1px;display:inline-flex;align-items:center;gap:5px;margin-bottom:14px;}
-.ptitle{font-family:'Fira Code','JetBrains Mono',monospace;font-size:clamp(18px,2.5vw,24px);font-weight:800;letter-spacing:-.02em;margin-bottom:8px;color:var(--ink);}
-.pdesc{font-size:14px;color:var(--ink2);line-height:1.75;margin-bottom:16px;font-weight:300;max-width:540px;}
-.stack-breakdown{display:flex;flex-direction:column;gap:0;border:1px solid var(--border);margin-bottom:18px;}
-.stack-row{display:grid;grid-template-columns:140px 1fr;border-bottom:1px solid var(--border);transition:background .2s;}
-@media(max-width:500px){.stack-row{grid-template-columns:1fr;}}
-.stack-row:last-child{border-bottom:none;}
-.stack-row:hover{background:rgba(245,166,35,.025);}
-.stack-label{font-size:11px;font-weight:700;letter-spacing:.10em;text-transform:uppercase;color:var(--amber);padding:10px 12px;border-right:1px solid var(--border);display:flex;align-items:center;gap:6px;}
-@media(max-width:500px){.stack-label{border-right:none;border-bottom:1px solid var(--border);}}
-.stack-label span{font-size:13px;}
-.stack-val{font-size:13px;color:var(--ink2);padding:10px 14px;line-height:1.5;}
-.stack-val strong{color:var(--ink);font-weight:500;}
-.plinks{display:flex;gap:14px;flex-wrap:wrap;}
-.plink{font-size:13px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--ink3);text-decoration:none;display:flex;align-items:center;gap:4px;border-bottom:1px solid var(--border2);padding-bottom:2px;transition:color .2s,border-color .2s;}
+.pmain{padding:24px 26px;}
+.pbadge{font-size:11px;font-weight:700;letter-spacing:.10em;text-transform:uppercase;color:var(--green);background:var(--green-dim);border:1px solid rgba(0,217,126,.22);padding:2px 9px;border-radius:1px;display:inline-flex;align-items:center;gap:5px;margin-bottom:12px;}
+.pbadge::before{content:"●";font-size:9px;animation:pulse 1.8s ease-in-out infinite;}
+.pbadge-a{font-size:11px;font-weight:700;letter-spacing:.10em;text-transform:uppercase;color:var(--amber);background:var(--amber-dim);border:1px solid rgba(245,166,35,.22);padding:2px 9px;border-radius:1px;display:inline-flex;align-items:center;gap:5px;margin-bottom:12px;}
+.pbadge-b{font-size:11px;font-weight:700;letter-spacing:.10em;text-transform:uppercase;color:var(--blue);background:rgba(77,159,255,.1);border:1px solid rgba(77,159,255,.22);padding:2px 9px;border-radius:1px;display:inline-flex;align-items:center;gap:5px;margin-bottom:12px;}
+.pbadge-d{font-size:11px;font-weight:700;letter-spacing:.10em;text-transform:uppercase;color:var(--ink3);background:var(--panel2);border:1px solid var(--border2);padding:2px 9px;border-radius:1px;display:inline-flex;align-items:center;gap:5px;margin-bottom:12px;}
+.ptitle{font-family:"Fira Code",monospace;font-size:clamp(16px,2.5vw,22px);font-weight:800;letter-spacing:-.02em;margin-bottom:8px;color:var(--ink);}
+.pdesc{font-size:13px;color:var(--ink2);line-height:1.75;margin-bottom:14px;font-weight:300;}
+.sbd{display:flex;flex-direction:column;border:1px solid var(--border);margin-bottom:14px;}
+.sbr{display:grid;grid-template-columns:130px 1fr;border-bottom:1px solid var(--border);transition:background .2s;}
+.sbr:last-child{border-bottom:none;}
+.sbr:hover{background:rgba(245,166,35,.02);}
+.sbl{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--amber);padding:9px 10px;border-right:1px solid var(--border);display:flex;align-items:center;gap:5px;}
+.sbv{font-size:12px;color:var(--ink2);padding:9px 12px;line-height:1.5;}
+.sbv strong{color:var(--ink);font-weight:500;}
+.plinks{display:flex;gap:14px;flex-wrap:wrap;margin-top:4px;}
+.plink{font-size:12px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--ink3);text-decoration:none;display:flex;align-items:center;gap:4px;border-bottom:1px solid var(--border2);padding-bottom:2px;transition:color .2s,border-color .2s;}
 .plink:hover{color:var(--amber);border-color:var(--amber);}
-.plink svg{width:10px;height:10px;}
-.pside{border-left:1px solid var(--border);background:var(--panel2);padding:20px 18px;display:flex;flex-direction:column;gap:14px;}
+.pside{border-left:1px solid var(--border);background:var(--panel2);padding:18px 16px;display:flex;flex-direction:column;gap:12px;}
 @media(max-width:640px){.pside{border-left:none;border-top:1px solid var(--border);}}
-.side-lbl{font-size:11px;font-weight:700;letter-spacing:.10em;text-transform:uppercase;color:var(--ink3);margin-bottom:4px;}
-.side-val{font-size:14px;font-weight:600;color:var(--green);}
-.side-val.b{color:var(--blue);}.side-val.a{color:var(--amber);}
-.side-sep{height:1px;background:var(--border);}
-.side-pill{font-size:11px;color:var(--ink3);background:var(--panel);border:1px solid var(--border);padding:3px 8px;border-radius:1px;display:block;margin-bottom:4px;transition:border-color .2s,color .2s;}
-.side-pill:hover{border-color:var(--amber);color:var(--ink);}
-.diagram-embed{border-top:1px solid var(--border);padding:0;background:var(--bg);overflow:hidden;}
+.slbl{font-size:11px;font-weight:700;letter-spacing:.10em;text-transform:uppercase;color:var(--ink3);margin-bottom:4px;}
+.sval{font-size:13px;font-weight:600;color:var(--green);}
+.sval-a{font-size:13px;font-weight:600;color:var(--amber);}
+.sval-b{font-size:13px;font-weight:600;color:var(--blue);}
+.sval-d{font-size:13px;font-weight:600;color:var(--ink3);}
+.ssep{height:1px;background:var(--border);}
+.spill{font-size:11px;color:var(--ink3);background:var(--panel);border:1px solid var(--border);padding:3px 8px;border-radius:1px;display:block;margin-bottom:4px;transition:border-color .2s,color .2s;}
+.spill:hover{border-color:var(--amber);color:var(--ink);}
 
-/* pipeline flow animation */
-.pipeline-flow{padding:20px 28px;background:var(--bg);border-top:1px solid var(--border);}
-.pf-label{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);margin-bottom:12px;}
-.pf-stages{display:flex;align-items:center;flex-wrap:wrap;gap:4px;}
-.pf-stage{font-size:11px;font-weight:700;letter-spacing:.04em;padding:5px 10px;border:1px solid var(--border2);color:var(--ink3);background:var(--panel);opacity:0;transform:translateX(-8px);transition:all .3s;}
-.pf-stage.lit{color:var(--green);border-color:rgba(0,217,126,.4);background:rgba(0,217,126,.06);opacity:1;transform:none;}
-.pf-stage.fail{color:var(--red);border-color:rgba(255,77,77,.4);background:rgba(255,77,77,.06);}
-.pf-arrow{color:var(--ink3);font-size:12px;opacity:0.4;}
+/* PIPELINE ANIMATION */
+.pipe-wrap{border-top:1px solid var(--border);padding:18px 26px;background:var(--bg);}
+.pipe-lbl{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);margin-bottom:12px;}
+.pipe-stages{display:flex;align-items:center;flex-wrap:wrap;gap:4px;}
+.ps{font-size:11px;font-weight:700;letter-spacing:.04em;padding:5px 10px;border:1px solid var(--border2);color:var(--ink3);background:var(--panel);transition:all .35s;}
+.ps.on{color:var(--green);border-color:rgba(0,217,126,.5);background:rgba(0,217,126,.07);}
+.parr{color:var(--ink3);font-size:12px;opacity:.4;}
 
-/* alert table */
-.atbl{width:100%;border-collapse:collapse;font-size:13px;margin-top:14px;}
-.atbl th{font-size:11px;font-weight:700;letter-spacing:.10em;text-transform:uppercase;color:var(--ink3);padding:8px 12px;text-align:left;border-bottom:1px solid var(--border2);}
-.atbl td{padding:9px 12px;border-bottom:1px solid var(--border);color:var(--ink2);font-size:12px;}
-.atbl tr:last-child td{border-bottom:none;}
-.atbl tr:hover td{background:rgba(245,166,35,.015);}
-.sev-w{font-size:10px;color:var(--amber);padding:2px 7px;border:1px solid rgba(245,166,35,.3);background:rgba(245,166,35,.06);}
-.sev-c{font-size:10px;color:var(--red);padding:2px 7px;border:1px solid rgba(255,77,77,.3);background:rgba(255,77,77,.06);}
+/* ARCHITECTURE NODES */
+.aflow{border-top:1px solid var(--border);padding:18px 26px;background:var(--bg);}
+.aflow-lbl{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);margin-bottom:14px;}
+.arow{display:flex;align-items:center;flex-wrap:wrap;gap:6px;margin-bottom:10px;}
+.arow:last-child{margin-bottom:0;}
+.arow-lbl{font-size:10px;color:var(--ink3);width:80px;flex-shrink:0;}
+.an{font-size:11px;font-weight:700;letter-spacing:.04em;padding:4px 10px;border:1px solid;border-radius:1px;white-space:nowrap;}
+.an-g{color:var(--green);border-color:rgba(0,217,126,.4);background:rgba(0,217,126,.06);}
+.an-a{color:var(--amber);border-color:rgba(245,166,35,.4);background:rgba(245,166,35,.06);}
+.an-b{color:var(--blue);border-color:rgba(77,159,255,.4);background:rgba(77,159,255,.06);}
+.an-t{color:var(--teal);border-color:rgba(0,201,177,.4);background:rgba(0,201,177,.06);}
+.an-o{color:#f0673a;border-color:rgba(240,103,58,.4);background:rgba(240,103,58,.06);}
+.an-r{color:var(--red);border-color:rgba(255,77,77,.4);background:rgba(255,77,77,.06);}
+.an-d{color:var(--ink3);border-color:var(--border2);background:var(--panel);}
+.arr{color:var(--ink3);font-size:11px;opacity:.5;}
 
-/* phase grid */
-.phase-row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:20px;}
-@media(max-width:640px){.phase-row{grid-template-columns:repeat(2,1fr);}}
-.ph-cell{background:var(--bg);border:1px solid var(--border);padding:12px 14px;transition:border-color .2s;}
-.ph-cell:hover{border-color:rgba(245,166,35,.3);}
-.ph-num{font-size:10px;color:var(--ink3);letter-spacing:.08em;margin-bottom:4px;}
-.ph-name{font-size:12px;font-weight:600;color:var(--ink);margin-bottom:6px;}
-.ph-status{font-size:11px;display:flex;align-items:center;gap:5px;}
-.ph-dot{width:5px;height:5px;border-radius:50%;}
-.ph-dot-g{background:var(--green);}
-.ph-dot-a{background:var(--amber);animation:pulse 1.8s ease-in-out infinite;}
-.ph-dot-d{background:var(--ink3);}
-.p2{margin-top:12px;border:1px solid var(--border2);background:var(--panel2);padding:20px 24px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;}
-.p2-badge{font-size:12px;font-weight:700;letter-spacing:.10em;text-transform:uppercase;color:var(--amber);margin-bottom:5px;}
-.p2-title{font-size:14px;font-weight:600;color:var(--ink);margin-bottom:4px;}
-.p2-sub{font-size:12px;color:var(--ink3);}
+/* PHASE GRID */
+.pgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:20px;}
+@media(max-width:640px){.pgrid{grid-template-columns:repeat(2,1fr);}}
+.pcell{background:var(--bg);border:1px solid var(--border);padding:14px;cursor:pointer;transition:border-color .2s;}
+.pcell:hover{border-color:rgba(245,166,35,.35);}
+.pcell-n{font-size:10px;color:var(--ink3);letter-spacing:.08em;margin-bottom:5px;}
+.pcell-t{font-size:12px;font-weight:600;color:var(--ink);margin-bottom:8px;}
+.pcell-s{font-size:11px;display:flex;align-items:center;gap:6px;}
+.pdot{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
+.pdot-g{background:var(--green);}
+.pdot-a{background:var(--amber);animation:pulse 1.8s infinite;}
+.pdot-d{background:var(--ink3);}
 
-/* skills */
-.sg{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px;}
+/* COMING NEXT BANNER */
+.cnext{margin-top:12px;border:1px dashed var(--border2);background:var(--panel2);padding:20px 24px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;position:relative;overflow:hidden;}
+.cnext::before{content:"PHASE 4";position:absolute;right:16px;top:50%;transform:translateY(-50%);font-family:"Fira Code",monospace;font-size:72px;font-weight:800;color:rgba(255,255,255,.015);pointer-events:none;}
+.cn-badge{font-size:12px;font-weight:700;letter-spacing:.10em;text-transform:uppercase;color:var(--blue);background:rgba(77,159,255,.07);border:1px solid rgba(77,159,255,.2);padding:2px 9px;border-radius:1px;margin-bottom:6px;display:inline-block;}
+.cn-title{font-family:"Fira Code",monospace;font-size:18px;font-weight:800;letter-spacing:-.02em;margin-bottom:4px;}
+.cn-sub{font-size:13px;color:var(--ink3);}
+
+/* SKILLS */
+.sg{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;}
 .skg-h{font-size:12px;font-weight:700;letter-spacing:.10em;text-transform:uppercase;color:var(--amber);margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--border);}
-.sk{display:flex;flex-direction:column;gap:10px;}
+.sk-item{margin-bottom:10px;}
 .sk-row{display:flex;justify-content:space-between;margin-bottom:5px;}
 .sk-name{font-size:12px;color:var(--ink2);}
 .sk-pct{font-size:12px;color:var(--amber);}
-.sk-track{height:2px;background:var(--border2);border-radius:1px;overflow:hidden;}
+.sk-track{height:2px;background:var(--border2);}
 .sk-fill{height:100%;background:linear-gradient(90deg,var(--amber),rgba(245,166,35,.4));width:0;transition:width 1.4s cubic-bezier(.25,.46,.45,.94);}
 
-/* contact */
+/* CONTACT */
 .cg{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;}
 .ccard{background:var(--panel);border:1px solid var(--border2);padding:16px 18px;text-decoration:none;display:flex;align-items:center;gap:12px;transition:border-color .2s,background .2s;}
 .ccard:hover{border-color:rgba(245,166,35,.3);background:var(--panel2);}
 .cico{width:32px;height:32px;background:var(--panel2);border:1px solid var(--border2);border-radius:2px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 .c-lbl{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:2px;}
 .c-val{font-size:13px;color:var(--ink);}
+
 footer{padding:24px 0 0;}
 .ft{font-size:12px;color:var(--ink3);text-align:center;letter-spacing:.05em;}
 .ft a{color:var(--ink3);text-decoration:none;}
 .ft a:hover{color:var(--amber);}
-
-/* fade-in */
-.fi{opacity:0;transform:translateY(12px);transition:opacity .55s ease,transform .55s ease;}
+.fi{opacity:0;transform:translateY(10px);transition:opacity .5s,transform .5s;}
 .fi.show{opacity:1;transform:none;}
-
-/* slide-in from left */
-.sl{opacity:0;transform:translateX(-16px);transition:opacity .5s ease,transform .5s ease;}
-.sl.show{opacity:1;transform:none;}
 </style>
 </head>
 <body>
@@ -231,40 +226,37 @@ footer{padding:24px 0 0;}
   <div class="tb-inner">
     <div class="tb-left">
       <div class="tb-dots"><div class="tb-dot r"></div><div class="tb-dot y"></div><div class="tb-dot g"></div></div>
-      <div class="tb-title"><strong>mjcastro</strong> · devops-lab · github.io</div>
+      <div class="tb-title"><strong>mjcastro</strong> &middot; devops-lab &middot; github.io</div>
     </div>
     <nav><ul class="tb-nav">
       <li><a href="#projects">projects</a></li>
       <li><a href="#skills">skills</a></li>
       <li><a href="#contact">contact</a></li>
-      <a class="tb-cv" href="mailto:mjarcino19@gmail.com">cv →</a>
+      <a class="tb-cv" href="mailto:mjarcino19@gmail.com">cv &rarr;</a>
     </ul></nav>
   </div>
 </div>
 
 <div class="statusbar">
   <div class="sb"><div class="sb-dot"></div>ALL SYSTEMS RUNNING</div>
-  <div class="sb-sep"></div><div class="sb">PHASE 1 · COMPLETE</div>
-  <div class="sb-sep"></div><div class="sb">PHASE 2 · IN PROGRESS</div>
-  <div class="sb-sep"></div><div class="sb">AWS + TERRAFORM · ACTIVE</div>
+  <div class="sb-sep"></div><div class="sb">PHASE 1 &middot; COMPLETE</div>
+  <div class="sb-sep"></div><div class="sb">PHASE 2 &middot; IN PROGRESS</div>
+  <div class="sb-sep"></div><div class="sb">AWS + TERRAFORM &middot; ACTIVE</div>
   <div class="sb-sep"></div><div class="sb">OPEN TO ROLES</div>
 </div>
 
-<!-- HERO -->
-<section id="hero">
+<section id="hero" style="padding-top:52px;">
   <div class="wrap">
     <div class="hero-layout">
       <div>
-        <div class="id-path fi" style="transition-delay:.0s">~ / <span>mary-joy-castro</span> / devops-lab-project</div>
-        <h1 class="id-name fi" style="transition-delay:.08s"><span class="first">Mary Joy </span><span class="last">Castro</span></h1>
-        <div class="id-tagline fi" style="transition-delay:.16s">IT Operations · SRE · System Administrator · DEVOPS</div>
-        <p class="id-bio fi" style="transition-delay:.22s">
-          With a background in IT Operations, NOC, and System Administration, I spent years triaging incidents, maintaining system stability, and keeping production environments running under pressure. Now, I’m building those systems from scratch to understand the how and why behind everything I once responded to.
-        </p>
+        <div class="id-path fi" style="transition-delay:.0s">~ / <span>mary-joy-castro</span> / devops-lab</div>
+        <h1 class="id-name fi" style="transition-delay:.08s"><span>Mary Joy </span><span class="last">Castro</span></h1>
+        <div class="id-tagline fi" style="transition-delay:.16s">IT Operations &middot; SRE &middot; DevOps Engineering</div>
+        <p class="id-bio fi" style="transition-delay:.22s">With a background in IT Operations, NOC, and System Administration, I spent years triaging incidents, maintaining system stability, and keeping production environments running under pressure. Now, I&apos;m building those systems from scratch to understand the how and why behind everything I once responded to.</p>
         <div class="id-ctas fi" style="transition-delay:.28s">
-          <a href="#projects" class="btn btn-a"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg><span>view projects</span></a>
-          <a href="https://github.com/mjec-explorer/devops-lab" target="_blank" class="btn btn-b"><svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844a9.59 9.59 0 012.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg><span>github</span></a>
-          <a href="https://www.linkedin.com/in/mjcastro-itops/" target="_blank" class="btn btn-b"><svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg><span>linkedin</span></a>
+          <a href="#projects" class="btn btn-a"><span>view projects</span></a>
+          <a href="https://github.com/mjec-explorer/devops-lab" target="_blank" class="btn btn-b"><span>github</span></a>
+          <a href="https://www.linkedin.com/in/mjcastro-itops/" target="_blank" class="btn btn-b"><span>linkedin</span></a>
         </div>
         <div class="statgrid fi" style="transition-delay:.34s">
           <div class="statcell"><div class="stat-n">13</div><div class="stat-l">Containers</div></div>
@@ -274,267 +266,317 @@ footer{padding:24px 0 0;}
         </div>
       </div>
       <div class="term fi" style="transition-delay:.2s">
-        <div class="tbar"><div class="ttd r"></div><div class="ttd y"></div><div class="ttd g"></div><span class="ttitle">bash · mjcastro@devops-lab</span></div>
+        <div class="tbar"><div class="ttd r"></div><div class="ttd y"></div><div class="ttd g"></div><span class="ttitle">bash &middot; mjcastro@devops-lab</span></div>
         <div class="tbody">
-          <div class="tl"><span class="pr">❯</span><span class="cm">docker compose ps</span></div>
-          <span class="out og">✓ fastapi        running (healthy)</span>
-          <span class="out og">✓ nginx          running</span>
-          <span class="out og">✓ prometheus     running</span>
-          <span class="out og">✓ alertmanager   running</span>
-          <span class="out og">✓ grafana        running</span>
-          <span class="out og">✓ node-exporter  running</span>
-          <span class="out og">✓ blackbox       running</span>
-          <span class="out og">✓ n8n            running</span>
-          <span class="out og">✓ docker-proxy   running</span>
-          <div class="tl" style="margin-top:8px"><span class="pr">❯</span><span class="cm">terraform output ec2_public_ip</span></div>
+          <div class="tl"><span class="pr">&#10095;</span><span class="cm">docker compose ps</span></div>
+          <span class="out og">&#10003; fastapi       running (healthy)</span>
+          <span class="out og">&#10003; nginx         running</span>
+          <span class="out og">&#10003; prometheus    running</span>
+          <span class="out og">&#10003; alertmanager  running</span>
+          <span class="out og">&#10003; grafana       running</span>
+          <span class="out og">&#10003; node-exporter running</span>
+          <span class="out og">&#10003; blackbox      running</span>
+          <span class="out og">&#10003; n8n           running</span>
+          <span class="out og">&#10003; docker-proxy  running</span>
+          <div class="tl" style="margin-top:8px"><span class="pr">&#10095;</span><span class="cm">terraform output ec2_public_ip</span></div>
           <span class="out oa">3.70.226.236  # eu-central-1a</span>
-          <div class="tl" style="margin-top:8px"><span class="pr">❯</span><span class="cm">curl -s localhost/health</span></div>
+          <div class="tl" style="margin-top:8px"><span class="pr">&#10095;</span><span class="cm">curl -s localhost/health</span></div>
           <span class="out og">{"status":"ok"}</span>
-          <div class="tl" style="margin-top:8px"><span class="pr">❯</span><span class="cm"><span class="blink"></span></span></div>
+          <div class="tl" style="margin-top:8px"><span class="pr">&#10095;</span><span class="cm"><span class="blink"></span></span></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<div class="divider"></div>
+<div class="divider" style="margin-top:20px;"></div>
 
-<!-- PROJECTS -->
 <section id="projects" class="section">
   <div class="wrap">
-    <div class="s-tag">01 · Work</div>
+    <div class="s-tag">01 &middot; Work</div>
     <h2 class="s-h">Lab <em>Projects</em></h2>
-    <p class="s-sub">Built from scratch to understand the HOW and WHY. Not just to make it work but to know it well enough to rebuild it.</p>
+    <p class="s-sub">Built from scratch to understand the how and why. Not just to make it work &mdash; to know it well enough to rebuild it.</p>
 
     <!-- PHASE TABS -->
     <div class="phase-tabs fi">
-      <button class="ptab active" onclick="switchPhase('p1',this)">Phase 1 · CI/CD + Monitoring ✓</button>
-      <button class="ptab" onclick="switchPhase('p2',this)">Phase 2 · Automation ◐</button>
-      <button class="ptab" onclick="switchPhase('p3',this)">Phase 3 · AWS + Terraform ◐</button>
+      <button class="ptab active" onclick="sw('p1',this)">Phase 1 &middot; CI/CD + Monitoring &#10003;</button>
+      <button class="ptab" onclick="sw('p2',this)">Phase 2 &middot; Automation &#9680;</button>
+      <button class="ptab" onclick="sw('p3',this)">Phase 3 &middot; AWS + Terraform &#9680;</button>
+      <button class="ptab" onclick="sw('p4',this)">Phase 4 &middot; Kubernetes &#9675;</button>
     </div>
 
-    <!-- PHASE 1 -->
+    <!-- ===== PHASE 1 ===== -->
     <div id="p1" class="phase-content active">
       <div class="pcard">
         <div class="pcard-top">
           <div class="pmain">
-            <div class="pbadge">Phase 1 · Complete</div>
+            <div class="pbadge">Phase 1 &middot; Complete</div>
             <div class="ptitle">CI/CD Pipeline + Observability Stack</div>
-            <p class="pdesc">The foundation. A working CI/CD pipeline that builds, tests, and deploys automatically — combined with a full monitoring stack that collects metrics, visualises them, and fires alerts when things go wrong.</p>
-            <div class="stack-breakdown">
-              <div class="stack-row"><div class="stack-label"><span>⚙</span> CI/CD</div><div class="stack-val"><strong>Jenkins</strong>: 8-stage automated pipeline — checkout, unit tests, multi-stage Docker build, Git-SHA tagging, push to GHCR, deploy, health check, endpoint verify. Code doesn't go live without a passing health check.</div></div>
-              <div class="stack-row"><div class="stack-label"><span>🌐</span> Traffic</div><div class="stack-val"><strong>Nginx → FastAPI</strong>: Nginx is the only service exposed on port 80. FastAPI is isolated on the internal Docker network. Nginx waits for FastAPI to be healthy before accepting traffic.</div></div>
-              <div class="stack-row"><div class="stack-label"><span>📊</span> Metrics</div><div class="stack-val"><strong>Prometheus + Node Exporter</strong>: scrapes FastAPI /metrics every 15s for application metrics and Node Exporter for CPU, memory, disk. Grafana visualises everything.</div></div>
-              <div class="stack-row"><div class="stack-label"><span>🔔</span> Alerting</div><div class="stack-val"><strong>Alertmanager → Slack</strong>: alert rules fire based on uptime and error rate. Alertmanager handles deduplication, grouping, and routing to Slack.</div></div>
+            <p class="pdesc">The foundation. A working CI/CD pipeline that builds, tests, and deploys automatically &mdash; combined with a full monitoring stack that collects metrics, visualises them, and fires alerts when things go wrong.</p>
+            <div class="sbd">
+              <div class="sbr"><div class="sbl">&#9881; CI/CD</div><div class="sbv"><strong>Jenkins</strong>: 8-stage automated pipeline &mdash; checkout, unit tests, multi-stage Docker build, Git-SHA tagging, push to GHCR, deploy, health check, endpoint verify. Code doesn&apos;t go live without a passing health check.</div></div>
+              <div class="sbr"><div class="sbl">&#127760; Traffic</div><div class="sbv"><strong>Nginx &rarr; FastAPI</strong>: Nginx is the only service exposed on port 80. FastAPI is isolated on the internal Docker network. Nginx waits for FastAPI to be healthy before accepting traffic.</div></div>
+              <div class="sbr"><div class="sbl">&#128202; Metrics</div><div class="sbv"><strong>Prometheus + Node Exporter</strong>: scrapes FastAPI /metrics every 15s for application metrics and Node Exporter for CPU, memory, disk. Grafana visualises everything.</div></div>
+              <div class="sbr"><div class="sbl">&#128276; Alerting</div><div class="sbv"><strong>Alertmanager &rarr; Slack</strong>: alert rules fire based on uptime and error rate. Alertmanager handles deduplication, grouping, and routing.</div></div>
             </div>
-            <div class="chips">
-              <span class="chip cr">Jenkins</span><span class="chip cb">Docker</span><span class="chip cg">FastAPI</span><span class="chip ct">Nginx</span><span class="chip ca">Prometheus</span><span class="chip ca">Grafana</span><span class="chip cg">Alertmanager</span><span class="chip cb">GHCR</span><span class="chip cg">Node Exporter</span>
-            </div>
-            <div class="plinks">
-              <a class="plink" href="https://github.com/mjec-explorer/devops-lab" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844a9.59 9.59 0 012.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>view repository</a>
-            </div>
+            <div class="chips"><span class="chip cr">Jenkins</span><span class="chip cb">Docker</span><span class="chip cg">FastAPI</span><span class="chip ct">Nginx</span><span class="chip ca">Prometheus</span><span class="chip ca">Grafana</span><span class="chip cg">Alertmanager</span><span class="chip cb">GHCR</span><span class="chip cg">Node Exporter</span></div>
+            <div class="plinks"><a class="plink" href="https://github.com/mjec-explorer/devops-lab" target="_blank">view repository</a></div>
           </div>
           <div class="pside">
-            <div><div class="side-lbl">status</div><div class="side-val">● Complete</div></div>
-            <div class="side-sep"></div>
+            <div><div class="slbl">status</div><div class="sval">&#9679; Complete</div></div>
+            <div class="ssep"></div>
             <div>
-              <div class="side-lbl">what was built</div>
-              <span class="side-pill">8-stage CI/CD</span>
-              <span class="side-pill">multi-stage builds</span>
-              <span class="side-pill">git-sha tagging</span>
-              <span class="side-pill">health-checked deploy</span>
-              <span class="side-pill">prometheus scraping</span>
-              <span class="side-pill">grafana dashboards</span>
-              <span class="side-pill">alertmanager routing</span>
-              <span class="side-pill">slack notifications</span>
+              <div class="slbl">what was built</div>
+              <span class="spill">8-stage CI/CD</span>
+              <span class="spill">multi-stage builds</span>
+              <span class="spill">git-sha tagging</span>
+              <span class="spill">health-checked deploy</span>
+              <span class="spill">prometheus scraping</span>
+              <span class="spill">grafana dashboards</span>
+              <span class="spill">alertmanager routing</span>
+              <span class="spill">slack notifications</span>
             </div>
           </div>
         </div>
 
-        <!-- CI/CD pipeline animation -->
-        <div class="pipeline-flow">
-          <div class="pf-label">CI/CD Pipeline: 8 stages</div>
-          <div class="pf-stages" id="pipe1">
-            <div class="pf-stage">Checkout</div><div class="pf-arrow">→</div>
-            <div class="pf-stage">Unit Tests</div><div class="pf-arrow">→</div>
-            <div class="pf-stage">Build Image</div><div class="pf-arrow">→</div>
-            <div class="pf-stage">Tag SHA</div><div class="pf-arrow">→</div>
-            <div class="pf-stage">Push GHCR</div><div class="pf-arrow">→</div>
-            <div class="pf-stage">Deploy</div><div class="pf-arrow">→</div>
-            <div class="pf-stage">Health Check</div><div class="pf-arrow">→</div>
-            <div class="pf-stage">Verify ✓</div>
+        <!-- Pipeline animation -->
+        <div class="pipe-wrap">
+          <div class="pipe-lbl">CI/CD Pipeline &mdash; 8 Stages</div>
+          <div class="pipe-stages" id="pipe1">
+            <div class="ps">Checkout</div><span class="parr">&rarr;</span>
+            <div class="ps">Unit Tests</div><span class="parr">&rarr;</span>
+            <div class="ps">Build Image</div><span class="parr">&rarr;</span>
+            <div class="ps">Tag SHA</div><span class="parr">&rarr;</span>
+            <div class="ps">Push GHCR</div><span class="parr">&rarr;</span>
+            <div class="ps">Deploy</div><span class="parr">&rarr;</span>
+            <div class="ps">Health Check</div><span class="parr">&rarr;</span>
+            <div class="ps">Verify &#10003;</div>
           </div>
         </div>
 
-        <div class="diagram-embed">
-          <video autoplay muted loop playsinline style="width:100%;display:block;border-radius:4px;outline:1px solid var(--border2);">
-            <source src="devops-lab-workflow.mp4" type="video/mp4">
-          </video>
+        <!-- Architecture flow -->
+        <div class="aflow">
+          <div class="aflow-lbl">Runtime Architecture</div>
+          <div class="arow"><span class="arow-lbl">CI/CD</span><span class="an an-d">Git Push</span><span class="arr">&rarr;</span><span class="an an-o">Jenkins</span><span class="arr">&rarr;</span><span class="an an-b">Unit Tests</span><span class="arr">&rarr;</span><span class="an an-b">Build Image</span><span class="arr">&rarr;</span><span class="an an-b">Tag SHA</span><span class="arr">&rarr;</span><span class="an an-t">Push GHCR</span><span class="arr">&rarr;</span><span class="an an-b">Deploy</span><span class="arr">&rarr;</span><span class="an an-g">Health Check &#10003;</span></div>
+          <div class="arow"><span class="arow-lbl">Traffic</span><span class="an an-d">Browser/curl</span><span class="arr">&rarr;</span><span class="an an-t">Nginx :80</span><span class="arr">&rarr;</span><span class="an an-g">FastAPI :8000</span><span class="arr">&rarr;</span><span class="an an-d">/health &nbsp;/metrics</span></div>
+          <div class="arow"><span class="arow-lbl">Monitoring</span><span class="an an-a">Prometheus</span><span class="arr">scrapes 15s &rarr;</span><span class="an an-g">FastAPI /metrics</span><span class="arr">+</span><span class="an an-g">Node Exporter</span><span class="arr">&rarr;</span><span class="an an-a">Grafana</span></div>
+          <div class="arow" style="margin-bottom:0;"><span class="arow-lbl">Alerting</span><span class="an an-a">Prometheus</span><span class="arr">alert fires &rarr;</span><span class="an an-a">Alertmanager</span><span class="arr">&rarr;</span><span class="an an-g">Slack #alerts</span></div>
         </div>
       </div>
     </div>
 
-    <!-- PHASE 2 -->
+    <!-- ===== PHASE 2 ===== -->
     <div id="p2" class="phase-content">
       <div class="pcard">
         <div class="pcard-top">
           <div class="pmain">
-            <div class="pbadge-amber">Phase 2 · In Progress</div>
+            <div class="pbadge-a">Phase 2 &middot; In Progress</div>
             <div class="ptitle">Intelligent Alert Automation</div>
-            <p class="pdesc">Built on top of Phase 1. Alerts now go through an intelligent pipeline — they're enriched with context, trigger automated remediation, verify recovery, and escalate if they can't fix themselves. The system also monitors its own alert pipeline and self-reports when it fails.</p>
-            <div class="stack-breakdown">
-              <div class="stack-row"><div class="stack-label"><span>🔍</span> Blackbox</div><div class="stack-val"><strong>Blackbox Exporter</strong>: probes HTTP endpoints externally every 15s. Detects if n8n, Grafana, or the app are reachable from outside — catches what internal scraping misses. N8NDown alert fires if automation layer goes down.</div></div>
-              <div class="stack-row"><div class="stack-label"><span>🤖</span> n8n</div><div class="stack-val"><strong>Alert enrichment + remediation</strong>: parses alert payload, adds Grafana URL and runbook link, maps instance to container name, restarts failed containers via Docker API, verifies recovery via Prometheus API, posts full timeline to Slack.</div></div>
-              <div class="stack-row"><div class="stack-label"><span>🔒</span> Proxy</div><div class="stack-val"><strong>Docker Socket Proxy</strong>: n8n calls the Docker API through a proxy that exposes only container restart. Never mounts the socket directly — principle of least privilege applied to container access.</div></div>
-              <div class="stack-row"><div class="stack-label"><span>📡</span> Fallback</div><div class="stack-val"><strong>Dual delivery</strong>: critical alerts route to n8n AND slack-backup simultaneously. If n8n is down, Alertmanager delivers directly. Critical alerts are never silently dropped.</div></div>
+            <p class="pdesc">Built on top of Phase 1. Alerts go through an intelligent pipeline &mdash; enriched with context, triggering automated remediation, verifying recovery, and escalating if they can&apos;t fix themselves. The system also monitors its own alert pipeline and self-reports when it fails.</p>
+            <div class="sbd">
+              <div class="sbr"><div class="sbl">&#128270; Blackbox</div><div class="sbv"><strong>Blackbox Exporter</strong>: probes HTTP endpoints externally every 15s. Detects if n8n, Grafana, or the app are reachable from outside. N8NDown alert fires if the automation layer goes down.</div></div>
+              <div class="sbr"><div class="sbl">&#129302; n8n</div><div class="sbv"><strong>Alert enrichment + remediation</strong>: parses alert payload, adds Grafana URL and runbook link, maps instance to container name, restarts failed containers via Docker API, verifies recovery via Prometheus API, posts full timeline to Slack.</div></div>
+              <div class="sbr"><div class="sbl">&#128274; Proxy</div><div class="sbv"><strong>Docker Socket Proxy</strong>: n8n calls Docker API through a proxy that exposes only container restart. Principle of least privilege applied to container access.</div></div>
+              <div class="sbr"><div class="sbl">&#128225; Fallback</div><div class="sbv"><strong>Dual delivery</strong>: critical alerts route to n8n AND slack-backup simultaneously. If n8n is down, Alertmanager delivers directly. Critical alerts are never silently dropped.</div></div>
             </div>
-            <table class="atbl">
-              <tr><th>Alert</th><th>Condition</th><th>Severity</th><th>Action</th></tr>
-              <tr><td>InstanceWarning</td><td>Down 2m</td><td><span class="sev-w">warning</span></td><td>Notify only</td></tr>
-              <tr><td>InstanceDown</td><td>Down 5m</td><td><span class="sev-c">critical</span></td><td>Auto-remediate</td></tr>
-              <tr><td>HighErrorRate</td><td>&gt;5% errors 2m</td><td><span class="sev-c">critical</span></td><td>Notify</td></tr>
-              <tr><td>NoTraffic</td><td>No requests 5m</td><td><span class="sev-w">warning</span></td><td>Notify</td></tr>
-              <tr><td>N8NDown</td><td>n8n unreachable 1m</td><td><span class="sev-c">critical</span></td><td>Fallback delivery</td></tr>
+            <table style="width:100%;border-collapse:collapse;font-size:12px;margin-bottom:14px;">
+              <tr style="border-bottom:1px solid var(--border2);"><th style="text-align:left;padding:6px 10px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);">Alert</th><th style="text-align:left;padding:6px 10px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);">Condition</th><th style="padding:6px 10px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);">Sev</th><th style="text-align:left;padding:6px 10px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);">Action</th></tr>
+              <tr style="border-bottom:1px solid var(--border);"><td style="padding:7px 10px;color:var(--ink2);">InstanceWarning</td><td style="padding:7px 10px;color:var(--ink2);">Down 2m</td><td style="padding:7px 10px;"><span style="font-size:10px;color:var(--amber);padding:2px 6px;border:1px solid rgba(245,166,35,.3);background:rgba(245,166,35,.06);">warning</span></td><td style="padding:7px 10px;color:var(--ink2);">Notify only</td></tr>
+              <tr style="border-bottom:1px solid var(--border);"><td style="padding:7px 10px;color:var(--ink2);">InstanceDown</td><td style="padding:7px 10px;color:var(--ink2);">Down 5m</td><td style="padding:7px 10px;"><span style="font-size:10px;color:var(--red);padding:2px 6px;border:1px solid rgba(255,77,77,.3);background:rgba(255,77,77,.06);">critical</span></td><td style="padding:7px 10px;color:var(--ink2);">Auto-remediate</td></tr>
+              <tr style="border-bottom:1px solid var(--border);"><td style="padding:7px 10px;color:var(--ink2);">HighErrorRate</td><td style="padding:7px 10px;color:var(--ink2);">&gt;5% errors 2m</td><td style="padding:7px 10px;"><span style="font-size:10px;color:var(--red);padding:2px 6px;border:1px solid rgba(255,77,77,.3);background:rgba(255,77,77,.06);">critical</span></td><td style="padding:7px 10px;color:var(--ink2);">Notify</td></tr>
+              <tr style="border-bottom:1px solid var(--border);"><td style="padding:7px 10px;color:var(--ink2);">NoTraffic</td><td style="padding:7px 10px;color:var(--ink2);">No requests 5m</td><td style="padding:7px 10px;"><span style="font-size:10px;color:var(--amber);padding:2px 6px;border:1px solid rgba(245,166,35,.3);background:rgba(245,166,35,.06);">warning</span></td><td style="padding:7px 10px;color:var(--ink2);">Notify</td></tr>
+              <tr><td style="padding:7px 10px;color:var(--ink2);">N8NDown</td><td style="padding:7px 10px;color:var(--ink2);">n8n unreachable 1m</td><td style="padding:7px 10px;"><span style="font-size:10px;color:var(--red);padding:2px 6px;border:1px solid rgba(255,77,77,.3);background:rgba(255,77,77,.06);">critical</span></td><td style="padding:7px 10px;color:var(--ink2);">Fallback delivery</td></tr>
             </table>
-            <div class="chips" style="margin-top:14px;">
-              <span class="chip cb">Blackbox Exporter</span><span class="chip cg">n8n</span><span class="chip ct">Docker Proxy</span><span class="chip ca">Alertmanager</span><span class="chip cg">Slack</span>
-            </div>
-            <div class="plinks">
-              <a class="plink" href="https://github.com/mjec-explorer/devops-lab" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844a9.59 9.59 0 012.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>view repository</a>
-            </div>
+            <div class="chips"><span class="chip cb">Blackbox Exporter</span><span class="chip cg">n8n</span><span class="chip ct">Docker Proxy</span><span class="chip ca">Alertmanager</span><span class="chip cg">Slack</span></div>
+            <div class="plinks"><a class="plink" href="https://github.com/mjec-explorer/devops-lab" target="_blank">view repository</a></div>
           </div>
           <div class="pside">
-            <div><div class="side-lbl">status</div><div class="side-val a">◐ In Progress</div></div>
-            <div class="side-sep"></div>
+            <div><div class="slbl">status</div><div class="sval-a">&#9680; In Progress</div></div>
+            <div class="ssep"></div>
             <div>
-              <div class="side-lbl">done</div>
-              <span class="side-pill">alert enrichment</span>
-              <span class="side-pill">auto-remediation</span>
-              <span class="side-pill">health check verify</span>
-              <span class="side-pill">meta-monitoring</span>
-              <span class="side-pill">fallback delivery</span>
-              <span class="side-pill">docker socket proxy</span>
+              <div class="slbl">done</div>
+              <span class="spill">alert enrichment</span>
+              <span class="spill">auto-remediation</span>
+              <span class="spill">health check verify</span>
+              <span class="spill">meta-monitoring</span>
+              <span class="spill">fallback delivery</span>
+              <span class="spill">docker socket proxy</span>
             </div>
             <div>
-              <div class="side-lbl">next</div>
-              <span class="side-pill">incident logging</span>
-              <span class="side-pill">deduplication</span>
-              <span class="side-pill">jira integration</span>
+              <div class="slbl">next</div>
+              <span class="spill">incident logging</span>
+              <span class="spill">deduplication</span>
+              <span class="spill">jira integration</span>
             </div>
           </div>
+        </div>
+        <!-- Phase 2 flow -->
+        <div class="aflow">
+          <div class="aflow-lbl">Incident Automation Flow</div>
+          <div class="arow"><span class="arow-lbl">Probe</span><span class="an an-b">Blackbox</span><span class="arr">every 15s &rarr;</span><span class="an an-g">n8n :5678</span><span class="arr">|</span><span class="an an-g">Grafana :3000</span><span class="arr">|</span><span class="an an-g">App /health</span></div>
+          <div class="arow"><span class="arow-lbl">Critical</span><span class="an an-a">Alertmanager</span><span class="arr">&rarr;</span><span class="an an-t">n8n webhook</span><span class="arr">&rarr;</span><span class="an an-b">Enrich</span><span class="arr">&rarr;</span><span class="an an-o">Restart (Docker API)</span><span class="arr">&rarr;</span><span class="an an-a">Verify (Prometheus)</span><span class="arr">&rarr;</span><span class="an an-g">RECOVERED &#10003;</span></div>
+          <div class="arow"><span class="arow-lbl">Escalate</span><span class="an an-a">Verify fails</span><span class="arr">&rarr;</span><span class="an an-r">Escalate to #critical</span></div>
+          <div class="arow" style="margin-bottom:0;"><span class="arow-lbl">Fallback</span><span class="an an-r">n8n down</span><span class="arr">&rarr;</span><span class="an an-a">N8NDown alert</span><span class="arr">&rarr;</span><span class="an an-a">Alertmanager direct</span><span class="arr">&rarr;</span><span class="an an-g">Slack backup &#10003;</span></div>
         </div>
       </div>
     </div>
 
-    <!-- PHASE 3 -->
+    <!-- ===== PHASE 3 ===== -->
     <div id="p3" class="phase-content">
       <div class="pcard">
         <div class="pcard-top">
           <div class="pmain">
-            <div class="pbadge-blue">Phase 3 · In Progress</div>
+            <div class="pbadge-b">Phase 3 &middot; In Progress</div>
             <div class="ptitle">AWS Infrastructure with Terraform</div>
-            <p class="pdesc">Real cloud infrastructure in eu-central-1 Frankfurt, provisioned entirely through Terraform. The same discipline applied to application code — version controlled, reproducible, and auditable. Always plan before apply.</p>
-            <div class="stack-breakdown">
-              <div class="stack-row"><div class="stack-label"><span>☁</span> Network</div><div class="stack-val"><strong>VPC 10.0.0.0/16</strong> with public subnet 10.0.1.0/24 in eu-central-1a Frankfurt. Internet Gateway, route table directing all outbound traffic. eu-central-1 chosen for proximity to Potsdam and GDPR compliance.</div></div>
-              <div class="stack-row"><div class="stack-label"><span>🔒</span> Security</div><div class="stack-val"><strong>IAM user</strong> with principle of least privilege. Security Group controlling ports 22, 80, 443. 4096-bit RSA key pair for SSH — private key never leaves the local machine.</div></div>
-              <div class="stack-row"><div class="stack-label"><span>💻</span> Compute</div><div class="stack-val"><strong>EC2 t3.micro Ubuntu 22.04</strong> with public IP. Instance Metadata Service at 169.254.169.254 for instance self-discovery — instance-type, AZ, public IP all queryable from inside.</div></div>
-              <div class="stack-row"><div class="stack-label"><span>📋</span> Practice</div><div class="stack-val"><strong>terraform plan before every apply</strong> — see exactly what changes before anything happens. State tracks reality. Next: remote state in S3 + DynamoDB locking for team-safe workflows.</div></div>
+            <p class="pdesc">Real cloud infrastructure in eu-central-1 Frankfurt, provisioned entirely through Terraform. Infrastructure defined as code &mdash; version controlled, reproducible, and auditable. Always plan before apply.</p>
+            <div class="sbd">
+              <div class="sbr"><div class="sbl">&#9729; Network</div><div class="sbv"><strong>VPC 10.0.0.0/16</strong> with public subnet 10.0.1.0/24 in eu-central-1a Frankfurt. Internet Gateway, route table directing all outbound traffic. eu-central-1 chosen for proximity and GDPR compliance.</div></div>
+              <div class="sbr"><div class="sbl">&#128274; Security</div><div class="sbv"><strong>IAM user</strong> with scoped permissions. Security Group controlling ports 22, 80, 443. 4096-bit RSA key pair for SSH &mdash; private key never leaves the local machine.</div></div>
+              <div class="sbr"><div class="sbl">&#128187; Compute</div><div class="sbv"><strong>EC2 t3.micro Ubuntu 22.04</strong> with public IP. Instance Metadata Service at 169.254.169.254 for instance self-discovery &mdash; instance-type, AZ, public IP queryable from inside.</div></div>
+              <div class="sbr"><div class="sbl">&#128203; IaC</div><div class="sbv"><strong>terraform plan before every apply</strong> &mdash; see exactly what changes before anything happens. State tracks reality. Next: remote state in S3 + DynamoDB locking.</div></div>
             </div>
-            <div class="chips">
-              <span class="chip cb">Terraform</span><span class="chip ca">AWS EC2</span><span class="chip ca">VPC / Subnets</span><span class="chip cb">IAM</span><span class="chip cg">eu-central-1</span><span class="chip ct">Ubuntu 22.04</span>
-            </div>
-            <div class="plinks">
-              <a class="plink" href="https://github.com/mjec-explorer/devops-lab/tree/main/terraform" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844a9.59 9.59 0 012.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>terraform source</a>
-            </div>
+            <div class="chips"><span class="chip cb">Terraform</span><span class="chip ca">AWS EC2</span><span class="chip ca">VPC / Subnets</span><span class="chip cb">IAM</span><span class="chip cg">eu-central-1</span><span class="chip ct">Ubuntu 22.04</span></div>
+            <div class="plinks"><a class="plink" href="https://github.com/mjec-explorer/devops-lab/tree/main/terraform" target="_blank">terraform source</a></div>
           </div>
           <div class="pside">
-            <div><div class="side-lbl">status</div><div class="side-val a">◐ In Progress</div></div>
-            <div><div class="side-lbl">next</div><div class="side-val b">○ Remote State</div></div>
-            <div class="side-sep"></div>
+            <div><div class="slbl">status</div><div class="sval-a">&#9680; In Progress</div></div>
+            <div><div class="slbl">next</div><div class="sval-b">&#9675; Remote State</div></div>
+            <div class="ssep"></div>
             <div>
-              <div class="side-lbl">done</div>
-              <span class="side-pill">VPC + subnets</span>
-              <span class="side-pill">internet gateway</span>
-              <span class="side-pill">security groups</span>
-              <span class="side-pill">EC2 provisioned</span>
-              <span class="side-pill">SSH working</span>
+              <div class="slbl">done</div>
+              <span class="spill">VPC + subnets</span>
+              <span class="spill">internet gateway</span>
+              <span class="spill">security groups</span>
+              <span class="spill">EC2 provisioned</span>
+              <span class="spill">SSH working</span>
             </div>
             <div>
-              <div class="side-lbl">coming next</div>
-              <span class="side-pill">S3 remote state</span>
-              <span class="side-pill">private subnet</span>
-              <span class="side-pill">NAT gateway</span>
-              <span class="side-pill">ECS deployment</span>
-              <span class="side-pill">ALB + autoscaling</span>
+              <div class="slbl">coming next</div>
+              <span class="spill">S3 remote state</span>
+              <span class="spill">private subnet</span>
+              <span class="spill">NAT gateway</span>
+              <span class="spill">ECS deployment</span>
+            </div>
+          </div>
+        </div>
+        <!-- Phase 3 flow -->
+        <div class="aflow">
+          <div class="aflow-lbl">AWS Infrastructure (Terraform)</div>
+          <div class="arow"><span class="arow-lbl">Network</span><span class="an an-b">VPC 10.0.0.0/16</span><span class="arr">&rarr;</span><span class="an an-b">Public Subnet /24</span><span class="arr">&rarr;</span><span class="an an-t">Internet Gateway</span><span class="arr">&rarr;</span><span class="an an-t">Route Table</span></div>
+          <div class="arow"><span class="arow-lbl">Compute</span><span class="an an-o">Security Group</span><span class="arr">ports 22/80/443 &rarr;</span><span class="an an-g">EC2 t3.micro</span><span class="arr">Ubuntu 22.04 &rarr;</span><span class="an an-a">3.70.226.236</span></div>
+          <div class="arow" style="margin-bottom:0;"><span class="arow-lbl">IaC</span><span class="an an-b">terraform plan</span><span class="arr">review &rarr;</span><span class="an an-b">terraform apply</span><span class="arr">&rarr;</span><span class="an an-g">infrastructure created &#10003;</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== PHASE 4 ===== -->
+    <div id="p4" class="phase-content">
+      <div class="pcard">
+        <div class="pcard-top">
+          <div class="pmain">
+            <div class="pbadge-d">Phase 4 &middot; Planned</div>
+            <div class="ptitle">Kubernetes on EKS</div>
+            <p class="pdesc">Migrate the entire stack from Docker Compose to Kubernetes on Amazon EKS. Orchestration at scale &mdash; pods, deployments, services, liveness probes, and Alertmanager running in HA mode across multiple replicas.</p>
+            <div class="sbd">
+              <div class="sbr"><div class="sbl">&#9096; Kubernetes</div><div class="sbv"><strong>EKS &mdash; Amazon Elastic Kubernetes Service</strong>: migrate all containers to pods and deployments. Kubernetes liveness probes replace manual health checks. Pod crashes restart automatically.</div></div>
+              <div class="sbr"><div class="sbl">&#128202; HA Monitor</div><div class="sbv"><strong>Alertmanager HA cluster</strong>: three-node cluster with gossip protocol for state sharing. No single point of failure in the alert pipeline.</div></div>
+              <div class="sbr"><div class="sbl">&#9889; Autoscaling</div><div class="sbv"><strong>Horizontal Pod Autoscaler</strong>: pods scale up under load, scale down when idle. No manual intervention required for traffic spikes.</div></div>
+              <div class="sbr"><div class="sbl">&#127891; Target</div><div class="sbv"><strong>CKA Certification</strong>: Certified Kubernetes Administrator. Studying while building &mdash; not instead of building.</div></div>
+            </div>
+            <div class="chips" style="opacity:.65;"><span class="chip cb">Kubernetes</span><span class="chip ca">EKS</span><span class="chip ct">Helm</span><span class="chip cg">HPA</span><span class="chip cb">Alertmanager HA</span><span class="chip cr">CKA</span></div>
+          </div>
+          <div class="pside">
+            <div><div class="slbl">status</div><div class="sval-d">&#9675; Planned</div></div>
+            <div class="ssep"></div>
+            <div>
+              <div class="slbl">prerequisites</div>
+              <span class="spill">Phase 3 complete</span>
+              <span class="spill">Terraform modules</span>
+            </div>
+            <div>
+              <div class="slbl">deliverables</div>
+              <span class="spill">all pods migrated</span>
+              <span class="spill">HA alertmanager</span>
+              <span class="spill">autoscaling live</span>
+              <span class="spill">CKA certified</span>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Phase progress -->
-    <div class="phase-row fi">
-      <div class="ph-cell"><div class="ph-num">Phase 1</div><div class="ph-name">CI/CD + Monitoring</div><div class="ph-status"><span class="ph-dot ph-dot-g"></span><span style="color:var(--green);font-size:11px;">Complete</span></div></div>
-      <div class="ph-cell"><div class="ph-num">Phase 2</div><div class="ph-name">Incident Automation</div><div class="ph-status"><span class="ph-dot ph-dot-a"></span><span style="color:var(--amber);font-size:11px;">In Progress</span></div></div>
-      <div class="ph-cell"><div class="ph-num">Phase 3</div><div class="ph-name">AWS + Terraform</div><div class="ph-status"><span class="ph-dot ph-dot-a"></span><span style="color:var(--amber);font-size:11px;">In Progress</span></div></div>
-      <div class="ph-cell"><div class="ph-num">Phase 4</div><div class="ph-name">Kubernetes</div><div class="ph-status"><span class="ph-dot ph-dot-d"></span><span style="color:var(--ink3);font-size:11px;">Planned</span></div></div>
+    <!-- PHASE GRID -->
+    <div class="pgrid fi" style="margin-top:20px;">
+      <div class="pcell" onclick="sw('p1',document.querySelectorAll('.ptab')[0])">
+        <div class="pcell-n">Phase 1</div>
+        <div class="pcell-t">CI/CD + Monitoring</div>
+        <div class="pcell-s"><span class="pdot pdot-g"></span><span style="color:var(--green);">&#9679; Complete</span></div>
+      </div>
+      <div class="pcell" onclick="sw('p2',document.querySelectorAll('.ptab')[1])">
+        <div class="pcell-n">Phase 2</div>
+        <div class="pcell-t">Incident Automation</div>
+        <div class="pcell-s"><span class="pdot pdot-a"></span><span style="color:var(--amber);">&#9680; In Progress</span></div>
+      </div>
+      <div class="pcell" onclick="sw('p3',document.querySelectorAll('.ptab')[2])">
+        <div class="pcell-n">Phase 3</div>
+        <div class="pcell-t">AWS + Terraform</div>
+        <div class="pcell-s"><span class="pdot pdot-a"></span><span style="color:var(--amber);">&#9680; In Progress</span></div>
+      </div>
+      <div class="pcell" onclick="sw('p4',document.querySelectorAll('.ptab')[3])">
+        <div class="pcell-n">Phase 4</div>
+        <div class="pcell-t">Kubernetes</div>
+        <div class="pcell-s"><span class="pdot pdot-d"></span><span style="color:var(--ink3);">&#9675; Planned</span></div>
+      </div>
     </div>
 
-    <div class="p2" style="margin-top:12px;">
+    <!-- COMING NEXT -->
+    <div class="cnext">
       <div>
-        <div class="p2-badge">Coming Next · Phase 4</div>
-        <div class="p2-title">Kubernetes on EKS · Alertmanager HA · CKA Certification</div>
-        <div class="p2-sub">Migrate the full stack from Docker Compose to Kubernetes — orchestration at scale</div>
+        <div class="cn-badge">Coming Next &middot; Phase 4</div>
+        <div class="cn-title">Kubernetes on EKS &middot; Alertmanager HA &middot; CKA Certification</div>
+        <div class="cn-sub">Migrate the full stack from Docker Compose to Kubernetes &mdash; orchestration at scale</div>
       </div>
-      <a href="https://github.com/mjec-explorer/devops-lab" target="_blank" class="btn btn-b" style="flex-shrink:0;"><span>follow on github →</span></a>
+      <a href="https://github.com/mjec-explorer/devops-lab" target="_blank" class="btn btn-b" style="flex-shrink:0;"><span>follow on github &rarr;</span></a>
     </div>
+
   </div>
 </section>
 
 <div class="divider"></div>
 
-<!-- SKILLS -->
-<section id="skills" class="section" style="padding-top:60px;">
+<section id="skills" class="section">
   <div class="wrap">
-    <div class="s-tag">02 · Toolkit</div>
-    <h2 class="s-h">Skills & <em>Stack</em></h2>
-    <p class="s-sub">Tools worked with hands-on — built with, debugged, and understood from the inside out.</p>
+    <div class="s-tag">02 &middot; Toolkit</div>
+    <h2 class="s-h">Skills &amp; <em>Stack</em></h2>
+    <p class="s-sub">Tools worked with hands-on &mdash; built with, debugged, and understood from the inside out.</p>
     <div class="sg">
-      <div class="skgroup">
-        <div class="skg-h">CI/CD & Containers</div>
-        <div class="sk">
-          <div class="sk-item"><div class="sk-row"><span class="sk-name">Jenkins</span><span class="sk-pct">85%</span></div><div class="sk-track"><div class="sk-fill" data-w="85%"></div></div></div>
-          <div class="sk-item"><div class="sk-row"><span class="sk-name">Docker</span><span class="sk-pct">84%</span></div><div class="sk-track"><div class="sk-fill" data-w="84%"></div></div></div>
-          <div class="sk-item"><div class="sk-row"><span class="sk-name">Docker Compose</span><span class="sk-pct">84%</span></div><div class="sk-track"><div class="sk-fill" data-w="84%"></div></div></div>
-          <div class="sk-item"><div class="sk-row"><span class="sk-name">Git / GHCR</span><span class="sk-pct">87%</span></div><div class="sk-track"><div class="sk-fill" data-w="87%"></div></div></div>
-        </div>
+      <div>
+        <div class="skg-h">CI/CD &amp; Containers</div>
+        <div class="sk-item"><div class="sk-row"><span class="sk-name">Jenkins</span><span class="sk-pct">85%</span></div><div class="sk-track"><div class="sk-fill" data-w="85%"></div></div></div>
+        <div class="sk-item"><div class="sk-row"><span class="sk-name">Docker</span><span class="sk-pct">84%</span></div><div class="sk-track"><div class="sk-fill" data-w="84%"></div></div></div>
+        <div class="sk-item"><div class="sk-row"><span class="sk-name">Docker Compose</span><span class="sk-pct">84%</span></div><div class="sk-track"><div class="sk-fill" data-w="84%"></div></div></div>
+        <div class="sk-item"><div class="sk-row"><span class="sk-name">Git / GHCR</span><span class="sk-pct">87%</span></div><div class="sk-track"><div class="sk-fill" data-w="87%"></div></div></div>
       </div>
-      <div class="skgroup">
+      <div>
         <div class="skg-h">Observability</div>
-        <div class="sk">
-          <div class="sk-item"><div class="sk-row"><span class="sk-name">Prometheus</span><span class="sk-pct">80%</span></div><div class="sk-track"><div class="sk-fill" data-w="80%"></div></div></div>
-          <div class="sk-item"><div class="sk-row"><span class="sk-name">Alertmanager</span><span class="sk-pct">78%</span></div><div class="sk-track"><div class="sk-fill" data-w="78%"></div></div></div>
-          <div class="sk-item"><div class="sk-row"><span class="sk-name">Grafana</span><span class="sk-pct">76%</span></div><div class="sk-track"><div class="sk-fill" data-w="76%"></div></div></div>
-          <div class="sk-item"><div class="sk-row"><span class="sk-name">Blackbox Exporter</span><span class="sk-pct">72%</span></div><div class="sk-track"><div class="sk-fill" data-w="72%"></div></div></div>
-        </div>
+        <div class="sk-item"><div class="sk-row"><span class="sk-name">Prometheus</span><span class="sk-pct">80%</span></div><div class="sk-track"><div class="sk-fill" data-w="80%"></div></div></div>
+        <div class="sk-item"><div class="sk-row"><span class="sk-name">Alertmanager</span><span class="sk-pct">78%</span></div><div class="sk-track"><div class="sk-fill" data-w="78%"></div></div></div>
+        <div class="sk-item"><div class="sk-row"><span class="sk-name">Grafana</span><span class="sk-pct">76%</span></div><div class="sk-track"><div class="sk-fill" data-w="76%"></div></div></div>
+        <div class="sk-item"><div class="sk-row"><span class="sk-name">Blackbox Exporter</span><span class="sk-pct">72%</span></div><div class="sk-track"><div class="sk-fill" data-w="72%"></div></div></div>
       </div>
-      <div class="skgroup">
-        <div class="skg-h">Cloud & IaC</div>
-        <div class="sk">
-          <div class="sk-item"><div class="sk-row"><span class="sk-name">Terraform</span><span class="sk-pct">62%</span></div><div class="sk-track"><div class="sk-fill" data-w="62%"></div></div></div>
-          <div class="sk-item"><div class="sk-row"><span class="sk-name">AWS (EC2/VPC/IAM)</span><span class="sk-pct">58%</span></div><div class="sk-track"><div class="sk-fill" data-w="58%"></div></div></div>
-          <div class="sk-item"><div class="sk-row"><span class="sk-name">Nginx</span><span class="sk-pct">76%</span></div><div class="sk-track"><div class="sk-fill" data-w="76%"></div></div></div>
-          <div class="sk-item"><div class="sk-row"><span class="sk-name">Linux</span><span class="sk-pct">84%</span></div><div class="sk-track"><div class="sk-fill" data-w="84%"></div></div></div>
-        </div>
+      <div>
+        <div class="skg-h">Cloud &amp; IaC</div>
+        <div class="sk-item"><div class="sk-row"><span class="sk-name">Terraform</span><span class="sk-pct">62%</span></div><div class="sk-track"><div class="sk-fill" data-w="62%"></div></div></div>
+        <div class="sk-item"><div class="sk-row"><span class="sk-name">AWS (EC2/VPC/IAM)</span><span class="sk-pct">58%</span></div><div class="sk-track"><div class="sk-fill" data-w="58%"></div></div></div>
+        <div class="sk-item"><div class="sk-row"><span class="sk-name">Nginx</span><span class="sk-pct">76%</span></div><div class="sk-track"><div class="sk-fill" data-w="76%"></div></div></div>
+        <div class="sk-item"><div class="sk-row"><span class="sk-name">Linux</span><span class="sk-pct">84%</span></div><div class="sk-track"><div class="sk-fill" data-w="84%"></div></div></div>
       </div>
-      <div class="skgroup">
+      <div>
         <div class="skg-h">Operations</div>
-        <div class="sk">
-          <div class="sk-item"><div class="sk-row"><span class="sk-name">Incident Response</span><span class="sk-pct">92%</span></div><div class="sk-track"><div class="sk-fill" data-w="92%"></div></div></div>
-          <div class="sk-item"><div class="sk-row"><span class="sk-name">Troubleshooting</span><span class="sk-pct">90%</span></div><div class="sk-track"><div class="sk-fill" data-w="90%"></div></div></div>
-          <div class="sk-item"><div class="sk-row"><span class="sk-name">Python / Bash</span><span class="sk-pct">74%</span></div><div class="sk-track"><div class="sk-fill" data-w="74%"></div></div></div>
-          <div class="sk-item"><div class="sk-row"><span class="sk-name">YAML / Config</span><span class="sk-pct">86%</span></div><div class="sk-track"><div class="sk-fill" data-w="86%"></div></div></div>
-        </div>
+        <div class="sk-item"><div class="sk-row"><span class="sk-name">Incident Response</span><span class="sk-pct">92%</span></div><div class="sk-track"><div class="sk-fill" data-w="92%"></div></div></div>
+        <div class="sk-item"><div class="sk-row"><span class="sk-name">Troubleshooting</span><span class="sk-pct">90%</span></div><div class="sk-track"><div class="sk-fill" data-w="90%"></div></div></div>
+        <div class="sk-item"><div class="sk-row"><span class="sk-name">Python / Bash</span><span class="sk-pct">74%</span></div><div class="sk-track"><div class="sk-fill" data-w="74%"></div></div></div>
+        <div class="sk-item"><div class="sk-row"><span class="sk-name">YAML / Config</span><span class="sk-pct">86%</span></div><div class="sk-track"><div class="sk-fill" data-w="86%"></div></div></div>
       </div>
     </div>
   </div>
@@ -542,63 +584,57 @@ footer{padding:24px 0 0;}
 
 <div class="divider"></div>
 
-<!-- CONTACT -->
-<section id="contact" class="section" style="padding-top:60px;">
+<section id="contact" class="section">
   <div class="wrap">
-    <div class="s-tag">03 · Contact</div>
-    <h2 class="s-h">Let's <em>Connect</em></h2>
-    <p class="s-sub">Open to DevOps, SRE, and IT Operations roles. Based in Potsdam, Germany · Open to relocation, available to start immediately.</p>
+    <div class="s-tag">03 &middot; Contact</div>
+    <h2 class="s-h">Let&apos;s <em>Connect</em></h2>
+    <p class="s-sub">Open to DevOps, SRE, and IT Operations roles. Based in Potsdam, Germany &mdash; open to relocation, available to start immediately.</p>
     <div class="cg">
-      <a class="ccard" href="mailto:mjarcino19@gmail.com"><div class="cico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#f5a623" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg></div><div><div class="c-lbl">Email</div><div class="c-val">mjarcino19@gmail.com</div></div></a>
+      <a class="ccard" href="mailto:mjarcino19@gmail.com"><div class="cico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#f5a623" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg></div><div><div class="c-lbl">Email</div><div class="c-val">mjarcino19@gmail.com</div></div></a>
       <a class="ccard" href="https://www.linkedin.com/in/mjcastro-itops/" target="_blank"><div class="cico"><svg width="17" height="17" viewBox="0 0 24 24" fill="#00d97e"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></div><div><div class="c-lbl">LinkedIn</div><div class="c-val">mjcastro-itops</div></div></a>
       <a class="ccard" href="https://github.com/mjec-explorer/devops-lab" target="_blank"><div class="cico"><svg width="17" height="17" viewBox="0 0 24 24" fill="#4d9fff"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844a9.59 9.59 0 012.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg></div><div><div class="c-lbl">GitHub</div><div class="c-val">mjec-explorer/devops-lab</div></div></a>
-      <a class="ccard" href="mailto:mjarcino19@gmail.com"><div class="cico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#ff4d4d" stroke-width="1.5" stroke-linecap="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div><div><div class="c-lbl">Resume / CV</div><div class="c-val">Request via email</div></div></a>
+      <a class="ccard" href="mailto:mjarcino19@gmail.com"><div class="cico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#ff4d4d" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div><div><div class="c-lbl">Resume / CV</div><div class="c-val">Request via email</div></div></a>
     </div>
   </div>
 </section>
 
-<footer><div class="wrap"><p class="ft">Mary Joy Castro · <a href="mailto:mjarcino19@gmail.com">mjarcino19@gmail.com</a> · <a href="https://github.com/mjec-explorer/devops-lab" target="_blank">github.com/mjec-explorer</a> · Potsdam, Germany · Available immediately</p></div></footer>
+<footer><div class="wrap"><p class="ft">Mary Joy Castro &middot; <a href="mailto:mjarcino19@gmail.com">mjarcino19@gmail.com</a> &middot; <a href="https://github.com/mjec-explorer/devops-lab" target="_blank">github.com/mjec-explorer</a> &middot; Potsdam, Germany &middot; Available immediately</p></div></footer>
 
 <script>
-// Phase tab switching
-function switchPhase(id, btn) {
+function sw(id, btn) {
   document.querySelectorAll('.phase-content').forEach(el => el.classList.remove('active'));
   document.querySelectorAll('.ptab').forEach(el => el.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   btn.classList.add('active');
-  // animate pipeline if switching to phase 1
-  if (id === 'p1') animatePipeline();
+  if (id === 'p1') animatePipe();
 }
 
-// Pipeline stage animation
-function animatePipeline() {
-  const stages = document.querySelectorAll('#pipe1 .pf-stage');
-  stages.forEach(s => s.classList.remove('lit'));
-  stages.forEach((s, i) => {
-    setTimeout(() => s.classList.add('lit'), i * 180);
+function animatePipe() {
+  var stages = document.querySelectorAll('#pipe1 .ps');
+  stages.forEach(function(s) { s.classList.remove('on'); });
+  stages.forEach(function(s, i) {
+    setTimeout(function() { s.classList.add('on'); }, i * 200);
   });
 }
 
-// Fade-in on scroll
-const obs = new IntersectionObserver(entries => {
-  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('show'); });
+// Scroll fade-in
+var obs = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('show'); });
 }, { threshold: 0.08 });
-document.querySelectorAll('.fi, .sl').forEach(el => obs.observe(el));
+document.querySelectorAll('.fi').forEach(function(el) { obs.observe(el); });
 
-// Skill bar animation
-const skObs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if(e.isIntersecting) {
-      e.target.querySelectorAll('.sk-fill').forEach(bar => { bar.style.width = bar.dataset.w; });
+// Skill bars
+var skObs = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) {
+    if (e.isIntersecting) {
+      e.target.querySelectorAll('.sk-fill').forEach(function(b) { b.style.width = b.dataset.w; });
     }
   });
 }, { threshold: 0.2 });
-document.querySelectorAll('.sg').forEach(el => skObs.observe(el));
+document.querySelectorAll('.sg').forEach(function(el) { skObs.observe(el); });
 
-// Auto-animate pipeline on load
-window.addEventListener('load', () => {
-  setTimeout(animatePipeline, 800);
-});
+// Run pipeline on load
+window.addEventListener('load', function() { setTimeout(animatePipe, 600); });
 </script>
 </body>
 </html>
