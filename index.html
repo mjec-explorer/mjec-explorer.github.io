@@ -70,13 +70,13 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;b
 .statcell:hover{background:var(--panel2);}
 .stat-n{font-family:"Fira Code",monospace;font-size:22px;font-weight:800;color:var(--amber);line-height:1;margin-bottom:5px;text-shadow:0 0 18px rgba(245,166,35,.45);}
 .stat-l{font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);}
-.term{background:var(--panel);border:1px solid var(--border2);transition:border-color .3s,box-shadow .3s;opacity:0;animation:fadein .6s ease .2s forwards;min-height:220px;}
+.term{background:var(--panel);border:1px solid var(--border2);transition:border-color .3s,box-shadow .3s;opacity:0;animation:fadein .6s ease .2s forwards;height:280px;overflow:hidden;}
 .term:hover{border-color:rgba(245,166,35,.4);box-shadow:0 0 40px rgba(245,166,35,.1);}
 .tbar{background:var(--panel2);padding:10px 14px;display:flex;align-items:center;gap:7px;border-bottom:1px solid var(--border2);}
 .ttd{width:9px;height:9px;border-radius:50%;}
 .ttd.r{background:#ff5f56;}.ttd.y{background:#ffbd2e;}.ttd.g{background:#27c93f;}
 .ttitle{font-size:12px;color:var(--ink3);margin-left:6px;}
-.tbody{padding:16px 18px;font-size:12px;line-height:1.95;}
+.tbody{padding:16px 18px;font-size:12px;line-height:1.95;height:calc(100% - 43px);overflow:hidden;}
 .tw-line{display:flex;gap:8px;margin-bottom:2px;}
 .tw-prompt{color:var(--green);flex-shrink:0;text-shadow:0 0 10px rgba(0,232,138,.6);}
 .tw-cmd{color:var(--ink);}
@@ -382,79 +382,51 @@ footer{padding:28px 0 0;border-top:1px solid var(--border);}
     <h2 class="s-h reveal">Real <em>Systems</em></h2>
     <p class="s-sub reveal">Real system. Built, deployed, and running in AWS. Every screenshot reflects actual pipeline execution, infrastructure, and runtime behavior.</p>
 
-    <div class="slider-wrap reveal" id="proof-slider">
-      <div class="slider-track" id="slider-track">
-
-        <!-- Slide 1 -->
-        <div class="slide" onclick="openLightbox('CICD_ALB_SS.png')">
-          <img class="slide-img" src="CICD_ALB_SS.png" alt="Jenkins CI/CD pipeline all stages green">
-          <div class="slide-overlay">
-            <span class="slide-tag screen">screenshot</span>
-            <div class="slide-title">Jenkins &mdash; All Stages Green</div>
-            <div class="slide-desc">Build #47. Every stage green. ALB returning version and container host live in the terminal. Took 3 minutes 14 seconds from commit to deployed.</div>
-          </div>
-        </div>
-
-        <!-- Slide 2 -->
-        <div class="slide" onclick="openLightbox('LB_SS.png')">
-          <img class="slide-img" src="LB_SS.png" alt="ALB load balancing two ECS tasks">
-          <div class="slide-overlay">
-            <span class="slide-tag screen">screenshot</span>
-            <div class="slide-title">ALB &mdash; Load Balancing 2 ECS Tasks</div>
-            <div class="slide-desc">Same version, two different container hosts. The ALB distributing traffic across Fargate tasks. Verified live via curl against the public endpoint.</div>
-          </div>
-        </div>
-
-        <!-- Slide 3 -->
-        <div class="slide" onclick="openLightbox('slack.png')">
-          <img class="slide-img" src="slack.png" alt="Slack incident lifecycle">
-          <div class="slide-overlay">
-            <span class="slide-tag screen">screenshot</span>
-            <div class="slide-title">Slack &mdash; Full Incident Lifecycle</div>
-            <div class="slide-desc">Warning &rarr; Firing &rarr; Auto-remediation triggered &rarr; Recovered &rarr; Resolved. Every state change posted automatically with context and runbook link.</div>
-          </div>
-        </div>
-
-        <!-- Slide 4 — Video placeholder -->
-        <div class="slide">
-          <div class="slide-placeholder">
-            <div style="font-size:52px;opacity:.18;">&#9654;</div>
-            <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);">Demo Video</div>
-            <div style="font-size:12px;color:var(--ink3);text-align:center;max-width:400px;line-height:1.7;padding:0 20px;">n8n auto-remediation + fallback routing demo. Coming soon.</div>
-          </div>
-          <div class="slide-overlay">
-            <span class="slide-tag demo">video</span>
-            <div class="slide-title">n8n Auto-remediation + Fallback</div>
-            <div class="slide-desc">Container taken down &rarr; alert fires &rarr; n8n restarts container &rarr; recovery verified &rarr; Slack updated. Also shows Alertmanager fallback when n8n itself is down.</div>
-          </div>
-        </div>
-
-        <!-- Slide 5 — Architecture placeholder -->
-        <div class="slide">
-          <div class="slide-placeholder">
-            <div style="font-size:52px;opacity:.18;">&#128203;</div>
-            <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);">Architecture Diagram</div>
-            <div style="font-size:12px;color:var(--ink3);text-align:center;max-width:400px;line-height:1.7;padding:0 20px;">Full system diagram publishing after Phase 4 Kubernetes on EKS is complete.</div>
-          </div>
-          <div class="slide-overlay">
-            <span class="slide-tag planned">planned</span>
-            <div class="slide-title">Full System Architecture</div>
-            <div class="slide-desc">Complete architecture diagram covering all 4 phases. CI/CD, observability, AWS cloud infrastructure, and Kubernetes. Publishing when Phase 4 is done.</div>
-          </div>
-        </div>
-
-      </div>
-      <div class="slide-counter" id="slide-counter">1 / 5</div>
-      <button class="slider-btn prev" onclick="slideMove(-1)">&#8249;</button>
-      <button class="slider-btn next" onclick="slideMove(1)">&#8250;</button>
+    <!-- Info panel — updates based on active card -->
+    <div class="carousel-info reveal" id="carousel-info">
+      <span class="carousel-info-tag screen" id="ci-tag">screenshot</span>
+      <div class="carousel-info-title" id="ci-title">Jenkins &mdash; All Stages Green</div>
+      <div class="carousel-info-desc" id="ci-desc">Build #47. Every stage green. ALB returning version and container host live in the terminal. 3 minutes 14 seconds from commit to deployed.</div>
     </div>
 
-    <div class="slider-dots" id="slider-dots">
-      <button class="sdot active" onclick="slideTo(0)"></button>
-      <button class="sdot" onclick="slideTo(1)"></button>
-      <button class="sdot" onclick="slideTo(2)"></button>
-      <button class="sdot" onclick="slideTo(3)"></button>
-      <button class="sdot" onclick="slideTo(4)"></button>
+    <div class="carousel-wrap reveal">
+      <div class="carousel-viewport" id="carousel-viewport">
+        <div class="carousel-track" id="carousel-track">
+          <div class="c-card active" onclick="carouselClick(0)">
+            <img src="CICD_ALB_SS.png" alt="Jenkins CI/CD">
+            <div class="c-zoom">&#128269;</div>
+            <div class="c-label">CI/CD Pipeline</div>
+          </div>
+          <div class="c-card" onclick="carouselClick(1)">
+            <img src="LB_SS.png" alt="ALB Load Balancing">
+            <div class="c-zoom">&#128269;</div>
+            <div class="c-label">Load Balancing</div>
+          </div>
+          <div class="c-card" onclick="carouselClick(2)">
+            <img src="slack.png" alt="Slack Alerts">
+            <div class="c-zoom">&#128269;</div>
+            <div class="c-label">Incident Lifecycle</div>
+          </div>
+          <div class="c-card" onclick="carouselClick(3)">
+            <div class="c-placeholder"><div style="font-size:36px;opacity:.18;">&#9654;</div><div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);">Demo Video</div></div>
+            <div class="c-label">n8n Auto-remediation</div>
+          </div>
+          <div class="c-card" onclick="carouselClick(4)">
+            <div class="c-placeholder"><div style="font-size:36px;opacity:.18;">&#128203;</div><div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);">Coming Soon</div></div>
+            <div class="c-label">Architecture Diagram</div>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-btn prev" onclick="carouselMove(-1)">&#8249;</button>
+      <button class="carousel-btn next" onclick="carouselMove(1)">&#8250;</button>
+    </div>
+
+    <div class="carousel-dots">
+      <button class="cdot active" onclick="carouselTo(0)"></button>
+      <button class="cdot" onclick="carouselTo(1)"></button>
+      <button class="cdot" onclick="carouselTo(2)"></button>
+      <button class="cdot" onclick="carouselTo(3)"></button>
+      <button class="cdot" onclick="carouselTo(4)"></button>
     </div>
 
   </div>
@@ -801,44 +773,68 @@ var sgObs=new IntersectionObserver(function(entries){
   entries.forEach(function(e){if(e.isIntersecting){var items=e.target.querySelectorAll('.sk-item');items.forEach(function(item,i){item.style.opacity='0';item.style.transform='translateY(8px)';item.style.transition='opacity .4s ease '+(i*.055)+'s,transform .4s ease '+(i*.055)+'s';setTimeout(function(el){el.style.opacity='1';el.style.transform='none';},60,item);});}});
 },{threshold:.1});
 document.querySelectorAll('.sg').forEach(function(el){sgObs.observe(el);});
-// Slider
-var slideIdx=0,slideTotal=5,autoTimer=null;
-function slideTo(n){
-  slideIdx=n;
-  document.getElementById('slider-track').style.transform='translateX(-'+n*100+'%)';
-  var dots=document.querySelectorAll('.sdot');
-  dots.forEach(function(d,i){d.classList.toggle('active',i===n);});
-  document.getElementById('slide-counter').textContent=(n+1)+' / '+slideTotal;
-  resetAuto();
+// Carousel
+var cIdx=0,cTotal=5,cAuto=null;
+var cData=[
+  {tag:'screenshot',tagClass:'screen',title:'Jenkins — All Stages Green',desc:'Build #47. Every stage green. ALB returning version and container host live in the terminal. 3 minutes 14 seconds from commit to deployed.'},
+  {tag:'screenshot',tagClass:'screen',title:'ALB — Load Balancing 2 ECS Tasks',desc:'Same version, two different container hosts. The ALB distributing traffic across Fargate tasks. Verified live via curl against the public endpoint.'},
+  {tag:'screenshot',tagClass:'screen',title:'Slack — Full Incident Lifecycle',desc:'Warning → Firing → Auto-remediation triggered → Recovered → Resolved. Every state change posted automatically with context and runbook link.'},
+  {tag:'video',tagClass:'demo',title:'n8n Auto-remediation + Fallback',desc:'Container taken down → alert fires → n8n restarts container → recovery verified → Slack updated. Also shows Alertmanager fallback when n8n itself is down.'},
+  {tag:'planned',tagClass:'planned',title:'Full System Architecture',desc:'Complete architecture diagram covering all 4 phases. CI/CD, observability, AWS cloud infrastructure, and Kubernetes. Publishing when Phase 4 is done.'}
+];
+var cImgs=['CICD_ALB_SS.png','LB_SS.png','slack.png',null,null];
+
+function carouselUpdateInfo(n){
+  var d=cData[n];
+  var info=document.getElementById('carousel-info');
+  info.style.opacity='0';
+  setTimeout(function(){
+    document.getElementById('ci-tag').textContent=d.tag;
+    document.getElementById('ci-tag').className='carousel-info-tag '+d.tagClass;
+    document.getElementById('ci-title').textContent=d.title;
+    document.getElementById('ci-desc').textContent=d.desc;
+    info.style.opacity='1';
+  },150);
 }
-function slideMove(dir){
-  slideTo((slideIdx+dir+slideTotal)%slideTotal);
+
+function carouselTo(n){
+  cIdx=n;
+  var track=document.getElementById('carousel-track');
+  var vp=document.getElementById('carousel-viewport');
+  var cardW=track.children[0].offsetWidth+12;
+  var vpW=vp.offsetWidth;
+  var center=n*cardW - vpW/2 + cardW/2;
+  track.style.transform='translateX(-'+Math.max(0,center)+'px)';
+  document.querySelectorAll('.c-card').forEach(function(c,i){c.classList.toggle('active',i===n);});
+  document.querySelectorAll('.cdot').forEach(function(d,i){d.classList.toggle('active',i===n);});
+  carouselUpdateInfo(n);
+  resetCAuto();
 }
-function resetAuto(){
-  clearInterval(autoTimer);
-  autoTimer=setInterval(function(){slideMove(1);},5000);
+
+function carouselMove(dir){carouselTo((cIdx+dir+cTotal)%cTotal);}
+
+function carouselClick(n){
+  if(n===cIdx && cImgs[n]){openLightbox(cImgs[n]);}
+  else{carouselTo(n);}
 }
-// Keyboard navigation
-document.addEventListener('keydown',function(e){
-  if(e.key==='ArrowLeft')slideMove(-1);
-  else if(e.key==='ArrowRight')slideMove(1);
-});
-// Pause on hover
-var sl=document.getElementById('proof-slider');
-if(sl){
-  sl.addEventListener('mouseenter',function(){clearInterval(autoTimer);});
-  sl.addEventListener('mouseleave',function(){resetAuto();});
+
+function resetCAuto(){
+  clearInterval(cAuto);
+  cAuto=setInterval(function(){carouselMove(1);},5000);
 }
-// Touch swipe
-var tsX=0;
-if(sl){
-  sl.addEventListener('touchstart',function(e){tsX=e.touches[0].clientX;},{passive:true});
-  sl.addEventListener('touchend',function(e){
-    var dx=e.changedTouches[0].clientX-tsX;
-    if(Math.abs(dx)>40)slideMove(dx<0?1:-1);
+
+var cvp=document.getElementById('carousel-viewport');
+if(cvp){
+  cvp.addEventListener('mouseenter',function(){clearInterval(cAuto);});
+  cvp.addEventListener('mouseleave',function(){resetCAuto();});
+  var ctX=0;
+  cvp.addEventListener('touchstart',function(e){ctX=e.touches[0].clientX;},{passive:true});
+  cvp.addEventListener('touchend',function(e){
+    var dx=e.changedTouches[0].clientX-ctX;
+    if(Math.abs(dx)>40)carouselMove(dx<0?1:-1);
   },{passive:true});
 }
-resetAuto();
+resetCAuto();
 window.addEventListener('load',function(){setTimeout(animatePipe,900);});
 var pipeObs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)setTimeout(animatePipe,400);});},{threshold:.3});
 var p1=document.getElementById('pipe1');if(p1)pipeObs.observe(p1);
@@ -901,9 +897,5 @@ function closeLightbox(){
 }
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLightbox();});
 </script>
-<div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">&times;</span>
-  <img id="lightbox-img" src="" alt="">
-</div>
 </body>
 </html>
