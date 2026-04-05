@@ -70,7 +70,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;b
 .statcell:hover{background:var(--panel2);}
 .stat-n{font-family:"Fira Code",monospace;font-size:22px;font-weight:800;color:var(--amber);line-height:1;margin-bottom:5px;text-shadow:0 0 18px rgba(245,166,35,.45);}
 .stat-l{font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);}
-.term{background:var(--panel);border:1px solid var(--border2);transition:border-color .3s,box-shadow .3s;opacity:0;animation:fadein .6s ease .2s forwards;height:280px;overflow:hidden;}
+.term{background:var(--panel);border:1px solid var(--border2);transition:border-color .3s,box-shadow .3s;opacity:0;animation:fadein .6s ease .2s forwards;height:560px;overflow:hidden;}
 .term:hover{border-color:rgba(245,166,35,.4);box-shadow:0 0 40px rgba(245,166,35,.1);}
 .tbar{background:var(--panel2);padding:10px 14px;display:flex;align-items:center;gap:7px;border-bottom:1px solid var(--border2);}
 .ttd{width:9px;height:9px;border-radius:50%;}
@@ -307,6 +307,22 @@ footer{padding:28px 0 0;border-top:1px solid var(--border);}
 .otw{animation:otwbreathe 4s ease-in-out infinite;}
 @keyframes otwbreathe{0%,100%{box-shadow:0 0 30px rgba(0,232,138,.06)}50%{box-shadow:0 0 50px rgba(0,232,138,.14)}}
 @media(max-width:768px){body{cursor:auto;}#cursor,#cursor-ring,#cursor-glow{display:none;}}
+.proof-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-bottom:8px;}
+@media(max-width:860px){.proof-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:500px){.proof-grid{grid-template-columns:1fr;}}
+.proof-card{background:var(--panel);border:1px solid var(--border2);overflow:hidden;cursor:pointer;transition:border-color .3s,box-shadow .3s,transform .25s;position:relative;}
+.proof-card:hover{border-color:rgba(245,166,35,.45);box-shadow:0 0 30px rgba(245,166,35,.1);transform:translateY(-2px);}
+.proof-card img{width:100%;height:240px;object-fit:cover;display:block;border-bottom:1px solid var(--border);}
+.proof-ph-inner{width:100%;height:240px;background:var(--panel2);display:flex;flex-direction:column;align-items:center;justify-content:center;border-bottom:1px solid var(--border);}
+.proof-meta{padding:16px 18px;}
+.proof-tag{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 10px;border:1px solid;border-radius:1px;display:inline-block;margin-bottom:8px;}
+.proof-tag.screen{color:var(--blue);border-color:rgba(90,171,255,.4);background:rgba(90,171,255,.07);}
+.proof-tag.demo{color:var(--teal);border-color:rgba(0,212,190,.4);background:rgba(0,212,190,.07);}
+.proof-title{font-size:13px;font-weight:700;color:var(--ink);margin-bottom:4px;transition:color .25s;}
+.proof-card:hover .proof-title{color:var(--amber);}
+.proof-desc{font-size:11px;color:var(--ink3);line-height:1.65;}
+.proof-meta::after{content:"";display:block;height:1px;background:linear-gradient(90deg,var(--amber),transparent);width:0;transition:width .4s ease;margin-top:10px;}
+.proof-card:hover .proof-meta::after{width:100%;}
 #lightbox{position:fixed;inset:0;background:rgba(2,6,9,.95);z-index:99999;display:none;align-items:center;justify-content:center;cursor:zoom-out;}
 #lightbox.open{display:flex;}
 #lightbox img{max-width:92vw;max-height:92vh;object-fit:contain;border:1px solid #233848;}
@@ -381,54 +397,33 @@ footer{padding:28px 0 0;border-top:1px solid var(--border);}
     <div class="s-tag reveal">00 &middot; Proof of Work</div>
     <h2 class="s-h reveal">Real <em>Systems</em></h2>
     <p class="s-sub reveal">Real system. Built, deployed, and running in AWS. Every screenshot reflects actual pipeline execution, infrastructure, and runtime behavior.</p>
-
-    <!-- Info panel — updates based on active card -->
-    <div class="carousel-info reveal" id="carousel-info">
-      <span class="carousel-info-tag screen" id="ci-tag">screenshot</span>
-      <div class="carousel-info-title" id="ci-title">Jenkins &mdash; All Stages Green</div>
-      <div class="carousel-info-desc" id="ci-desc">Build #47. Every stage green. ALB returning version and container host live in the terminal. 3 minutes 14 seconds from commit to deployed.</div>
-    </div>
-
-    <div class="carousel-wrap reveal">
-      <div class="carousel-viewport" id="carousel-viewport">
-        <div class="carousel-track" id="carousel-track">
-          <div class="c-card active" onclick="carouselClick(0)">
-            <img src="CICD_ALB_SS.png" alt="Jenkins CI/CD">
-            <div class="c-zoom">&#128269;</div>
-            <div class="c-label">CI/CD Pipeline</div>
-          </div>
-          <div class="c-card" onclick="carouselClick(1)">
-            <img src="LB_SS.png" alt="ALB Load Balancing">
-            <div class="c-zoom">&#128269;</div>
-            <div class="c-label">Load Balancing</div>
-          </div>
-          <div class="c-card" onclick="carouselClick(2)">
-            <img src="slack.png" alt="Slack Alerts">
-            <div class="c-zoom">&#128269;</div>
-            <div class="c-label">Incident Lifecycle</div>
-          </div>
-          <div class="c-card" onclick="carouselClick(3)">
-            <div class="c-placeholder"><div style="font-size:36px;opacity:.18;">&#9654;</div><div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);">Demo Video</div></div>
-            <div class="c-label">n8n Auto-remediation</div>
-          </div>
-          <div class="c-card" onclick="carouselClick(4)">
-            <div class="c-placeholder"><div style="font-size:36px;opacity:.18;">&#128203;</div><div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);">Coming Soon</div></div>
-            <div class="c-label">Architecture Diagram</div>
-          </div>
+    <div class="proof-grid reveal">
+      <div class="proof-card" onclick="openLightbox('CICD_ALB_SS.png')">
+        <img src="CICD_ALB_SS.png" alt="Jenkins CI/CD pipeline all stages green">
+        <div class="proof-meta">
+          <span class="proof-tag screen">screenshot</span>
+          <div class="proof-title">Jenkins &mdash; All Stages Green</div>
+          <div class="proof-desc">Build #47. Every stage green. ALB returning version and container host live in the terminal.</div>
         </div>
       </div>
-      <button class="carousel-btn prev" onclick="carouselMove(-1)">&#8249;</button>
-      <button class="carousel-btn next" onclick="carouselMove(1)">&#8250;</button>
-    </div>
+      <div class="proof-card" onclick="openLightbox('LB_SS.png')">
+        <img src="LB_SS.png" alt="ALB load balancing two ECS tasks">
+        <div class="proof-meta">
+          <span class="proof-tag screen">screenshot</span>
+          <div class="proof-title">ALB &mdash; 2 ECS Tasks</div>
+          <div class="proof-desc">Same version, two different container hosts. ALB distributing traffic across Fargate tasks.</div>
+        </div>
+      </div>
+      <div class="proof-card" onclick="openLightbox('slack.png')">
+        <img src="slack.png" alt="Slack incident lifecycle">
+        <div class="proof-meta">
+          <span class="proof-tag screen">screenshot</span>
+          <div class="proof-title">Slack &mdash; Incident Lifecycle</div>
+          <div class="proof-desc">Warning &rarr; Firing &rarr; Auto-remediation &rarr; Recovered &rarr; Resolved. Every state change posted automatically.</div>
+        </div>
+      </div>
 
-    <div class="carousel-dots">
-      <button class="cdot active" onclick="carouselTo(0)"></button>
-      <button class="cdot" onclick="carouselTo(1)"></button>
-      <button class="cdot" onclick="carouselTo(2)"></button>
-      <button class="cdot" onclick="carouselTo(3)"></button>
-      <button class="cdot" onclick="carouselTo(4)"></button>
     </div>
-
   </div>
 </section>
 
@@ -733,7 +728,10 @@ footer{padding:28px 0 0;border-top:1px solid var(--border);}
   </div>
 </section>
 
-<footer><div class="wrap"><p class="ft">Mary Joy Castro &middot; <a href="mailto:mjarcino19@gmail.com">mjarcino19@gmail.com</a> &middot; <a href="https://github.com/mjec-explorer/devops-lab" target="_blank">github.com/mjec-explorer</a> &middot; Potsdam, Germany &middot; Available immediately</p></div></footer>
+<footer><div class="wrap">
+<p class="ft" style="margin-bottom:10px;">Mary Joy Castro &middot; <a href="mailto:mjarcino19@gmail.com">mjarcino19@gmail.com</a> &middot; <a href="https://github.com/mjec-explorer/devops-lab" target="_blank">github.com/mjec-explorer</a> &middot; Potsdam, Germany &middot; Available immediately</p>
+<p class="ft"><img src="https://visitor-badge.laobi.icu/badge?page_id=mjec-explorer.mjec-explorer.github.io&left_color=%23233848&right_color=%23f5a623&left_text=visitors" alt="visitor count" style="height:18px;vertical-align:middle;opacity:.8;"></p>
+</div></footer>
 
 <script>
 var cur=document.getElementById('cursor'),ring=document.getElementById('cursor-ring'),glow=document.getElementById('cursor-glow');
@@ -773,68 +771,7 @@ var sgObs=new IntersectionObserver(function(entries){
   entries.forEach(function(e){if(e.isIntersecting){var items=e.target.querySelectorAll('.sk-item');items.forEach(function(item,i){item.style.opacity='0';item.style.transform='translateY(8px)';item.style.transition='opacity .4s ease '+(i*.055)+'s,transform .4s ease '+(i*.055)+'s';setTimeout(function(el){el.style.opacity='1';el.style.transform='none';},60,item);});}});
 },{threshold:.1});
 document.querySelectorAll('.sg').forEach(function(el){sgObs.observe(el);});
-// Carousel
-var cIdx=0,cTotal=5,cAuto=null;
-var cData=[
-  {tag:'screenshot',tagClass:'screen',title:'Jenkins — All Stages Green',desc:'Build #47. Every stage green. ALB returning version and container host live in the terminal. 3 minutes 14 seconds from commit to deployed.'},
-  {tag:'screenshot',tagClass:'screen',title:'ALB — Load Balancing 2 ECS Tasks',desc:'Same version, two different container hosts. The ALB distributing traffic across Fargate tasks. Verified live via curl against the public endpoint.'},
-  {tag:'screenshot',tagClass:'screen',title:'Slack — Full Incident Lifecycle',desc:'Warning → Firing → Auto-remediation triggered → Recovered → Resolved. Every state change posted automatically with context and runbook link.'},
-  {tag:'video',tagClass:'demo',title:'n8n Auto-remediation + Fallback',desc:'Container taken down → alert fires → n8n restarts container → recovery verified → Slack updated. Also shows Alertmanager fallback when n8n itself is down.'},
-  {tag:'planned',tagClass:'planned',title:'Full System Architecture',desc:'Complete architecture diagram covering all 4 phases. CI/CD, observability, AWS cloud infrastructure, and Kubernetes. Publishing when Phase 4 is done.'}
-];
-var cImgs=['CICD_ALB_SS.png','LB_SS.png','slack.png',null,null];
 
-function carouselUpdateInfo(n){
-  var d=cData[n];
-  var info=document.getElementById('carousel-info');
-  info.style.opacity='0';
-  setTimeout(function(){
-    document.getElementById('ci-tag').textContent=d.tag;
-    document.getElementById('ci-tag').className='carousel-info-tag '+d.tagClass;
-    document.getElementById('ci-title').textContent=d.title;
-    document.getElementById('ci-desc').textContent=d.desc;
-    info.style.opacity='1';
-  },150);
-}
-
-function carouselTo(n){
-  cIdx=n;
-  var track=document.getElementById('carousel-track');
-  var vp=document.getElementById('carousel-viewport');
-  var cardW=track.children[0].offsetWidth+12;
-  var vpW=vp.offsetWidth;
-  var center=n*cardW - vpW/2 + cardW/2;
-  track.style.transform='translateX(-'+Math.max(0,center)+'px)';
-  document.querySelectorAll('.c-card').forEach(function(c,i){c.classList.toggle('active',i===n);});
-  document.querySelectorAll('.cdot').forEach(function(d,i){d.classList.toggle('active',i===n);});
-  carouselUpdateInfo(n);
-  resetCAuto();
-}
-
-function carouselMove(dir){carouselTo((cIdx+dir+cTotal)%cTotal);}
-
-function carouselClick(n){
-  if(n===cIdx && cImgs[n]){openLightbox(cImgs[n]);}
-  else{carouselTo(n);}
-}
-
-function resetCAuto(){
-  clearInterval(cAuto);
-  cAuto=setInterval(function(){carouselMove(1);},5000);
-}
-
-var cvp=document.getElementById('carousel-viewport');
-if(cvp){
-  cvp.addEventListener('mouseenter',function(){clearInterval(cAuto);});
-  cvp.addEventListener('mouseleave',function(){resetCAuto();});
-  var ctX=0;
-  cvp.addEventListener('touchstart',function(e){ctX=e.touches[0].clientX;},{passive:true});
-  cvp.addEventListener('touchend',function(e){
-    var dx=e.changedTouches[0].clientX-ctX;
-    if(Math.abs(dx)>40)carouselMove(dx<0?1:-1);
-  },{passive:true});
-}
-resetCAuto();
 window.addEventListener('load',function(){setTimeout(animatePipe,900);});
 var pipeObs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)setTimeout(animatePipe,400);});},{threshold:.3});
 var p1=document.getElementById('pipe1');if(p1)pipeObs.observe(p1);
