@@ -3,224 +3,317 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mary Joy Castro · DevOps & Infrastructure</title>
+<title>Mary Joy Castro · DevOps Engineer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;1,300&family=Fira+Code:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#030508;--bg2:#070c12;--panel:#0a1018;--panel2:#0e1520;
-  --border:#162030;--border2:#1e2d40;
-  --ink:#c8d8e8;--ink2:#7a9ab8;--ink3:#3a5a78;
-  --amber:#f5a623;--amber-dim:rgba(245,166,35,.12);--amber-glow:rgba(245,166,35,.06);
-  --green:#00d97e;--green-dim:rgba(0,217,126,.1);
-  --red:#ff4d4d;--blue:#4d9fff;--teal:#00c9b1;
+  --bg:#020609;--panel:#0b1520;--panel2:#0f1d2c;
+  --border:#1a2d40;--border2:#233848;
+  --ink:#e0edf8;--ink2:#a0bdd4;--ink3:#5e88a4;
+  --amber:#f5a623;--amber-d:rgba(245,166,35,.12);
+  --green:#00e88a;--red:#ff5555;--blue:#5aabff;--teal:#00d4be;--purple:#b388ff;
 }
 html{scroll-behavior:smooth;}
-body{background:var(--bg);color:var(--ink);font-family:"JetBrains Mono",monospace;overflow-x:hidden;line-height:1.5;padding-bottom:24px;}
-body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.06) 2px,rgba(0,0,0,.06) 4px);}
-.gbg{position:fixed;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(rgba(245,166,35,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(245,166,35,.025) 1px,transparent 1px);background-size:40px 40px;}
-.glow1{position:fixed;top:-300px;left:-200px;width:700px;height:700px;background:radial-gradient(circle,rgba(245,166,35,.03) 0%,transparent 65%);pointer-events:none;z-index:0;}
-.glow2{position:fixed;bottom:-200px;right:-100px;width:600px;height:600px;background:radial-gradient(circle,rgba(0,217,126,.03) 0%,transparent 65%);pointer-events:none;z-index:0;}
-.wrap{position:relative;z-index:1;max-width:1080px;margin:0 auto;padding:0 28px;}
-
-/* TOPBAR */
-.topbar{position:fixed;top:0;left:0;right:0;z-index:100;height:42px;background:rgba(3,5,8,.96);border-bottom:1px solid var(--border2);backdrop-filter:blur(16px);display:flex;align-items:center;}
+body{background:var(--bg);color:var(--ink);font-family:"JetBrains Mono",monospace;overflow-x:hidden;line-height:1.5;padding-bottom:32px;cursor:none;}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,.018) 3px,rgba(0,0,0,.018) 4px);}
+#cursor{position:fixed;width:12px;height:12px;border-radius:50%;background:var(--amber);pointer-events:none;z-index:99999;transform:translate(-50%,-50%);transition:width .15s,height .15s;mix-blend-mode:screen;}
+#cursor-ring{position:fixed;width:36px;height:36px;border-radius:50%;border:1px solid rgba(245,166,35,.5);pointer-events:none;z-index:99998;transform:translate(-50%,-50%);box-shadow:0 0 18px rgba(245,166,35,.2);}
+#cursor-glow{position:fixed;width:140px;height:140px;border-radius:50%;pointer-events:none;z-index:99997;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(245,166,35,.055) 0%,transparent 70%);}
+#bg-canvas{position:fixed;inset:0;z-index:0;pointer-events:none;}
+.wrap{position:relative;z-index:2;max-width:1080px;margin:0 auto;padding:0 28px;}
+.topbar{position:fixed;top:0;left:0;right:0;z-index:200;height:44px;background:rgba(2,6,9,.96);border-bottom:1px solid var(--border2);backdrop-filter:blur(24px);display:flex;align-items:center;}
 .tb-inner{max-width:1080px;margin:0 auto;padding:0 28px;width:100%;display:flex;align-items:center;justify-content:space-between;}
 .tb-left{display:flex;align-items:center;gap:16px;}
-.tb-dots{display:flex;gap:5px;}
-.tb-dot{width:9px;height:9px;border-radius:50%;}
+.tb-dots{display:flex;gap:6px;}
+.tb-dot{width:10px;height:10px;border-radius:50%;}
 .tb-dot.r{background:#ff5f56;}.tb-dot.y{background:#ffbd2e;}.tb-dot.g{background:#27c93f;}
-.tb-title{font-size:14px;color:var(--ink3);letter-spacing:.06em;}
+.tb-title{font-size:13px;color:var(--ink3);letter-spacing:.06em;}
 .tb-title strong{color:var(--amber);}
-.tb-nav{display:flex;align-items:center;gap:0;list-style:none;}
-.tb-nav a{font-size:12px;font-weight:600;letter-spacing:.10em;text-transform:uppercase;color:var(--ink3);text-decoration:none;padding:0 14px;height:42px;display:flex;align-items:center;border-left:1px solid var(--border);transition:color .2s,background .2s;}
-.tb-nav a:hover{color:var(--amber);background:var(--amber-glow);}
-@media(max-width:600px){.tb-nav{display:none;}}
-.tb-cv{font-size:12px;font-weight:700;letter-spacing:.10em;text-transform:uppercase;color:var(--bg);background:var(--amber);padding:6px 14px;border-radius:2px;text-decoration:none;margin-left:10px;transition:background .2s;}
-.tb-cv:hover{background:#d4901f;}
-
-/* STATUSBAR */
-.statusbar{position:fixed;bottom:0;left:0;right:0;z-index:100;height:24px;background:var(--amber);display:flex;align-items:center;padding:0 20px;gap:18px;overflow:hidden;}
-.sb{font-size:11px;font-weight:700;letter-spacing:.08em;color:var(--bg);display:flex;align-items:center;gap:4px;white-space:nowrap;}
+.tb-nav{display:flex;align-items:center;list-style:none;}
+.tb-nav a{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);text-decoration:none;padding:0 14px;height:44px;display:flex;align-items:center;border-left:1px solid var(--border);transition:color .2s,background .2s;}
+.tb-nav a:hover{color:var(--amber);background:rgba(245,166,35,.05);}
+@media(max-width:640px){.tb-nav{display:none;}}
+.tb-cv{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--bg);background:var(--amber);padding:7px 14px;border-radius:2px;text-decoration:none;margin-left:10px;transition:all .2s;}
+.tb-cv:hover{background:#e09520;box-shadow:0 0 20px rgba(245,166,35,.35);}
+.statusbar{position:fixed;bottom:0;left:0;right:0;z-index:200;height:26px;background:var(--amber);display:flex;align-items:center;padding:0 20px;gap:20px;overflow:hidden;}
+.sb{font-size:11px;font-weight:700;letter-spacing:.08em;color:var(--bg);display:flex;align-items:center;gap:5px;white-space:nowrap;}
 .sb-dot{width:5px;height:5px;border-radius:50%;background:var(--bg);animation:pulse 1.8s ease-in-out infinite;}
-.sb-sep{width:1px;height:12px;background:rgba(0,0,0,.2);flex-shrink:0;}
+.sb-sep{width:1px;height:13px;background:rgba(0,0,0,.2);flex-shrink:0;}
 @media(max-width:600px){.sb-sep,.sb:nth-child(n+4){display:none;}}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.6)}}
-
-/* HERO */
-#hero{padding:52px 0 36px;}
-.hero-layout{display:grid;grid-template-columns:1fr 420px;gap:52px;align-items:center;}
+#hero{padding:72px 0 48px;}
+.hero-layout{display:grid;grid-template-columns:1fr 400px;gap:52px;align-items:center;}
 @media(max-width:860px){.hero-layout{grid-template-columns:1fr;gap:36px;}}
-.id-path{font-size:14px;color:var(--ink3);letter-spacing:.05em;margin-bottom:24px;}
+.id-path{font-size:13px;color:var(--ink3);letter-spacing:.05em;margin-bottom:20px;opacity:0;animation:fadein .5s ease forwards;}
 .id-path span{color:var(--green);}
-.id-name{font-family:"Fira Code","JetBrains Mono",monospace;font-size:clamp(36px,5.5vw,72px);font-weight:800;line-height:1;letter-spacing:-.04em;margin-bottom:4px;}
-.id-name .last{color:var(--amber);position:relative;display:inline-block;}
-.id-name .last::after{content:"";position:absolute;bottom:-4px;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--amber),transparent);opacity:.6;}
-.id-tagline{font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3);margin:20px 0 22px;display:flex;align-items:center;gap:8px;}
-.id-tagline::before{content:"";width:18px;height:1px;background:var(--amber);}
-.id-bio{font-size:15px;font-weight:300;color:var(--ink2);line-height:1.85;max-width:440px;margin-bottom:28px;border-left:2px solid rgba(245,166,35,.4);padding-left:14px;}
-.id-ctas{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:28px;}
-.btn{display:inline-flex;align-items:center;gap:6px;font-family:"JetBrains Mono",monospace;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;padding:9px 18px;border-radius:2px;border:1px solid;transition:all .22s;}
+.id-name{font-family:"Fira Code",monospace;font-size:clamp(36px,5.5vw,70px);font-weight:800;line-height:1;letter-spacing:-.04em;margin-bottom:6px;opacity:0;animation:fadein .5s ease .1s forwards;}
+.id-name .last{color:var(--amber);position:relative;display:inline-block;text-shadow:0 0 30px rgba(245,166,35,.35);}
+.id-name .last::after{content:"";position:absolute;bottom:-4px;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--amber),transparent);box-shadow:0 0 10px rgba(245,166,35,.6);}
+.id-tagline{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--ink2);margin:20px 0 10px;display:flex;align-items:center;gap:8px;opacity:0;animation:fadein .5s ease .18s forwards;}
+.id-tagline::before{content:"";width:20px;height:1px;background:var(--amber);}
+.noc-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(0,232,138,.07);border:1px solid rgba(0,232,138,.22);padding:6px 14px;margin-bottom:14px;font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--green);border-radius:2px;opacity:0;animation:fadein .5s ease .22s forwards;}
+.noc-badge::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 10px rgba(0,232,138,.9);animation:pulse 1.5s ease-in-out infinite;}
+.id-bio{font-size:13px;font-weight:300;color:var(--ink2);line-height:1.9;max-width:440px;margin-bottom:24px;border-left:2px solid rgba(245,166,35,.4);padding-left:16px;opacity:0;animation:fadein .5s ease .28s forwards;}
+.id-ctas{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:24px;opacity:0;animation:fadein .5s ease .34s forwards;}
+.btn{display:inline-flex;align-items:center;gap:6px;font-family:"JetBrains Mono",monospace;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;padding:9px 18px;border-radius:2px;border:1px solid;transition:all .22s;}
 .btn-a{background:var(--amber);color:var(--bg);border-color:var(--amber);}
-.btn-a:hover{box-shadow:0 0 20px rgba(245,166,35,.25);transform:translateY(-2px);}
+.btn-a:hover{box-shadow:0 0 24px rgba(245,166,35,.4);transform:translateY(-2px);}
 .btn-b{background:transparent;color:var(--ink2);border-color:var(--border2);}
 .btn-b:hover{border-color:var(--amber);color:var(--amber);transform:translateY(-2px);}
-.statgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border2);border:1px solid var(--border2);}
+.btn-demo{background:rgba(0,232,138,.1);color:var(--green);border-color:rgba(0,232,138,.4);}
+.btn-demo:hover{background:rgba(0,232,138,.18);box-shadow:0 0 20px rgba(0,232,138,.25);transform:translateY(-2px);}
+.statgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border2);border:1px solid var(--border2);opacity:0;animation:fadein .5s ease .42s forwards;}
+@media(max-width:500px){.statgrid{grid-template-columns:repeat(2,1fr);}}
 .statcell{background:var(--panel);padding:14px 10px;text-align:center;transition:background .2s;}
 .statcell:hover{background:var(--panel2);}
-.stat-n{font-family:"Fira Code",monospace;font-size:24px;font-weight:800;color:var(--amber);line-height:1;margin-bottom:5px;}
-.stat-l{font-size:11px;font-weight:500;letter-spacing:.10em;text-transform:uppercase;color:var(--ink3);}
-
-/* TERMINAL */
-.term{background:var(--panel);border:1px solid var(--border2);transition:border-color .3s,box-shadow .3s;}
-.term:hover{border-color:rgba(245,166,35,.25);box-shadow:0 0 30px rgba(245,166,35,.04);}
+.stat-n{font-family:"Fira Code",monospace;font-size:22px;font-weight:800;color:var(--amber);line-height:1;margin-bottom:5px;text-shadow:0 0 18px rgba(245,166,35,.45);}
+.stat-l{font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);}
+.term{background:var(--panel);border:1px solid var(--border2);transition:border-color .3s,box-shadow .3s;opacity:0;animation:fadein .6s ease .2s forwards;min-height:220px;}
+.term:hover{border-color:rgba(245,166,35,.4);box-shadow:0 0 40px rgba(245,166,35,.1);}
 .tbar{background:var(--panel2);padding:10px 14px;display:flex;align-items:center;gap:7px;border-bottom:1px solid var(--border2);}
 .ttd{width:9px;height:9px;border-radius:50%;}
 .ttd.r{background:#ff5f56;}.ttd.y{background:#ffbd2e;}.ttd.g{background:#27c93f;}
-.ttitle{font-size:13px;color:var(--ink3);margin-left:6px;letter-spacing:.04em;}
-.tbody{padding:16px 18px;font-size:12px;line-height:1.9;}
-.tl{display:flex;gap:8px;}
-.pr{color:var(--green);flex-shrink:0;}
-.cm{color:var(--ink);}
-.out{display:block;padding-left:16px;}
-.og{color:var(--green);}.oa{color:var(--amber);}.ob{color:var(--blue);}.od{color:var(--ink3);}
-.blink{display:inline-block;width:6px;height:12px;background:var(--amber);animation:bl .9s step-end infinite;vertical-align:middle;}
+.ttitle{font-size:12px;color:var(--ink3);margin-left:6px;}
+.tbody{padding:16px 18px;font-size:12px;line-height:1.95;}
+.tw-line{display:flex;gap:8px;margin-bottom:2px;}
+.tw-prompt{color:var(--green);flex-shrink:0;text-shadow:0 0 10px rgba(0,232,138,.6);}
+.tw-cmd{color:var(--ink);}
+.tw-out{display:block;padding-left:16px;}
+.tw-green{color:var(--green);}
+.tw-amber{color:var(--amber);}
+.tw-cursor{display:inline-block;width:7px;height:13px;background:var(--amber);animation:bl .9s step-end infinite;vertical-align:middle;margin-left:1px;box-shadow:0 0 10px rgba(245,166,35,.7);}
 @keyframes bl{0%,100%{opacity:1}50%{opacity:0}}
-
-.divider{height:1px;background:linear-gradient(90deg,transparent,var(--border2),transparent);}
-.section{padding:48px 0;}
-.s-tag{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);background:var(--amber-dim);border:1px solid rgba(245,166,35,.2);padding:3px 11px;border-radius:1px;margin-bottom:12px;}
+@keyframes fadein{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--border2) 20%,var(--border2) 80%,transparent);}
+.section{padding:60px 0;}
+.s-tag{display:inline-flex;align-items:center;gap:7px;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--amber);background:var(--amber-d);border:1px solid rgba(245,166,35,.22);padding:3px 12px;border-radius:1px;margin-bottom:12px;animation:tagpulse 4s ease-in-out infinite;}
 .s-tag::before{content:"//";opacity:.5;}
-.s-h{font-family:"Fira Code",monospace;font-size:clamp(24px,3.5vw,42px);font-weight:800;letter-spacing:-.03em;line-height:1;margin-bottom:10px;}
-.s-h em{font-style:normal;color:var(--amber);}
-.s-sub{font-size:15px;color:var(--ink2);font-weight:300;max-width:480px;line-height:1.7;margin-bottom:32px;}
-
-/* CHIPS */
-.chips{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:18px;}
-.chip{font-size:12px;font-weight:700;letter-spacing:.05em;padding:4px 10px;border-radius:1px;border:1px solid;transition:all .2s;}
-.ca{color:var(--amber);border-color:rgba(245,166,35,.28);background:rgba(245,166,35,.04);}
-.cb{color:var(--blue);border-color:rgba(77,159,255,.22);background:rgba(77,159,255,.04);}
-.cg{color:var(--green);border-color:rgba(0,217,126,.22);background:rgba(0,217,126,.04);}
-.ct{color:var(--teal);border-color:rgba(0,201,177,.22);background:rgba(0,201,177,.04);}
-.cr{color:#f0673a;border-color:rgba(240,103,58,.22);background:rgba(240,103,58,.04);}
-
-/* PHASE TABS */
-.phase-tabs{display:flex;border:1px solid var(--border2);overflow-x:auto;}
-.ptab{font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:10px 16px;color:var(--ink3);background:var(--panel2);border:none;border-right:1px solid var(--border2);cursor:pointer;transition:all .2s;font-family:"JetBrains Mono",monospace;white-space:nowrap;flex-shrink:0;}
-.ptab:last-child{border-right:none;}
-.ptab.active{color:var(--amber);background:var(--amber-dim);border-bottom:2px solid var(--amber);}
-.ptab:hover:not(.active){color:var(--ink);background:var(--panel);}
-.phase-content{display:none;}
-.phase-content.active{display:block;}
-
-/* PROJECT CARD */
-.pcard{border:1px solid var(--border2);border-top:none;background:var(--panel);transition:border-color .3s;}
-.pcard-top{display:grid;grid-template-columns:1fr 180px;}
-@media(max-width:640px){.pcard-top{grid-template-columns:1fr;}}
-.pmain{padding:24px 26px;}
-.pbadge{font-size:11px;font-weight:700;letter-spacing:.10em;text-transform:uppercase;color:var(--green);background:var(--green-dim);border:1px solid rgba(0,217,126,.22);padding:2px 9px;border-radius:1px;display:inline-flex;align-items:center;gap:5px;margin-bottom:12px;}
-.pbadge::before{content:"●";font-size:9px;animation:pulse 1.8s ease-in-out infinite;}
-.pbadge-a{font-size:11px;font-weight:700;letter-spacing:.10em;text-transform:uppercase;color:var(--amber);background:var(--amber-dim);border:1px solid rgba(245,166,35,.22);padding:2px 9px;border-radius:1px;display:inline-flex;align-items:center;gap:5px;margin-bottom:12px;}
-.pbadge-b{font-size:11px;font-weight:700;letter-spacing:.10em;text-transform:uppercase;color:var(--blue);background:rgba(77,159,255,.1);border:1px solid rgba(77,159,255,.22);padding:2px 9px;border-radius:1px;display:inline-flex;align-items:center;gap:5px;margin-bottom:12px;}
-.pbadge-d{font-size:11px;font-weight:700;letter-spacing:.10em;text-transform:uppercase;color:var(--ink3);background:var(--panel2);border:1px solid var(--border2);padding:2px 9px;border-radius:1px;display:inline-flex;align-items:center;gap:5px;margin-bottom:12px;}
-.ptitle{font-family:"Fira Code",monospace;font-size:clamp(16px,2.5vw,22px);font-weight:800;letter-spacing:-.02em;margin-bottom:8px;color:var(--ink);}
-.pdesc{font-size:13px;color:var(--ink2);line-height:1.75;margin-bottom:14px;font-weight:300;}
-.sbd{display:flex;flex-direction:column;border:1px solid var(--border);margin-bottom:14px;}
-.sbr{display:grid;grid-template-columns:130px 1fr;border-bottom:1px solid var(--border);transition:background .2s;}
+@keyframes tagpulse{0%,100%{box-shadow:none}50%{box-shadow:0 0 16px rgba(245,166,35,.18)}}
+.s-h{font-family:"Fira Code",monospace;font-size:clamp(26px,3.5vw,44px);font-weight:800;letter-spacing:-.03em;line-height:1;margin-bottom:10px;}
+.s-h em{font-style:normal;color:var(--amber);text-shadow:0 0 22px rgba(245,166,35,.3);}
+.s-sub{font-size:13px;color:var(--ink2);font-weight:300;max-width:560px;line-height:1.8;margin-bottom:40px;}
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2px;margin-bottom:32px;}
+.gallery-card{background:var(--panel);border:1px solid var(--border2);overflow:hidden;position:relative;transition:border-color .35s,box-shadow .35s,transform .3s;opacity:0;transform:translateY(18px);}
+.gallery-card.gc-visible{opacity:1;transform:none;}
+.gallery-card:hover{border-color:rgba(245,166,35,.45);box-shadow:0 0 40px rgba(245,166,35,.12);transform:translateY(-3px);}
+.gallery-card:hover .gc-overlay{opacity:1;}
+.gallery-card:hover .gc-shine{left:120%;}
+.gc-shine{position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(90deg,transparent,rgba(245,166,35,.06),transparent);transform:skewX(-15deg);transition:left .55s ease;pointer-events:none;z-index:3;}
+.gc-img{width:100%;height:180px;object-fit:cover;display:block;border-bottom:1px solid var(--border);}
+.gallery-placeholder{width:100%;height:180px;background:var(--panel2);display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--border);}
+.gc-overlay{position:absolute;top:0;left:0;right:0;height:180px;background:rgba(2,6,9,.55);backdrop-filter:blur(2px);opacity:0;transition:opacity .3s;display:flex;align-items:center;justify-content:center;z-index:2;}
+.gc-overlay span{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);background:rgba(2,6,9,.9);padding:7px 16px;border:1px solid rgba(245,166,35,.5);}
+.gallery-meta{padding:14px 16px;border-top:1px solid var(--border);}
+.gm-title{font-size:13px;font-weight:700;color:var(--ink);margin-bottom:4px;transition:color .25s;}
+.gallery-card:hover .gm-title{color:var(--amber);}
+.gm-desc{font-size:11px;color:var(--ink3);line-height:1.65;}
+.gm-tag{display:inline-flex;align-items:center;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;border:1px solid;border-radius:1px;margin-top:8px;}
+.gm-tag.screen{color:var(--blue);border-color:rgba(90,171,255,.4);background:rgba(90,171,255,.07);}
+.gm-tag.demo{color:var(--teal);border-color:rgba(0,212,190,.4);background:rgba(0,212,190,.07);}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px;}
+.chip{font-size:11px;font-weight:700;letter-spacing:.04em;padding:5px 11px;border-radius:2px;border:1px solid;transition:all .2s;display:inline-flex;align-items:center;width:fit-content;white-space:nowrap;}
+.chip:hover{transform:translateY(-1px);}
+.ca{color:var(--amber);border-color:rgba(245,166,35,.5);background:rgba(245,166,35,.07);}
+.cb{color:var(--blue);border-color:rgba(90,171,255,.5);background:rgba(90,171,255,.07);}
+.cg{color:var(--green);border-color:rgba(0,232,138,.5);background:rgba(0,232,138,.07);}
+.ct{color:var(--teal);border-color:rgba(0,212,190,.5);background:rgba(0,212,190,.07);}
+.cr{color:#f07845;border-color:rgba(240,120,69,.5);background:rgba(240,120,69,.07);}
+.phase-card{border:1px solid var(--border2);background:var(--panel);margin-bottom:3px;position:relative;overflow:hidden;transition:border-color .3s,box-shadow .3s;}
+.phase-card::before{content:"";position:absolute;top:0;left:0;width:3px;height:100%;}
+.phase-card.complete::before{background:var(--green);box-shadow:0 0 12px rgba(0,232,138,.5);}
+.phase-card.complete:hover{border-color:rgba(0,232,138,.3);box-shadow:0 0 40px rgba(0,232,138,.07);}
+.phase-card.planned::before{background:var(--ink3);opacity:.3;}
+.ph-header{padding:20px 24px 0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.ph-badge-wrap{display:flex;align-items:center;gap:10px;}
+.ph-num{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3);}
+.ph-status{font-size:11px;font-weight:700;letter-spacing:.10em;text-transform:uppercase;padding:3px 10px;border-radius:1px;border:1px solid;}
+.ph-status.complete{color:var(--green);border-color:rgba(0,232,138,.4);background:rgba(0,232,138,.08);text-shadow:0 0 10px rgba(0,232,138,.4);}
+.ph-status.complete::before{content:"● ";}
+.ph-status.planned{color:var(--ink3);border-color:var(--border2);}
+.ph-status.planned::before{content:"○ ";}
+.ph-title{font-family:"Fira Code",monospace;font-size:clamp(16px,2.2vw,22px);font-weight:800;letter-spacing:-.02em;padding:10px 24px 0;color:var(--ink);}
+.ph-desc{font-size:13px;color:var(--ink2);line-height:1.8;padding:10px 24px 18px;max-width:680px;margin:0 auto;text-align:center;}
+.ph-body{display:grid;grid-template-columns:1fr 196px;padding:0 24px 20px;gap:20px;}
+@media(max-width:640px){.ph-body{grid-template-columns:1fr;}}
+.ph-side{border-left:1px solid var(--border);padding-left:18px;display:flex;flex-direction:column;gap:12px;}
+@media(max-width:640px){.ph-side{border-left:none;border-top:1px solid var(--border);padding-left:0;padding-top:14px;margin-top:4px;}}
+.sbd{display:flex;flex-direction:column;border:1px solid var(--border2);margin-bottom:14px;}
+.sbr{display:grid;grid-template-columns:110px 1fr;border-bottom:1px solid var(--border);transition:background .2s;}
+@media(max-width:480px){.sbr{grid-template-columns:1fr;}}
 .sbr:last-child{border-bottom:none;}
 .sbr:hover{background:rgba(245,166,35,.02);}
-.sbl{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--amber);padding:9px 10px;border-right:1px solid var(--border);display:flex;align-items:center;gap:5px;}
-.sbv{font-size:12px;color:var(--ink2);padding:9px 12px;line-height:1.5;}
-.sbv strong{color:var(--ink);font-weight:500;}
-.plinks{display:flex;gap:14px;flex-wrap:wrap;margin-top:4px;}
-.plink{font-size:12px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--ink3);text-decoration:none;display:flex;align-items:center;gap:4px;border-bottom:1px solid var(--border2);padding-bottom:2px;transition:color .2s,border-color .2s;}
-.plink:hover{color:var(--amber);border-color:var(--amber);}
-.pside{border-left:1px solid var(--border);background:var(--panel2);padding:18px 16px;display:flex;flex-direction:column;gap:12px;}
-@media(max-width:640px){.pside{border-left:none;border-top:1px solid var(--border);}}
-.slbl{font-size:11px;font-weight:700;letter-spacing:.10em;text-transform:uppercase;color:var(--ink3);margin-bottom:4px;}
-.sval{font-size:13px;font-weight:600;color:var(--green);}
-.sval-a{font-size:13px;font-weight:600;color:var(--amber);}
-.sval-b{font-size:13px;font-weight:600;color:var(--blue);}
-.sval-d{font-size:13px;font-weight:600;color:var(--ink3);}
+.sbl{font-size:10px;font-weight:700;letter-spacing:.10em;text-transform:uppercase;color:var(--amber);padding:9px 10px;border-right:1px solid var(--border);display:flex;align-items:center;gap:5px;}
+@media(max-width:480px){.sbl{border-right:none;border-bottom:1px solid var(--border);}}
+.sbv{font-size:12px;color:var(--ink2);padding:9px 12px;line-height:1.6;}
+.sbv strong{color:var(--ink);font-weight:600;}
+.slbl{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);margin-bottom:6px;}
+.sval{font-size:12px;font-weight:700;}
+.sval.g{color:var(--green);text-shadow:0 0 10px rgba(0,232,138,.4);}.sval.d{color:var(--ink3);}
 .ssep{height:1px;background:var(--border);}
-.spill{font-size:11px;color:var(--ink3);background:var(--panel);border:1px solid var(--border);padding:3px 8px;border-radius:1px;display:block;margin-bottom:4px;transition:border-color .2s,color .2s;}
-.spill:hover{border-color:var(--amber);color:var(--ink);}
-
-/* PIPELINE ANIMATION */
-.pipe-wrap{border-top:1px solid var(--border);padding:18px 26px;background:var(--bg);}
-.pipe-lbl{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);margin-bottom:12px;}
-.pipe-stages{display:flex;align-items:center;flex-wrap:wrap;gap:4px;}
-.ps{font-size:11px;font-weight:700;letter-spacing:.04em;padding:5px 10px;border:1px solid var(--border2);color:var(--ink3);background:var(--panel);transition:all .35s;}
-.ps.on{color:var(--green);border-color:rgba(0,217,126,.5);background:rgba(0,217,126,.07);}
-.parr{color:var(--ink3);font-size:12px;opacity:.4;}
-
-/* ARCHITECTURE NODES */
-.aflow{border-top:1px solid var(--border);padding:18px 26px;background:var(--bg);}
-.aflow-lbl{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);margin-bottom:14px;}
-.arow{display:flex;align-items:center;flex-wrap:wrap;gap:6px;margin-bottom:10px;}
+.spill{font-size:11px;color:var(--ink2);background:var(--bg);border:1px solid var(--border2);padding:4px 9px;border-radius:1px;display:inline-flex;align-items:center;margin:0 4px 5px 0;width:fit-content;transition:all .2s;line-height:1.4;white-space:nowrap;}
+.spill.done{color:var(--green);border-color:rgba(0,232,138,.4);background:rgba(0,232,138,.05);}
+.spill.enhance{color:var(--blue);border-color:rgba(90,171,255,.4);background:rgba(90,171,255,.05);}
+.pills-wrap{display:flex;flex-wrap:wrap;align-items:flex-start;}
+.plinks{display:flex;gap:14px;flex-wrap:wrap;margin-top:8px;}
+.plink{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);text-decoration:none;border-bottom:1px solid var(--border2);padding-bottom:2px;transition:color .2s,border-color .2s;}
+.plink:hover{color:var(--amber);border-color:var(--amber);}
+.aflow{border-top:1px solid var(--border2);padding:16px 24px;background:rgba(0,0,0,.25);}
+.aflow-lbl{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3);margin-bottom:12px;}
+.arow{display:flex;align-items:center;flex-wrap:wrap;gap:5px;margin-bottom:9px;}
 .arow:last-child{margin-bottom:0;}
-.arow-lbl{font-size:10px;color:var(--ink3);width:80px;flex-shrink:0;}
-.an{font-size:11px;font-weight:700;letter-spacing:.04em;padding:4px 10px;border:1px solid;border-radius:1px;white-space:nowrap;}
-.an-g{color:var(--green);border-color:rgba(0,217,126,.4);background:rgba(0,217,126,.06);}
-.an-a{color:var(--amber);border-color:rgba(245,166,35,.4);background:rgba(245,166,35,.06);}
-.an-b{color:var(--blue);border-color:rgba(77,159,255,.4);background:rgba(77,159,255,.06);}
-.an-t{color:var(--teal);border-color:rgba(0,201,177,.4);background:rgba(0,201,177,.06);}
-.an-o{color:#f0673a;border-color:rgba(240,103,58,.4);background:rgba(240,103,58,.06);}
-.an-r{color:var(--red);border-color:rgba(255,77,77,.4);background:rgba(255,77,77,.06);}
-.an-d{color:var(--ink3);border-color:var(--border2);background:var(--panel);}
-.arr{color:var(--ink3);font-size:11px;opacity:.5;}
-
-/* PHASE GRID */
-.pgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:20px;}
-@media(max-width:640px){.pgrid{grid-template-columns:repeat(2,1fr);}}
-.pcell{background:var(--bg);border:1px solid var(--border);padding:14px;cursor:pointer;transition:border-color .2s;}
-.pcell:hover{border-color:rgba(245,166,35,.35);}
-.pcell-n{font-size:10px;color:var(--ink3);letter-spacing:.08em;margin-bottom:5px;}
-.pcell-t{font-size:12px;font-weight:600;color:var(--ink);margin-bottom:8px;}
-.pcell-s{font-size:11px;display:flex;align-items:center;gap:6px;}
-.pdot{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
-.pdot-g{background:var(--green);}
-.pdot-a{background:var(--amber);animation:pulse 1.8s infinite;}
-.pdot-d{background:var(--ink3);}
-
-/* COMING NEXT BANNER */
-.cnext{margin-top:12px;border:1px dashed var(--border2);background:var(--panel2);padding:20px 24px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;position:relative;overflow:hidden;}
-.cnext::before{content:"PHASE 4";position:absolute;right:16px;top:50%;transform:translateY(-50%);font-family:"Fira Code",monospace;font-size:72px;font-weight:800;color:rgba(255,255,255,.015);pointer-events:none;}
-.cn-badge{font-size:12px;font-weight:700;letter-spacing:.10em;text-transform:uppercase;color:var(--blue);background:rgba(77,159,255,.07);border:1px solid rgba(77,159,255,.2);padding:2px 9px;border-radius:1px;margin-bottom:6px;display:inline-block;}
-.cn-title{font-family:"Fira Code",monospace;font-size:18px;font-weight:800;letter-spacing:-.02em;margin-bottom:4px;}
-.cn-sub{font-size:13px;color:var(--ink3);}
-
-/* SKILLS */
-.sg{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;}
-.skg-h{font-size:12px;font-weight:700;letter-spacing:.10em;text-transform:uppercase;color:var(--amber);margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--border);}
-.sk-item{margin-bottom:10px;}
-.sk-row{display:flex;justify-content:space-between;margin-bottom:5px;}
-.sk-name{font-size:12px;color:var(--ink2);}
-.sk-pct{font-size:12px;color:var(--amber);}
-.sk-track{height:2px;background:var(--border2);}
-.sk-fill{height:100%;background:linear-gradient(90deg,var(--amber),rgba(245,166,35,.4));width:0;transition:width 1.4s cubic-bezier(.25,.46,.45,.94);}
-
-/* CONTACT */
-.cg{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;}
-.ccard{background:var(--panel);border:1px solid var(--border2);padding:16px 18px;text-decoration:none;display:flex;align-items:center;gap:12px;transition:border-color .2s,background .2s;}
-.ccard:hover{border-color:rgba(245,166,35,.3);background:var(--panel2);}
-.cico{width:32px;height:32px;background:var(--panel2);border:1px solid var(--border2);border-radius:2px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.c-lbl{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:2px;}
+.arow-lbl{font-size:10px;color:var(--ink3);width:72px;flex-shrink:0;font-weight:600;}
+.an{font-size:11px;font-weight:700;letter-spacing:.03em;padding:4px 10px;border:1px solid;border-radius:2px;white-space:nowrap;transition:all .25s;display:inline-flex;align-items:center;}
+.an:hover{transform:translateY(-1px);}
+.an-g{color:var(--green);border-color:rgba(0,232,138,.55);background:rgba(0,232,138,.08);}
+.an-g:hover{box-shadow:0 0 14px rgba(0,232,138,.3);}
+.an-a{color:var(--amber);border-color:rgba(245,166,35,.55);background:rgba(245,166,35,.08);}
+.an-a:hover{box-shadow:0 0 14px rgba(245,166,35,.3);}
+.an-b{color:var(--blue);border-color:rgba(90,171,255,.55);background:rgba(90,171,255,.08);}
+.an-b:hover{box-shadow:0 0 14px rgba(90,171,255,.3);}
+.an-t{color:var(--teal);border-color:rgba(0,212,190,.55);background:rgba(0,212,190,.08);}
+.an-o{color:#f07845;border-color:rgba(240,120,69,.55);background:rgba(240,120,69,.08);}
+.an-r{color:var(--red);border-color:rgba(255,85,85,.55);background:rgba(255,85,85,.08);}
+.an-d{color:var(--ink2);border-color:var(--border2);background:var(--panel);}
+.arr{color:var(--ink3);font-size:11px;opacity:.7;}
+.pipe-wrap{border-top:1px solid var(--border2);padding:16px 24px;background:rgba(0,0,0,.25);}
+.pipe-lbl{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3);margin-bottom:12px;}
+.pipe-stages{display:flex;align-items:center;flex-wrap:wrap;gap:5px;}
+.ps{font-size:11px;font-weight:700;padding:5px 11px;border:1px solid var(--border2);color:var(--ink3);background:var(--panel);transition:all .4s;border-radius:2px;white-space:nowrap;}
+.ps.on{color:var(--green);border-color:rgba(0,232,138,.6);background:rgba(0,232,138,.09);box-shadow:0 0 12px rgba(0,232,138,.18);}
+.parr{color:var(--ink3);font-size:12px;opacity:.5;}
+.atbl{width:100%;border-collapse:collapse;font-size:12px;margin-bottom:14px;border:1px solid var(--border2);}
+.atbl th{font-size:10px;font-weight:700;letter-spacing:.10em;text-transform:uppercase;color:var(--ink3);padding:8px 10px;text-align:left;border-bottom:1px solid var(--border2);background:var(--panel2);}
+.atbl td{padding:8px 10px;border-bottom:1px solid var(--border);color:var(--ink2);font-size:12px;}
+.atbl tr:last-child td{border-bottom:none;}
+.atbl tr:hover td{background:rgba(245,166,35,.02);}
+.sev-w{font-size:10px;color:var(--amber);padding:2px 7px;border:1px solid rgba(245,166,35,.4);background:rgba(245,166,35,.07);}
+.sev-c{font-size:10px;color:var(--red);padding:2px 7px;border:1px solid rgba(255,85,85,.4);background:rgba(255,85,85,.07);}
+.phase-progress{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-bottom:36px;}
+@media(max-width:500px){.phase-progress{grid-template-columns:repeat(2,1fr);}}
+.pp-cell{background:var(--panel);border:1px solid var(--border2);padding:14px 16px;cursor:default;transition:all .25s;position:relative;}
+.pp-cell::after{content:"";position:absolute;bottom:0;left:0;right:0;height:2px;}
+.pp-cell.complete::after{background:var(--green);box-shadow:0 0 8px rgba(0,232,138,.6);}
+.pp-cell.planned::after{background:var(--border2);}
+.pp-cell:hover{border-color:rgba(245,166,35,.3);background:var(--panel2);}
+.pp-num{font-size:10px;color:var(--ink3);letter-spacing:.08em;margin-bottom:5px;}
+.pp-name{font-size:12px;font-weight:700;color:var(--ink);margin-bottom:8px;}
+.pp-dot{width:6px;height:6px;border-radius:50%;display:inline-block;margin-right:5px;}
+.pp-dot.g{background:var(--green);box-shadow:0 0 8px rgba(0,232,138,.7);}
+.pp-dot.d{background:var(--ink3);}
+.pp-st{font-size:11px;font-weight:600;}
+.cnext{border:1px solid var(--border2);background:var(--panel2);padding:22px 24px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-top:4px;position:relative;overflow:hidden;transition:border-color .3s,box-shadow .3s;}
+.cnext:hover{border-color:rgba(90,171,255,.3);box-shadow:0 0 40px rgba(90,171,255,.07);}
+.cn-badge{font-size:11px;font-weight:700;letter-spacing:.10em;text-transform:uppercase;color:var(--blue);background:rgba(90,171,255,.08);border:1px solid rgba(90,171,255,.3);padding:2px 9px;border-radius:1px;margin-bottom:6px;display:inline-block;}
+.cn-title{font-family:"Fira Code",monospace;font-size:17px;font-weight:800;letter-spacing:-.02em;margin-bottom:4px;}
+.cn-sub{font-size:12px;color:var(--ink3);}
+.failures-section{background:rgba(90,171,255,.025);border:1px solid rgba(90,171,255,.14);margin-bottom:3px;position:relative;overflow:hidden;margin-top:40px;}
+.failures-section::before{content:"";position:absolute;top:0;left:0;width:3px;height:100%;background:var(--blue);opacity:.7;}
+.fl-header{padding:20px 24px 16px;}
+.fl-badge{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);background:rgba(90,171,255,.1);border:1px solid rgba(90,171,255,.28);padding:3px 10px;display:inline-block;margin-bottom:10px;}
+.fl-title{font-family:"Fira Code",monospace;font-size:clamp(16px,2.2vw,20px);font-weight:800;color:var(--ink);margin-bottom:6px;}
+.fl-list{display:flex;flex-direction:column;gap:2px;padding:0 24px 24px;}
+.fl-item{background:var(--panel);border:1px solid var(--border2);overflow:hidden;transition:border-color .35s,box-shadow .35s,transform .25s;position:relative;}
+.fl-item::before{content:"";position:absolute;top:0;left:0;width:3px;height:100%;background:transparent;transition:background .3s,box-shadow .3s;}
+.fl-item:hover{border-color:rgba(90,171,255,.4);box-shadow:0 0 28px rgba(90,171,255,.1);transform:translateX(4px);}
+.fl-item:hover::before{background:var(--blue);box-shadow:0 0 12px rgba(90,171,255,.6);}
+.fl-inner{display:grid;grid-template-columns:180px 1fr;}
+@media(max-width:600px){.fl-inner{grid-template-columns:1fr;}}
+.fl-left{padding:16px 18px;border-right:1px solid var(--border);}
+@media(max-width:600px){.fl-left{border-right:none;border-bottom:1px solid var(--border);}}
+.fl-problem{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--red);margin-bottom:6px;}
+.fl-what{font-size:13px;font-weight:700;color:var(--ink);line-height:1.4;}
+.fl-right{padding:16px 20px;display:flex;flex-direction:column;justify-content:center;}
+.fl-arrow{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--green);margin-bottom:6px;display:flex;align-items:center;gap:6px;}
+.fl-arrow::before{content:"";width:16px;height:1px;background:var(--green);}
+.fl-how{font-size:12px;color:var(--ink2);line-height:1.7;}
+.sg{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:var(--border2);border:1px solid var(--border2);}
+.skgroup{background:var(--panel);padding:22px 20px;transition:background .25s;}
+.skgroup:hover{background:var(--panel2);}
+.skg-h{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--border2);}
+.sk-item{margin-bottom:10px;display:flex;align-items:flex-start;gap:8px;padding:6px 8px;border:1px solid transparent;border-radius:2px;transition:border-color .25s,background .25s,transform .2s;}
+.sk-item:hover{border-color:var(--border2);background:rgba(245,166,35,.03);transform:translateX(4px);}
+.sk-dot{width:5px;height:5px;border-radius:50%;background:var(--amber);flex-shrink:0;margin-top:6px;box-shadow:0 0 6px rgba(245,166,35,.5);}
+.sk-dot.green{background:var(--green);box-shadow:0 0 6px rgba(0,232,138,.5);}
+.sk-dot.blue{background:var(--blue);box-shadow:0 0 6px rgba(90,171,255,.5);}
+.sk-dot.teal{background:var(--teal);box-shadow:0 0 6px rgba(0,212,190,.4);}
+.sk-name{font-size:12px;color:var(--ink);font-weight:600;margin-bottom:2px;}
+.sk-ctx{font-size:11px;color:var(--ink3);line-height:1.5;}
+.exp-list{display:flex;flex-direction:column;gap:2px;}
+.exp-item{border:1px solid var(--border2);background:var(--panel);padding:18px 24px;transition:border-color .25s,background .25s;position:relative;overflow:hidden;}
+.exp-item::before{content:"";position:absolute;top:0;left:0;width:3px;height:100%;background:var(--amber);opacity:0;transition:opacity .3s;}
+.exp-item:hover{border-color:rgba(245,166,35,.28);background:var(--panel2);}
+.exp-item:hover::before{opacity:1;}
+.exp-top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:4px;}
+.exp-role{font-family:"Fira Code",monospace;font-size:14px;font-weight:700;color:var(--ink);letter-spacing:-.01em;}
+.exp-period{font-size:11px;color:var(--ink3);font-weight:600;letter-spacing:.06em;background:var(--panel2);border:1px solid var(--border2);padding:3px 10px;border-radius:1px;white-space:nowrap;}
+.exp-company{font-size:12px;color:var(--amber);font-weight:600;}
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:2px;background:var(--border2);border:1px solid var(--border2);}
+.ccard{background:var(--panel);padding:18px 20px;text-decoration:none;display:flex;align-items:center;gap:14px;transition:background .2s,border-left-color .2s;border-left:3px solid transparent;}
+.ccard:hover{background:var(--panel2);border-left-color:var(--amber);}
+.cico{width:34px;height:34px;background:var(--panel2);border:1px solid var(--border2);border-radius:2px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:border-color .2s,box-shadow .2s;}
+.ccard:hover .cico{border-color:var(--amber);box-shadow:0 0 14px rgba(245,166,35,.2);}
+.c-lbl{font-size:10px;font-weight:700;letter-spacing:.10em;text-transform:uppercase;color:var(--ink3);margin-bottom:3px;}
 .c-val{font-size:13px;color:var(--ink);}
-
-footer{padding:24px 0 0;}
-.ft{font-size:12px;color:var(--ink3);text-align:center;letter-spacing:.05em;}
-.ft a{color:var(--ink3);text-decoration:none;}
+.otw{background:rgba(0,232,138,.06);border:1px solid rgba(0,232,138,.22);padding:16px 24px;margin-bottom:28px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;box-shadow:0 0 30px rgba(0,232,138,.06);}
+.otw-txt{font-size:13px;color:var(--ink2);}
+.otw-txt strong{color:var(--green);}
+.otw-loc{font-size:12px;color:var(--ink3);}
+footer{padding:28px 0 0;border-top:1px solid var(--border);}
+.ft{font-size:12px;color:var(--ink3);text-align:center;letter-spacing:.05em;line-height:2;}
+.ft a{color:var(--ink3);text-decoration:none;transition:color .2s;}
 .ft a:hover{color:var(--amber);}
-.fi{opacity:0;transform:translateY(10px);transition:opacity .5s,transform .5s;}
-.fi.show{opacity:1;transform:none;}
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease;}
+.reveal.show{opacity:1;transform:none;}
+/* Phase card glow pulse on complete */
+.phase-card.complete{animation:none;}
+.phase-card.complete.reveal.show{animation:cardglow 3s ease-in-out 1s infinite;}
+@keyframes cardglow{0%,100%{box-shadow:none}50%{box-shadow:0 0 40px rgba(0,232,138,.08)}}
+/* Section heading glow */
+.s-h em{animation:headglow 4s ease-in-out infinite;}
+@keyframes headglow{0%,100%{text-shadow:0 0 22px rgba(245,166,35,.3)}50%{text-shadow:0 0 40px rgba(245,166,35,.55)}}
+/* Stat number count-up glow */
+.stat-n{animation:statglow 3s ease-in-out infinite;}
+@keyframes statglow{0%,100%{text-shadow:0 0 18px rgba(245,166,35,.45)}50%{text-shadow:0 0 35px rgba(245,166,35,.8)}}
+/* NOC badge shimmer */
+.noc-badge{position:relative;overflow:hidden;}
+.noc-badge::after{content:"";position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(0,232,138,.12),transparent);animation:badgeshimmer 4s ease-in-out infinite;}
+@keyframes badgeshimmer{0%,70%{left:-100%}85%{left:140%}100%{left:140%}}
+/* Pipeline stage cascade glow when on */
+.ps.on{animation:stageglow .4s ease forwards;}
+@keyframes stageglow{from{box-shadow:none}to{box-shadow:0 0 16px rgba(0,232,138,.3)}}
+/* Failure item left border glow on hover */
+.fl-item:hover::before{animation:borderglow .3s ease forwards;}
+@keyframes borderglow{from{box-shadow:none}to{box-shadow:0 0 16px rgba(90,171,255,.7)}}
+/* Experience item hover — amber left border sweep */
+.exp-item{transition:border-color .25s,background .25s,box-shadow .25s;}
+.exp-item:hover{box-shadow:inset 4px 0 0 var(--amber),0 0 30px rgba(245,166,35,.04);}
+/* Gallery card title underline on hover */
+.gallery-meta::after{content:"";display:block;height:1px;background:linear-gradient(90deg,var(--amber),transparent);width:0;transition:width .4s ease;margin-top:8px;}
+.gallery-card:hover .gallery-meta::after{width:100%;}
+/* Phase progress cell glow */
+.pp-cell.complete:hover{box-shadow:0 0 20px rgba(0,232,138,.15);}
+/* Skill dot pulse on item hover */
+.sk-item:hover .sk-dot{animation:dotpulse .6s ease infinite alternate;}
+@keyframes dotpulse{from{box-shadow:0 0 6px currentColor}to{box-shadow:0 0 18px currentColor,0 0 30px currentColor}}
+/* cnext hover glow */
+.cnext:hover{box-shadow:0 0 50px rgba(90,171,255,.1),inset 0 0 30px rgba(90,171,255,.03);}
+/* Contact card hover glow */
+.ccard:hover{box-shadow:inset 0 0 40px rgba(245,166,35,.04);}
+/* Status bar pulse */
+.statusbar{box-shadow:0 -2px 20px rgba(245,166,35,.2);}
+/* OTW green glow breathe */
+.otw{animation:otwbreathe 4s ease-in-out infinite;}
+@keyframes otwbreathe{0%,100%{box-shadow:0 0 30px rgba(0,232,138,.06)}50%{box-shadow:0 0 50px rgba(0,232,138,.14)}}
+@media(max-width:768px){body{cursor:auto;}#cursor,#cursor-ring,#cursor-glow{display:none;}}
 </style>
 </head>
 <body>
-<div class="gbg"></div>
-<div class="glow1"></div>
-<div class="glow2"></div>
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+<div id="cursor-glow"></div>
+<canvas id="bg-canvas"></canvas>
 
 <div class="topbar">
   <div class="tb-inner">
@@ -229,314 +322,274 @@ footer{padding:24px 0 0;}
       <div class="tb-title"><strong>mjcastro</strong> &middot; devops-lab &middot; github.io</div>
     </div>
     <nav><ul class="tb-nav">
+      <li><a href="#proof">proof</a></li>
       <li><a href="#projects">projects</a></li>
       <li><a href="#skills">skills</a></li>
+      <li><a href="#experience">experience</a></li>
       <li><a href="#contact">contact</a></li>
-      <a class="tb-cv" href="mailto:mjarcino19@gmail.com">cv &rarr;</a>
+      <a class="tb-cv" href="/cdn-cgi/l/email-protection#d8b5b2b9aabbb1b6b7e9e198bfb5b9b1b4f6bbb7b5">cv &rarr;</a>
     </ul></nav>
   </div>
 </div>
 
 <div class="statusbar">
   <div class="sb"><div class="sb-dot"></div>ALL SYSTEMS RUNNING</div>
-  <div class="sb-sep"></div><div class="sb">PHASE 1 &middot; COMPLETE</div>
-  <div class="sb-sep"></div><div class="sb">PHASE 2 &middot; IN PROGRESS</div>
-  <div class="sb-sep"></div><div class="sb">AWS + TERRAFORM &middot; ACTIVE</div>
-  <div class="sb-sep"></div><div class="sb">OPEN TO ROLES</div>
+  <div class="sb-sep"></div><div class="sb">ECS FARGATE &middot; LIVE</div>
+  <div class="sb-sep"></div><div class="sb">PHASE 3 &middot; COMPLETE</div>
+  <div class="sb-sep"></div><div class="sb">OPEN TO ROLES &middot; POTSDAM</div>
 </div>
 
-<section id="hero" style="padding-top:52px;">
+<section id="hero">
   <div class="wrap">
     <div class="hero-layout">
       <div>
-        <div class="id-path fi" style="transition-delay:.0s">~ / <span>mary-joy-castro</span> / devops-lab</div>
-        <h1 class="id-name fi" style="transition-delay:.08s"><span>Mary Joy </span><span class="last">Castro</span></h1>
-        <div class="id-tagline fi" style="transition-delay:.16s">IT Operations &middot; SRE &middot; DevOps Engineering</div>
-        <p class="id-bio fi" style="transition-delay:.22s">With a background in IT Operations, NOC, and System Administration, I spent years triaging incidents, maintaining system stability, and keeping production environments running under pressure. Now, I&apos;m building those systems from scratch to understand the how and why behind everything I once responded to.</p>
-        <div class="id-ctas fi" style="transition-delay:.28s">
+        <div class="id-path">~ / <span>mary-joy-castro</span> / devops-lab</div>
+        <h1 class="id-name"><span>Mary Joy </span><span class="last">Castro</span></h1>
+        <div class="id-tagline">DevOps Engineer &middot; IT Operations Background &middot; Building What I Once Operated</div>
+        <div class="noc-badge">From IT Operations to building the systems that keep operations running</div>
+        <p class="id-bio">Started in IT Operations and NOC, handling production incidents and keeping systems alive in 24/7 environments. Now I design and build the CI/CD pipelines, observability stacks, and cloud infrastructure behind those systems.</p>
+        <div class="id-ctas">
+          <a href="#proof" class="btn btn-demo"><span>&#9654; proof of work</span></a>
           <a href="#projects" class="btn btn-a"><span>view projects</span></a>
           <a href="https://github.com/mjec-explorer/devops-lab" target="_blank" class="btn btn-b"><span>github</span></a>
           <a href="https://www.linkedin.com/in/mjcastro-itops/" target="_blank" class="btn btn-b"><span>linkedin</span></a>
         </div>
-        <div class="statgrid fi" style="transition-delay:.34s">
-          <div class="statcell"><div class="stat-n">13</div><div class="stat-l">Containers</div></div>
-          <div class="statcell"><div class="stat-n">5</div><div class="stat-l">Alert Rules</div></div>
+        <div class="statgrid">
+          <div class="statcell"><div class="stat-n">3</div><div class="stat-l">Phases Complete</div></div>
+          <div class="statcell"><div class="stat-n">13+</div><div class="stat-l">Services</div></div>
           <div class="statcell"><div class="stat-n">8</div><div class="stat-l">Pipeline Stages</div></div>
-          <div class="statcell"><div class="stat-n">4</div><div class="stat-l">Phases</div></div>
+          <div class="statcell"><div class="stat-n">5+</div><div class="stat-l">Alert Rules</div></div>
         </div>
       </div>
-      <div class="term fi" style="transition-delay:.2s">
+      <div class="term">
         <div class="tbar"><div class="ttd r"></div><div class="ttd y"></div><div class="ttd g"></div><span class="ttitle">bash &middot; mjcastro@devops-lab</span></div>
-        <div class="tbody">
-          <div class="tl"><span class="pr">&#10095;</span><span class="cm">docker compose ps</span></div>
-          <span class="out og">&#10003; fastapi       running (healthy)</span>
-          <span class="out og">&#10003; nginx         running</span>
-          <span class="out og">&#10003; prometheus    running</span>
-          <span class="out og">&#10003; alertmanager  running</span>
-          <span class="out og">&#10003; grafana       running</span>
-          <span class="out og">&#10003; node-exporter running</span>
-          <span class="out og">&#10003; blackbox      running</span>
-          <span class="out og">&#10003; n8n           running</span>
-          <span class="out og">&#10003; docker-proxy  running</span>
-          <div class="tl" style="margin-top:8px"><span class="pr">&#10095;</span><span class="cm">terraform output ec2_public_ip</span></div>
-          <span class="out oa">3.70.226.236  # eu-central-1a</span>
-          <div class="tl" style="margin-top:8px"><span class="pr">&#10095;</span><span class="cm">curl -s localhost/health</span></div>
-          <span class="out og">{"status":"ok"}</span>
-          <div class="tl" style="margin-top:8px"><span class="pr">&#10095;</span><span class="cm"><span class="blink"></span></span></div>
-        </div>
+        <div class="tbody" id="typewriter-output"></div>
       </div>
     </div>
   </div>
 </section>
 
-<div class="divider" style="margin-top:20px;"></div>
+<div class="divider"></div>
+
+<section id="proof" class="section">
+  <div class="wrap">
+    <div class="s-tag reveal">00 &middot; Proof of Work</div>
+    <h2 class="s-h reveal">Real <em>Systems</em></h2>
+    <p class="s-sub reveal">Real system. Built, deployed, and running in AWS. Every screenshot reflects actual pipeline execution, infrastructure, and runtime behavior..</p>
+    <div class="gallery-grid" id="gallery-grid">
+      <div class="gallery-card">
+        <div class="gc-shine"></div>
+        <img class="gc-img" src="CICD_ALB_SS.png" alt="Jenkins CI/CD all stages green">
+        <div class="gc-overlay"><span>CI/CD Pipeline</span></div>
+        <div class="gallery-meta"><div class="gm-title">Jenkins &mdash; All Stages Green</div><div class="gm-desc">Build #47. Every stage green. ALB returning version and container host in the terminal below.</div><span class="gm-tag screen">screenshot</span></div>
+      </div>
+      <div class="gallery-card">
+        <div class="gc-shine"></div>
+        <img class="gc-img" src="LB_SS.png" alt="ALB load balancing two ECS tasks">
+        <div class="gc-overlay"><span>Load Balancing</span></div>
+        <div class="gallery-meta"><div class="gm-title">ALB &mdash; 2 ECS Tasks</div><div class="gm-desc">Same version, two different container hosts. ALB distributing traffic across Fargate tasks.</div><span class="gm-tag screen">screenshot</span></div>
+      </div>
+      <div class="gallery-card">
+        <div class="gc-shine"></div>
+        <div class="gallery-placeholder"><div style="font-size:28px;opacity:.2;">&#128203;</div><div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-top:8px;">Architecture Diagram</div><div style="font-size:11px;color:var(--ink3);margin-top:6px;text-align:center;padding:0 16px;">Full system diagram coming after Phase 4 is complete</div></div>
+        <div class="gc-overlay"><span>coming soon</span></div>
+        <div class="gallery-meta"><div class="gm-title">Full Architecture Diagram</div><div class="gm-desc">Complete system diagram covering all 4 phases. Publishing after Phase 4 Kubernetes on EKS is complete.</div><span class="gm-tag demo">planned</span></div>
+      </div>
+      <div class="gallery-card">
+        <div class="gc-shine"></div>
+        <img class="gc-img" src="slack.png" alt="Slack incident lifecycle">
+        <div class="gc-overlay"><span>Incident Lifecycle</span></div>
+        <div class="gallery-meta"><div class="gm-title">Slack &mdash; Incident Lifecycle</div><div class="gm-desc">Warning &rarr; Firing &rarr; Auto-remediation &rarr; Recovered &rarr; Resolved. Posted automatically at every state change.</div><span class="gm-tag screen">screenshot</span></div>
+      </div>
+      <div class="gallery-card" style="grid-column:span 2;">
+        <div class="gc-shine"></div>
+        <div class="gallery-placeholder" style="height:160px;flex-direction:row;gap:24px;padding:0 32px;">
+          <div style="font-size:40px;opacity:.2;">&#9654;</div>
+          <div>
+            <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:8px;">Demo Video &mdash; n8n Auto-remediation + Fallback Routing</div>
+            <div style="font-size:11px;color:var(--ink3);line-height:1.7;">Container taken down &rarr; alert fires &rarr; n8n restarts container &rarr; recovery verified &rarr; Slack updated. Also shows what happens when n8n itself goes down &mdash; Alertmanager routes directly to Slack as fallback.</div>
+          </div>
+        </div>
+        <div class="gc-overlay"><span>&#9654; add video link</span></div>
+        <div class="gallery-meta"><div class="gm-title">Video &mdash; Auto-remediation + Fallback</div><div class="gm-desc">Add your video link or embed here when ready.</div><span class="gm-tag demo">video</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
 
 <section id="projects" class="section">
   <div class="wrap">
-    <div class="s-tag">01 &middot; Work</div>
-    <h2 class="s-h">Lab <em>Projects</em></h2>
-    <p class="s-sub">Built from scratch to understand the how and why. Not just to make it work &mdash; to know it well enough to rebuild it.</p>
-
-    <!-- PHASE TABS -->
-    <div class="phase-tabs fi">
-      <button class="ptab active" onclick="sw('p1',this)">Phase 1 &middot; CI/CD + Monitoring &#10003;</button>
-      <button class="ptab" onclick="sw('p2',this)">Phase 2 &middot; Automation &#9680;</button>
-      <button class="ptab" onclick="sw('p3',this)">Phase 3 &middot; AWS + Terraform &#9680;</button>
-      <button class="ptab" onclick="sw('p4',this)">Phase 4 &middot; Kubernetes &#9675;</button>
+    <div class="s-tag reveal">01 &middot; Work</div>
+    <h2 class="s-h reveal">Lab <em>Projects</em></h2>
+    <p class="s-sub reveal">Started local on Docker Compose. Moved to AWS cloud. Each phase was built on top of the previous one, introducing new challenges in automation, reliability, and infrastructure..</p>
+    <div class="phase-progress reveal">
+      <div class="pp-cell complete"><div class="pp-num">Phase 1</div><div class="pp-name">CI/CD + Monitoring</div><div><span class="pp-dot g"></span><span class="pp-st" style="color:var(--green)">Complete</span></div></div>
+      <div class="pp-cell complete"><div class="pp-num">Phase 2</div><div class="pp-name">Incident Automation</div><div><span class="pp-dot g"></span><span class="pp-st" style="color:var(--green)">Complete</span></div></div>
+      <div class="pp-cell complete"><div class="pp-num">Phase 3</div><div class="pp-name">AWS + Terraform</div><div><span class="pp-dot g"></span><span class="pp-st" style="color:var(--green)">Complete</span></div></div>
+      <div class="pp-cell planned"><div class="pp-num">Phase 4</div><div class="pp-name">Kubernetes</div><div><span class="pp-dot d"></span><span class="pp-st" style="color:var(--ink3)">Planned</span></div></div>
     </div>
 
-    <!-- ===== PHASE 1 ===== -->
-    <div id="p1" class="phase-content active">
-      <div class="pcard">
-        <div class="pcard-top">
-          <div class="pmain">
-            <div class="pbadge">Phase 1 &middot; Complete</div>
-            <div class="ptitle">CI/CD Pipeline + Observability Stack</div>
-            <p class="pdesc">The foundation. A working CI/CD pipeline that builds, tests, and deploys automatically &mdash; combined with a full monitoring stack that collects metrics, visualises them, and fires alerts when things go wrong.</p>
-            <div class="sbd">
-              <div class="sbr"><div class="sbl">&#9881; CI/CD</div><div class="sbv"><strong>Jenkins</strong>: 8-stage automated pipeline &mdash; checkout, unit tests, multi-stage Docker build, Git-SHA tagging, push to GHCR, deploy, health check, endpoint verify. Code doesn&apos;t go live without a passing health check.</div></div>
-              <div class="sbr"><div class="sbl">&#127760; Traffic</div><div class="sbv"><strong>Nginx &rarr; FastAPI</strong>: Nginx is the only service exposed on port 80. FastAPI is isolated on the internal Docker network. Nginx waits for FastAPI to be healthy before accepting traffic.</div></div>
-              <div class="sbr"><div class="sbl">&#128202; Metrics</div><div class="sbv"><strong>Prometheus + Node Exporter</strong>: scrapes FastAPI /metrics every 15s for application metrics and Node Exporter for CPU, memory, disk. Grafana visualises everything.</div></div>
-              <div class="sbr"><div class="sbl">&#128276; Alerting</div><div class="sbv"><strong>Alertmanager &rarr; Slack</strong>: alert rules fire based on uptime and error rate. Alertmanager handles deduplication, grouping, and routing.</div></div>
-            </div>
-            <div class="chips"><span class="chip cr">Jenkins</span><span class="chip cb">Docker</span><span class="chip cg">FastAPI</span><span class="chip ct">Nginx</span><span class="chip ca">Prometheus</span><span class="chip ca">Grafana</span><span class="chip cg">Alertmanager</span><span class="chip cb">GHCR</span><span class="chip cg">Node Exporter</span></div>
-            <div class="plinks"><a class="plink" href="https://github.com/mjec-explorer/devops-lab" target="_blank">view repository</a></div>
+    <div class="phase-card complete reveal">
+      <div class="ph-header"><div class="ph-badge-wrap"><span class="ph-num">Phase 1</span><span class="ph-status complete">Complete</span></div></div>
+      <div class="ph-title">CI/CD Pipeline + Observability Stack</div>
+      <div class="ph-desc">Designed a fully automated CI/CD pipeline with integrated observability, ensuring every deployment is tested, validated, and monitored before reaching production..</div>
+      <div class="ph-body">
+        <div>
+          <div class="sbd">
+            <div class="sbr"><div class="sbl">&#9881; CI/CD</div><div class="sbv"><strong>Jenkins</strong>: 8-stage pipeline. Checkout, unit tests, multi-stage Docker build, SHA tag, push ECR, deploy, health check, verify. No manual steps.</div></div>
+            <div class="sbr"><div class="sbl">&#127760; Traffic</div><div class="sbv"><strong>Nginx &gt; FastAPI</strong>: Nginx is the only exposed port. FastAPI runs isolated on the internal network. Nginx waits for FastAPI healthy before accepting traffic.</div></div>
+            <div class="sbr"><div class="sbl">&#128202; Metrics</div><div class="sbv"><strong>Prometheus + Node Exporter</strong>: scrapes FastAPI /metrics every 15s. Grafana shows request rate, error rate, CPU, memory live.</div></div>
+            <div class="sbr"><div class="sbl">&#128276; Alerting</div><div class="sbv"><strong>Alertmanager &gt; Slack</strong>: fires on uptime and error rate. Handles deduplication, grouping, and routing.</div></div>
           </div>
-          <div class="pside">
-            <div><div class="slbl">status</div><div class="sval">&#9679; Complete</div></div>
-            <div class="ssep"></div>
-            <div>
-              <div class="slbl">what was built</div>
-              <span class="spill">8-stage CI/CD</span>
-              <span class="spill">multi-stage builds</span>
-              <span class="spill">git-sha tagging</span>
-              <span class="spill">health-checked deploy</span>
-              <span class="spill">prometheus scraping</span>
-              <span class="spill">grafana dashboards</span>
-              <span class="spill">alertmanager routing</span>
-              <span class="spill">slack notifications</span>
-            </div>
+          <div class="chips"><span class="chip cr">Jenkins</span><span class="chip cb">Docker</span><span class="chip cg">FastAPI</span><span class="chip ct">Nginx</span><span class="chip ca">Prometheus</span><span class="chip ca">Grafana</span><span class="chip cg">Alertmanager</span><span class="chip cb">ECR</span></div>
+          <div class="plinks"><a class="plink" href="https://github.com/mjec-explorer/devops-lab" target="_blank">view repository</a></div>
+        </div>
+        <div class="ph-side">
+          <div><div class="slbl">status</div><div class="sval g">&#9679; Complete</div></div>
+          <div class="ssep"></div>
+          <div><div class="slbl">built</div>
+            <div class="pills-wrap"><span class="spill done">8-stage CI/CD</span><span class="spill done">multi-stage builds</span><span class="spill done">SHA tagging</span><span class="spill done">health-checked deploy</span><span class="spill done">prometheus scraping</span><span class="spill done">grafana dashboards</span><span class="spill done">alertmanager routing</span><span class="spill done">slack notifications</span></div>
           </div>
         </div>
-
-        <!-- Pipeline animation -->
-        <div class="pipe-wrap">
-          <div class="pipe-lbl">CI/CD Pipeline &mdash; 8 Stages</div>
-          <div class="pipe-stages" id="pipe1">
-            <div class="ps">Checkout</div><span class="parr">&rarr;</span>
-            <div class="ps">Unit Tests</div><span class="parr">&rarr;</span>
-            <div class="ps">Build Image</div><span class="parr">&rarr;</span>
-            <div class="ps">Tag SHA</div><span class="parr">&rarr;</span>
-            <div class="ps">Push GHCR</div><span class="parr">&rarr;</span>
-            <div class="ps">Deploy</div><span class="parr">&rarr;</span>
-            <div class="ps">Health Check</div><span class="parr">&rarr;</span>
-            <div class="ps">Verify &#10003;</div>
-          </div>
+      </div>
+      <div class="pipe-wrap">
+        <div class="pipe-lbl">CI/CD Pipeline &mdash; 8 Stages</div>
+        <div class="pipe-stages" id="pipe1">
+          <div class="ps">Checkout</div><span class="parr">&rarr;</span><div class="ps">Unit Tests</div><span class="parr">&rarr;</span><div class="ps">Build Image</div><span class="parr">&rarr;</span><div class="ps">Tag SHA</div><span class="parr">&rarr;</span><div class="ps">Push ECR</div><span class="parr">&rarr;</span><div class="ps">Deploy</div><span class="parr">&rarr;</span><div class="ps">Health Check</div><span class="parr">&rarr;</span><div class="ps">Verify &#10003;</div>
         </div>
-
-        <!-- Architecture flow -->
-        <div class="aflow">
-          <div class="aflow-lbl">Runtime Architecture</div>
-          <div class="arow"><span class="arow-lbl">CI/CD</span><span class="an an-d">Git Push</span><span class="arr">&rarr;</span><span class="an an-o">Jenkins</span><span class="arr">&rarr;</span><span class="an an-b">Unit Tests</span><span class="arr">&rarr;</span><span class="an an-b">Build Image</span><span class="arr">&rarr;</span><span class="an an-b">Tag SHA</span><span class="arr">&rarr;</span><span class="an an-t">Push GHCR</span><span class="arr">&rarr;</span><span class="an an-b">Deploy</span><span class="arr">&rarr;</span><span class="an an-g">Health Check &#10003;</span></div>
-          <div class="arow"><span class="arow-lbl">Traffic</span><span class="an an-d">Browser/curl</span><span class="arr">&rarr;</span><span class="an an-t">Nginx :80</span><span class="arr">&rarr;</span><span class="an an-g">FastAPI :8000</span><span class="arr">&rarr;</span><span class="an an-d">/health &nbsp;/metrics</span></div>
-          <div class="arow"><span class="arow-lbl">Monitoring</span><span class="an an-a">Prometheus</span><span class="arr">scrapes 15s &rarr;</span><span class="an an-g">FastAPI /metrics</span><span class="arr">+</span><span class="an an-g">Node Exporter</span><span class="arr">&rarr;</span><span class="an an-a">Grafana</span></div>
-          <div class="arow" style="margin-bottom:0;"><span class="arow-lbl">Alerting</span><span class="an an-a">Prometheus</span><span class="arr">alert fires &rarr;</span><span class="an an-a">Alertmanager</span><span class="arr">&rarr;</span><span class="an an-g">Slack #alerts</span></div>
-        </div>
+      </div>
+      <div class="aflow">
+        <div class="aflow-lbl">Runtime Architecture</div>
+        <div class="arow"><span class="arow-lbl">CI/CD</span><span class="an an-d">Git Push</span><span class="arr">&rarr;</span><span class="an an-o">Jenkins</span><span class="arr">&rarr;</span><span class="an an-b">Tests</span><span class="arr">&rarr;</span><span class="an an-b">Build</span><span class="arr">&rarr;</span><span class="an an-t">Push ECR</span><span class="arr">&rarr;</span><span class="an an-b">Deploy</span><span class="arr">&rarr;</span><span class="an an-g">Healthy &#10003;</span></div>
+        <div class="arow"><span class="arow-lbl">Traffic</span><span class="an an-d">Browser</span><span class="arr">&rarr;</span><span class="an an-t">Nginx :80</span><span class="arr">&rarr;</span><span class="an an-g">FastAPI :8000</span></div>
+        <div class="arow"><span class="arow-lbl">Monitoring</span><span class="an an-a">Prometheus</span><span class="arr">15s</span><span class="an an-g">FastAPI /metrics</span><span class="arr">+</span><span class="an an-g">Node Exporter</span><span class="arr">&rarr;</span><span class="an an-a">Grafana</span></div>
+        <div class="arow" style="margin-bottom:0"><span class="arow-lbl">Alerting</span><span class="an an-a">Prometheus</span><span class="arr">&rarr;</span><span class="an an-a">Alertmanager</span><span class="arr">&rarr;</span><span class="an an-g">Slack</span></div>
       </div>
     </div>
 
-    <!-- ===== PHASE 2 ===== -->
-    <div id="p2" class="phase-content">
-      <div class="pcard">
-        <div class="pcard-top">
-          <div class="pmain">
-            <div class="pbadge-a">Phase 2 &middot; In Progress</div>
-            <div class="ptitle">Intelligent Alert Automation</div>
-            <p class="pdesc">Built on top of Phase 1. Alerts go through an intelligent pipeline &mdash; enriched with context, triggering automated remediation, verifying recovery, and escalating if they can&apos;t fix themselves. The system also monitors its own alert pipeline and self-reports when it fails.</p>
-            <div class="sbd">
-              <div class="sbr"><div class="sbl">&#128270; Blackbox</div><div class="sbv"><strong>Blackbox Exporter</strong>: probes HTTP endpoints externally every 15s. Detects if n8n, Grafana, or the app are reachable from outside. N8NDown alert fires if the automation layer goes down.</div></div>
-              <div class="sbr"><div class="sbl">&#129302; n8n</div><div class="sbv"><strong>Alert enrichment + remediation</strong>: parses alert payload, adds Grafana URL and runbook link, maps instance to container name, restarts failed containers via Docker API, verifies recovery via Prometheus API, posts full timeline to Slack.</div></div>
-              <div class="sbr"><div class="sbl">&#128274; Proxy</div><div class="sbv"><strong>Docker Socket Proxy</strong>: n8n calls Docker API through a proxy that exposes only container restart. Principle of least privilege applied to container access.</div></div>
-              <div class="sbr"><div class="sbl">&#128225; Fallback</div><div class="sbv"><strong>Dual delivery</strong>: critical alerts route to n8n AND slack-backup simultaneously. If n8n is down, Alertmanager delivers directly. Critical alerts are never silently dropped.</div></div>
-            </div>
-            <table style="width:100%;border-collapse:collapse;font-size:12px;margin-bottom:14px;">
-              <tr style="border-bottom:1px solid var(--border2);"><th style="text-align:left;padding:6px 10px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);">Alert</th><th style="text-align:left;padding:6px 10px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);">Condition</th><th style="padding:6px 10px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);">Sev</th><th style="text-align:left;padding:6px 10px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);">Action</th></tr>
-              <tr style="border-bottom:1px solid var(--border);"><td style="padding:7px 10px;color:var(--ink2);">InstanceWarning</td><td style="padding:7px 10px;color:var(--ink2);">Down 2m</td><td style="padding:7px 10px;"><span style="font-size:10px;color:var(--amber);padding:2px 6px;border:1px solid rgba(245,166,35,.3);background:rgba(245,166,35,.06);">warning</span></td><td style="padding:7px 10px;color:var(--ink2);">Notify only</td></tr>
-              <tr style="border-bottom:1px solid var(--border);"><td style="padding:7px 10px;color:var(--ink2);">InstanceDown</td><td style="padding:7px 10px;color:var(--ink2);">Down 5m</td><td style="padding:7px 10px;"><span style="font-size:10px;color:var(--red);padding:2px 6px;border:1px solid rgba(255,77,77,.3);background:rgba(255,77,77,.06);">critical</span></td><td style="padding:7px 10px;color:var(--ink2);">Auto-remediate</td></tr>
-              <tr style="border-bottom:1px solid var(--border);"><td style="padding:7px 10px;color:var(--ink2);">HighErrorRate</td><td style="padding:7px 10px;color:var(--ink2);">&gt;5% errors 2m</td><td style="padding:7px 10px;"><span style="font-size:10px;color:var(--red);padding:2px 6px;border:1px solid rgba(255,77,77,.3);background:rgba(255,77,77,.06);">critical</span></td><td style="padding:7px 10px;color:var(--ink2);">Notify</td></tr>
-              <tr style="border-bottom:1px solid var(--border);"><td style="padding:7px 10px;color:var(--ink2);">NoTraffic</td><td style="padding:7px 10px;color:var(--ink2);">No requests 5m</td><td style="padding:7px 10px;"><span style="font-size:10px;color:var(--amber);padding:2px 6px;border:1px solid rgba(245,166,35,.3);background:rgba(245,166,35,.06);">warning</span></td><td style="padding:7px 10px;color:var(--ink2);">Notify</td></tr>
-              <tr><td style="padding:7px 10px;color:var(--ink2);">N8NDown</td><td style="padding:7px 10px;color:var(--ink2);">n8n unreachable 1m</td><td style="padding:7px 10px;"><span style="font-size:10px;color:var(--red);padding:2px 6px;border:1px solid rgba(255,77,77,.3);background:rgba(255,77,77,.06);">critical</span></td><td style="padding:7px 10px;color:var(--ink2);">Fallback delivery</td></tr>
-            </table>
-            <div class="chips"><span class="chip cb">Blackbox Exporter</span><span class="chip cg">n8n</span><span class="chip ct">Docker Proxy</span><span class="chip ca">Alertmanager</span><span class="chip cg">Slack</span></div>
-            <div class="plinks"><a class="plink" href="https://github.com/mjec-explorer/devops-lab" target="_blank">view repository</a></div>
+    <div class="phase-card complete reveal">
+      <div class="ph-header"><div class="ph-badge-wrap"><span class="ph-num">Phase 2</span><span class="ph-status complete">Complete</span></div></div>
+      <div class="ph-title">Intelligent Alert Automation</div>
+      <div class="ph-desc">Built an automated incident response system where alerts trigger remediation, recovery validation, and escalation without manual intervention..</div>
+      <div class="ph-body">
+        <div>
+          <div class="sbd">
+            <div class="sbr"><div class="sbl">&#128269; Blackbox</div><div class="sbv"><strong>Blackbox Exporter</strong>: probes HTTP endpoints externally every 15s. N8NDown alert fires if the automation layer itself goes down.</div></div>
+            <div class="sbr"><div class="sbl">&#129302; n8n</div><div class="sbv"><strong>Alert enrichment + remediation</strong>: parses payload, adds Grafana URL and runbook, restarts containers via Docker API, verifies recovery via Prometheus, posts timeline to Slack.</div></div>
+            <div class="sbr"><div class="sbl">&#128274; Proxy</div><div class="sbv"><strong>Docker Socket Proxy</strong>: n8n calls Docker API through a proxy exposing only container restart. Least privilege applied to the automation layer.</div></div>
+            <div class="sbr"><div class="sbl">&#128225; Fallback</div><div class="sbv"><strong>Dual delivery</strong>: critical alerts route to n8n AND Slack simultaneously. If n8n is down, Alertmanager delivers directly. Critical alerts are never silently dropped.</div></div>
           </div>
-          <div class="pside">
-            <div><div class="slbl">status</div><div class="sval-a">&#9680; In Progress</div></div>
-            <div class="ssep"></div>
-            <div>
-              <div class="slbl">done</div>
-              <span class="spill">alert enrichment</span>
-              <span class="spill">auto-remediation</span>
-              <span class="spill">health check verify</span>
-              <span class="spill">meta-monitoring</span>
-              <span class="spill">fallback delivery</span>
-              <span class="spill">docker socket proxy</span>
-            </div>
-            <div>
-              <div class="slbl">next</div>
-              <span class="spill">incident logging</span>
-              <span class="spill">deduplication</span>
-              <span class="spill">jira integration</span>
-            </div>
+          <table class="atbl">
+            <tr><th>Alert</th><th>Condition</th><th>Severity</th><th>Action</th></tr>
+            <tr><td>InstanceWarning</td><td>Down 2m</td><td><span class="sev-w">warning</span></td><td>Notify only</td></tr>
+            <tr><td>InstanceDown</td><td>Down 5m</td><td><span class="sev-c">critical</span></td><td>Auto-remediate</td></tr>
+            <tr><td>HighErrorRate</td><td>&gt;5% errors 2m</td><td><span class="sev-c">critical</span></td><td>Notify</td></tr>
+            <tr><td>NoTraffic</td><td>No requests 5m</td><td><span class="sev-w">warning</span></td><td>Notify</td></tr>
+            <tr><td>N8NDown</td><td>n8n unreachable 1m</td><td><span class="sev-c">critical</span></td><td>Fallback delivery</td></tr>
+          </table>
+          <div class="chips"><span class="chip cb">Blackbox Exporter</span><span class="chip cg">n8n</span><span class="chip ct">Docker Proxy</span><span class="chip ca">Alertmanager</span><span class="chip cg">Slack</span></div>
+          <div class="plinks"><a class="plink" href="https://github.com/mjec-explorer/devops-lab" target="_blank">view repository</a></div>
+        </div>
+        <div class="ph-side">
+          <div><div class="slbl">status</div><div class="sval g">&#9679; Complete</div></div>
+          <div class="ssep"></div>
+          <div><div class="slbl">built</div>
+            <div class="pills-wrap"><span class="spill done">alert enrichment</span><span class="spill done">auto-remediation</span><span class="spill done">recovery verify</span><span class="spill done">meta-monitoring</span><span class="spill done">fallback delivery</span><span class="spill done">docker socket proxy</span></div>
           </div>
         </div>
-        <!-- Phase 2 flow -->
-        <div class="aflow">
-          <div class="aflow-lbl">Incident Automation Flow</div>
-          <div class="arow"><span class="arow-lbl">Probe</span><span class="an an-b">Blackbox</span><span class="arr">every 15s &rarr;</span><span class="an an-g">n8n :5678</span><span class="arr">|</span><span class="an an-g">Grafana :3000</span><span class="arr">|</span><span class="an an-g">App /health</span></div>
-          <div class="arow"><span class="arow-lbl">Critical</span><span class="an an-a">Alertmanager</span><span class="arr">&rarr;</span><span class="an an-t">n8n webhook</span><span class="arr">&rarr;</span><span class="an an-b">Enrich</span><span class="arr">&rarr;</span><span class="an an-o">Restart (Docker API)</span><span class="arr">&rarr;</span><span class="an an-a">Verify (Prometheus)</span><span class="arr">&rarr;</span><span class="an an-g">RECOVERED &#10003;</span></div>
-          <div class="arow"><span class="arow-lbl">Escalate</span><span class="an an-a">Verify fails</span><span class="arr">&rarr;</span><span class="an an-r">Escalate to #critical</span></div>
-          <div class="arow" style="margin-bottom:0;"><span class="arow-lbl">Fallback</span><span class="an an-r">n8n down</span><span class="arr">&rarr;</span><span class="an an-a">N8NDown alert</span><span class="arr">&rarr;</span><span class="an an-a">Alertmanager direct</span><span class="arr">&rarr;</span><span class="an an-g">Slack backup &#10003;</span></div>
-        </div>
+      </div>
+      <div class="aflow">
+        <div class="aflow-lbl">Incident Automation Flow</div>
+        <div class="arow"><span class="arow-lbl">Probe</span><span class="an an-b">Blackbox</span><span class="arr">15s</span><span class="an an-g">n8n</span><span class="arr">|</span><span class="an an-g">Grafana</span><span class="arr">|</span><span class="an an-g">App /health</span></div>
+        <div class="arow"><span class="arow-lbl">Critical</span><span class="an an-a">Alertmanager</span><span class="arr">&rarr;</span><span class="an an-t">n8n</span><span class="arr">&rarr;</span><span class="an an-b">Enrich</span><span class="arr">&rarr;</span><span class="an an-o">Restart</span><span class="arr">&rarr;</span><span class="an an-a">Verify</span><span class="arr">&rarr;</span><span class="an an-g">RECOVERED &#10003;</span></div>
+        <div class="arow"><span class="arow-lbl">Escalate</span><span class="an an-a">Verify fails</span><span class="arr">&rarr;</span><span class="an an-r">Escalate #critical</span></div>
+        <div class="arow" style="margin-bottom:0"><span class="arow-lbl">Fallback</span><span class="an an-r">n8n down</span><span class="arr">&rarr;</span><span class="an an-a">N8NDown alert</span><span class="arr">&rarr;</span><span class="an an-g">Slack direct &#10003;</span></div>
       </div>
     </div>
 
-    <!-- ===== PHASE 3 ===== -->
-    <div id="p3" class="phase-content">
-      <div class="pcard">
-        <div class="pcard-top">
-          <div class="pmain">
-            <div class="pbadge-b">Phase 3 &middot; In Progress</div>
-            <div class="ptitle">AWS Infrastructure with Terraform</div>
-            <p class="pdesc">Real cloud infrastructure in eu-central-1 Frankfurt, provisioned entirely through Terraform. Infrastructure defined as code &mdash; version controlled, reproducible, and auditable. Always plan before apply.</p>
-            <div class="sbd">
-              <div class="sbr"><div class="sbl">&#9729; Network</div><div class="sbv"><strong>VPC 10.0.0.0/16</strong> with public subnet 10.0.1.0/24 in eu-central-1a Frankfurt. Internet Gateway, route table directing all outbound traffic. eu-central-1 chosen for proximity and GDPR compliance.</div></div>
-              <div class="sbr"><div class="sbl">&#128274; Security</div><div class="sbv"><strong>IAM user</strong> with scoped permissions. Security Group controlling ports 22, 80, 443. 4096-bit RSA key pair for SSH &mdash; private key never leaves the local machine.</div></div>
-              <div class="sbr"><div class="sbl">&#128187; Compute</div><div class="sbv"><strong>EC2 t3.micro Ubuntu 22.04</strong> with public IP. Instance Metadata Service at 169.254.169.254 for instance self-discovery &mdash; instance-type, AZ, public IP queryable from inside.</div></div>
-              <div class="sbr"><div class="sbl">&#128203; IaC</div><div class="sbv"><strong>terraform plan before every apply</strong> &mdash; see exactly what changes before anything happens. State tracks reality. Next: remote state in S3 + DynamoDB locking.</div></div>
-            </div>
-            <div class="chips"><span class="chip cb">Terraform</span><span class="chip ca">AWS EC2</span><span class="chip ca">VPC / Subnets</span><span class="chip cb">IAM</span><span class="chip cg">eu-central-1</span><span class="chip ct">Ubuntu 22.04</span></div>
-            <div class="plinks"><a class="plink" href="https://github.com/mjec-explorer/devops-lab/tree/main/terraform" target="_blank">terraform source</a></div>
+    <div class="phase-card complete reveal">
+      <div class="ph-header"><div class="ph-badge-wrap"><span class="ph-num">Phase 3</span><span class="ph-status complete">Complete</span></div></div>
+      <div class="ph-title">AWS Cloud Infrastructure with Terraform</div>
+      <div class="ph-desc">Implemented a fully automated cloud deployment pipeline on AWS, where a single git push triggers build, versioning, and deployment to ECS Fargate through Terraform-managed infrastructure..</div>
+      <div class="ph-body">
+        <div>
+          <div class="sbd">
+            <div class="sbr"><div class="sbl">&#9729; Network</div><div class="sbv"><strong>VPC 10.0.0.0/16</strong> across two AZs in eu-central-1. Public and private subnets, Internet Gateway, Security Groups with least privilege.</div></div>
+            <div class="sbr"><div class="sbl">&#128187; ECS</div><div class="sbv"><strong>ECS Fargate</strong>: no servers to manage. ECS replaces failed tasks automatically. ALB health checks every 30s, removes unhealthy tasks from rotation.</div></div>
+            <div class="sbr"><div class="sbl">&#127760; ALB</div><div class="sbv"><strong>Application Load Balancer</strong>: permanent DNS, zero-downtime rolling deployments. Auto Scaling adds tasks at CPU &gt;70%.</div></div>
+            <div class="sbr"><div class="sbl">&#128274; IAM</div><div class="sbv"><strong>Least privilege throughout</strong>: EC2 gets ECR ReadOnly. Jenkins scoped to ECR push and specific ECS service ARN. ECS execution role limited to ECR pull and CloudWatch logs.</div></div>
+            <div class="sbr"><div class="sbl">&#128203; IaC</div><div class="sbv"><strong>Terraform</strong>: all infrastructure as code. Remote state in S3 (versioned, AES256) with DynamoDB locking. S3 and DynamoDB bootstrapped manually first.</div></div>
           </div>
-          <div class="pside">
-            <div><div class="slbl">status</div><div class="sval-a">&#9680; In Progress</div></div>
-            <div><div class="slbl">next</div><div class="sval-b">&#9675; Remote State</div></div>
-            <div class="ssep"></div>
-            <div>
-              <div class="slbl">done</div>
-              <span class="spill">VPC + subnets</span>
-              <span class="spill">internet gateway</span>
-              <span class="spill">security groups</span>
-              <span class="spill">EC2 provisioned</span>
-              <span class="spill">SSH working</span>
-            </div>
-            <div>
-              <div class="slbl">coming next</div>
-              <span class="spill">S3 remote state</span>
-              <span class="spill">private subnet</span>
-              <span class="spill">NAT gateway</span>
-              <span class="spill">ECS deployment</span>
-            </div>
+          <div class="chips"><span class="chip cb">Terraform</span><span class="chip ca">ECS Fargate</span><span class="chip ca">ALB</span><span class="chip cb">ECR</span><span class="chip ct">VPC</span><span class="chip cg">IAM</span><span class="chip ca">CloudWatch</span><span class="chip cg">Auto Scaling</span><span class="chip cr">Jenkins</span></div>
+          <div class="plinks">
+            <a class="plink" href="https://github.com/mjec-explorer/devops-lab/tree/main/terraform" target="_blank">terraform source</a>
+            <a class="plink" href="https://github.com/mjec-explorer/devops-lab" target="_blank">full repository</a>
           </div>
         </div>
-        <!-- Phase 3 flow -->
-        <div class="aflow">
-          <div class="aflow-lbl">AWS Infrastructure (Terraform)</div>
-          <div class="arow"><span class="arow-lbl">Network</span><span class="an an-b">VPC 10.0.0.0/16</span><span class="arr">&rarr;</span><span class="an an-b">Public Subnet /24</span><span class="arr">&rarr;</span><span class="an an-t">Internet Gateway</span><span class="arr">&rarr;</span><span class="an an-t">Route Table</span></div>
-          <div class="arow"><span class="arow-lbl">Compute</span><span class="an an-o">Security Group</span><span class="arr">ports 22/80/443 &rarr;</span><span class="an an-g">EC2 t3.micro</span><span class="arr">Ubuntu 22.04 &rarr;</span><span class="an an-a">3.70.226.236</span></div>
-          <div class="arow" style="margin-bottom:0;"><span class="arow-lbl">IaC</span><span class="an an-b">terraform plan</span><span class="arr">review &rarr;</span><span class="an an-b">terraform apply</span><span class="arr">&rarr;</span><span class="an an-g">infrastructure created &#10003;</span></div>
+        <div class="ph-side">
+          <div><div class="slbl">status</div><div class="sval g">&#9679; Complete</div></div>
+          <div class="ssep"></div>
+          <div><div class="slbl">built</div>
+            <div class="pills-wrap"><span class="spill done">VPC + subnets (2 AZ)</span><span class="spill done">ECR immutable tags</span><span class="spill done">IAM least privilege</span><span class="spill done">S3 remote state</span><span class="spill done">ECS Fargate</span><span class="spill done">ALB + health checks</span><span class="spill done">auto scaling</span><span class="spill done">Jenkins &gt; ECR &gt; ECS</span><span class="spill done">CloudWatch logs</span></div>
+          </div>
         </div>
+      </div>
+      <div class="aflow">
+        <div class="aflow-lbl">Full Cloud CI/CD + Architecture</div>
+        <div class="arow"><span class="arow-lbl">CI/CD</span><span class="an an-d">Git Push</span><span class="arr">&rarr;</span><span class="an an-o">Jenkins</span><span class="arr">&rarr;</span><span class="an an-b">Build + SHA</span><span class="arr">&rarr;</span><span class="an an-t">Push ECR</span><span class="arr">&rarr;</span><span class="an an-b">Register Task</span><span class="arr">&rarr;</span><span class="an an-g">ECS Deploy &#10003;</span></div>
+        <div class="arow"><span class="arow-lbl">Traffic</span><span class="an an-d">Internet</span><span class="arr">&rarr;</span><span class="an an-b">ALB :80</span><span class="arr">&rarr;</span><span class="an an-t">Target Group</span><span class="arr">&rarr;</span><span class="an an-g">ECS Task :8000</span></div>
+        <div class="arow"><span class="arow-lbl">Scale</span><span class="an an-a">CloudWatch</span><span class="arr">CPU &gt;70%</span><span class="an an-a">Auto Scaling</span><span class="arr">&rarr;</span><span class="an an-g">New ECS Task</span></div>
+        <div class="arow" style="margin-bottom:0"><span class="arow-lbl">State</span><span class="an an-b">terraform apply</span><span class="arr">&rarr;</span><span class="an an-t">S3 + DynamoDB lock</span><span class="arr">&rarr;</span><span class="an an-g">infra created &#10003;</span></div>
       </div>
     </div>
 
-    <!-- ===== PHASE 4 ===== -->
-    <div id="p4" class="phase-content">
-      <div class="pcard">
-        <div class="pcard-top">
-          <div class="pmain">
-            <div class="pbadge-d">Phase 4 &middot; Planned</div>
-            <div class="ptitle">Kubernetes on EKS</div>
-            <p class="pdesc">Migrate the entire stack from Docker Compose to Kubernetes on Amazon EKS. Orchestration at scale &mdash; pods, deployments, services, liveness probes, and Alertmanager running in HA mode across multiple replicas.</p>
-            <div class="sbd">
-              <div class="sbr"><div class="sbl">&#9096; Kubernetes</div><div class="sbv"><strong>EKS &mdash; Amazon Elastic Kubernetes Service</strong>: migrate all containers to pods and deployments. Kubernetes liveness probes replace manual health checks. Pod crashes restart automatically.</div></div>
-              <div class="sbr"><div class="sbl">&#128202; HA Monitor</div><div class="sbv"><strong>Alertmanager HA cluster</strong>: three-node cluster with gossip protocol for state sharing. No single point of failure in the alert pipeline.</div></div>
-              <div class="sbr"><div class="sbl">&#9889; Autoscaling</div><div class="sbv"><strong>Horizontal Pod Autoscaler</strong>: pods scale up under load, scale down when idle. No manual intervention required for traffic spikes.</div></div>
-              <div class="sbr"><div class="sbl">&#127891; Target</div><div class="sbv"><strong>CKA Certification</strong>: Certified Kubernetes Administrator. Studying while building &mdash; not instead of building.</div></div>
-            </div>
-            <div class="chips" style="opacity:.65;"><span class="chip cb">Kubernetes</span><span class="chip ca">EKS</span><span class="chip ct">Helm</span><span class="chip cg">HPA</span><span class="chip cb">Alertmanager HA</span><span class="chip cr">CKA</span></div>
+    <div class="phase-card planned reveal">
+      <div class="ph-header"><div class="ph-badge-wrap"><span class="ph-num">Phase 4</span><span class="ph-status planned">Planned</span></div></div>
+      <div class="ph-title">Kubernetes on EKS</div>
+      <div class="ph-desc">Migrate the full stack to Kubernetes on Amazon EKS. Pods, deployments, liveness probes, Alertmanager HA, and Horizontal Pod Autoscaler.</div>
+      <div class="ph-body">
+        <div>
+          <div class="sbd">
+            <div class="sbr"><div class="sbl">&#9096; EKS</div><div class="sbv"><strong>Amazon EKS</strong>: all containers migrate to pods and deployments. Kubernetes liveness probes replace manual health checks.</div></div>
+            <div class="sbr"><div class="sbl">&#128202; HA Monitor</div><div class="sbv"><strong>Alertmanager HA</strong>: three-node cluster with gossip protocol. No single point of failure in alert delivery.</div></div>
+            <div class="sbr"><div class="sbl">&#9889; HPA</div><div class="sbv"><strong>Horizontal Pod Autoscaler</strong>: pods scale on CPU and memory. No manual intervention for traffic spikes.</div></div>
           </div>
-          <div class="pside">
-            <div><div class="slbl">status</div><div class="sval-d">&#9675; Planned</div></div>
-            <div class="ssep"></div>
-            <div>
-              <div class="slbl">prerequisites</div>
-              <span class="spill">Phase 3 complete</span>
-              <span class="spill">Terraform modules</span>
-            </div>
-            <div>
-              <div class="slbl">deliverables</div>
-              <span class="spill">all pods migrated</span>
-              <span class="spill">HA alertmanager</span>
-              <span class="spill">autoscaling live</span>
-              <span class="spill">CKA certified</span>
-            </div>
+          <div class="chips" style="opacity:.55"><span class="chip cb">Kubernetes</span><span class="chip ca">EKS</span><span class="chip ct">Helm</span><span class="chip cg">HPA</span><span class="chip cb">Alertmanager HA</span><span class="chip ca">CKA</span></div>
+        </div>
+        <div class="ph-side">
+          <div><div class="slbl">status</div><div class="sval d">&#9675; Planned</div></div>
+          <div class="ssep"></div>
+          <div><div class="slbl">prerequisites</div>
+            <div class="pills-wrap"><span class="spill">Phase 3 &#10003;</span><span class="spill">Terraform modules</span></div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- PHASE GRID -->
-    <div class="pgrid fi" style="margin-top:20px;">
-      <div class="pcell" onclick="sw('p1',document.querySelectorAll('.ptab')[0])">
-        <div class="pcell-n">Phase 1</div>
-        <div class="pcell-t">CI/CD + Monitoring</div>
-        <div class="pcell-s"><span class="pdot pdot-g"></span><span style="color:var(--green);">&#9679; Complete</span></div>
-      </div>
-      <div class="pcell" onclick="sw('p2',document.querySelectorAll('.ptab')[1])">
-        <div class="pcell-n">Phase 2</div>
-        <div class="pcell-t">Incident Automation</div>
-        <div class="pcell-s"><span class="pdot pdot-a"></span><span style="color:var(--amber);">&#9680; In Progress</span></div>
-      </div>
-      <div class="pcell" onclick="sw('p3',document.querySelectorAll('.ptab')[2])">
-        <div class="pcell-n">Phase 3</div>
-        <div class="pcell-t">AWS + Terraform</div>
-        <div class="pcell-s"><span class="pdot pdot-a"></span><span style="color:var(--amber);">&#9680; In Progress</span></div>
-      </div>
-      <div class="pcell" onclick="sw('p4',document.querySelectorAll('.ptab')[3])">
-        <div class="pcell-n">Phase 4</div>
-        <div class="pcell-t">Kubernetes</div>
-        <div class="pcell-s"><span class="pdot pdot-d"></span><span style="color:var(--ink3);">&#9675; Planned</span></div>
-      </div>
-    </div>
-
-    <!-- COMING NEXT -->
-    <div class="cnext">
+    <div class="cnext reveal">
       <div>
         <div class="cn-badge">Coming Next &middot; Phase 4</div>
-        <div class="cn-title">Kubernetes on EKS &middot; Alertmanager HA &middot; CKA Certification</div>
-        <div class="cn-sub">Migrate the full stack from Docker Compose to Kubernetes &mdash; orchestration at scale</div>
+        <div class="cn-title">Kubernetes on EKS &middot; Alertmanager HA &middot; CKA</div>
+        <div class="cn-sub">Migrating the full stack from Docker Compose and ECS to Kubernetes</div>
       </div>
       <a href="https://github.com/mjec-explorer/devops-lab" target="_blank" class="btn btn-b" style="flex-shrink:0;"><span>follow on github &rarr;</span></a>
+    </div>
+
+    <div class="failures-section reveal">
+      <div class="fl-header">
+        <div class="fl-badge">// Failures &amp; Learnings</div>
+        <div class="fl-title">What broke. What I learned.</div>
+      </div>
+      <div class="fl-list">
+        <div class="fl-item"><div class="fl-inner"><div class="fl-left"><div class="fl-problem">CI/CD</div><div class="fl-what">Jenkins deployed stale image silently</div></div><div class="fl-right"><div class="fl-arrow">fix</div><div class="fl-how">Workspace was cached. Added cleanup at pipeline start and forced fresh checkout on every build.</div></div></div></div>
+        <div class="fl-item"><div class="fl-inner"><div class="fl-left"><div class="fl-problem">Networking</div><div class="fl-what">Healthy internally, unreachable externally</div></div><div class="fl-right"><div class="fl-arrow">fix</div><div class="fl-how">ALB target pointed to wrong port. Separated internal and external verification steps.</div></div></div></div>
+        <div class="fl-item"><div class="fl-inner"><div class="fl-left"><div class="fl-problem">Registry</div><div class="fl-what">GHCR to ECR migration broke the pipeline</div></div><div class="fl-right"><div class="fl-arrow">fix</div><div class="fl-how">ECR uses aws ecr get-login-password. GHCR uses a static PAT. Completely different auth. Refactored the entire push stage.</div></div></div></div>
+        <div class="fl-item"><div class="fl-inner"><div class="fl-left"><div class="fl-problem">Terraform</div><div class="fl-what">Remote state bootstrap chicken-and-egg</div></div><div class="fl-right"><div class="fl-arrow">fix</div><div class="fl-how">Backend needs S3 and DynamoDB before init. Created both manually via AWS CLI first, then configured backend.tf.</div></div></div></div>
+        <div class="fl-item"><div class="fl-inner"><div class="fl-left"><div class="fl-problem">ECS Deploy</div><div class="fl-what">ECS kept deploying the old image</div></div><div class="fl-right"><div class="fl-arrow">fix</div><div class="fl-how">Called update-service before register-task-definition. Fixed the order, passed the new task ARN explicitly.</div></div></div></div>
+        <div class="fl-item"><div class="fl-inner"><div class="fl-left"><div class="fl-problem">IAM</div><div class="fl-what">ECS could not pull image, silent 403</div></div><div class="fl-right"><div class="fl-arrow">fix</div><div class="fl-how">Execution role had the right permission policy but trust policy was missing ecs-tasks.amazonaws.com. Fixed the trust relationship.</div></div></div></div>
+      </div>
     </div>
 
   </div>
@@ -546,37 +599,100 @@ footer{padding:24px 0 0;}
 
 <section id="skills" class="section">
   <div class="wrap">
-    <div class="s-tag">02 &middot; Toolkit</div>
-    <h2 class="s-h">Skills &amp; <em>Stack</em></h2>
-    <p class="s-sub">Tools worked with hands-on &mdash; built with, debugged, and understood from the inside out.</p>
-    <div class="sg">
-      <div>
+    <div class="s-tag reveal">02 &middot; Toolkit</div>
+    <h2 class="s-h reveal">Skills &amp; <em>Stack</em></h2>
+    <p class="s-sub reveal">Tools I have used to build, break, and ship real systems.</p>
+    <div class="sg reveal">
+      <div class="skgroup">
         <div class="skg-h">CI/CD &amp; Containers</div>
-        <div class="sk-item"><div class="sk-row"><span class="sk-name">Jenkins</span><span class="sk-pct">85%</span></div><div class="sk-track"><div class="sk-fill" data-w="85%"></div></div></div>
-        <div class="sk-item"><div class="sk-row"><span class="sk-name">Docker</span><span class="sk-pct">84%</span></div><div class="sk-track"><div class="sk-fill" data-w="84%"></div></div></div>
-        <div class="sk-item"><div class="sk-row"><span class="sk-name">Docker Compose</span><span class="sk-pct">84%</span></div><div class="sk-track"><div class="sk-fill" data-w="84%"></div></div></div>
-        <div class="sk-item"><div class="sk-row"><span class="sk-name">Git / GHCR</span><span class="sk-pct">87%</span></div><div class="sk-track"><div class="sk-fill" data-w="87%"></div></div></div>
+        <div class="sk-item"><div class="sk-dot"></div><div><div class="sk-name">Jenkins</div><div class="sk-ctx">8-stage pipeline &middot; ECR auth &middot; ECS deploy &middot; wait services-stable</div></div></div>
+        <div class="sk-item"><div class="sk-dot"></div><div><div class="sk-name">Docker / Docker Compose</div><div class="sk-ctx">multi-stage builds &middot; bind mounts &middot; health checks &middot; WSL2</div></div></div>
+        <div class="sk-item"><div class="sk-dot"></div><div><div class="sk-name">Git / ECR / GHCR</div><div class="sk-ctx">SHA tagging &middot; immutable tags &middot; registry auth flows</div></div></div>
+        <div class="sk-item"><div class="sk-dot"></div><div><div class="sk-name">Python / Bash</div><div class="sk-ctx">automation scripts &middot; FastAPI &middot; system maintenance</div></div></div>
       </div>
-      <div>
+      <div class="skgroup">
         <div class="skg-h">Observability</div>
-        <div class="sk-item"><div class="sk-row"><span class="sk-name">Prometheus</span><span class="sk-pct">80%</span></div><div class="sk-track"><div class="sk-fill" data-w="80%"></div></div></div>
-        <div class="sk-item"><div class="sk-row"><span class="sk-name">Alertmanager</span><span class="sk-pct">78%</span></div><div class="sk-track"><div class="sk-fill" data-w="78%"></div></div></div>
-        <div class="sk-item"><div class="sk-row"><span class="sk-name">Grafana</span><span class="sk-pct">76%</span></div><div class="sk-track"><div class="sk-fill" data-w="76%"></div></div></div>
-        <div class="sk-item"><div class="sk-row"><span class="sk-name">Blackbox Exporter</span><span class="sk-pct">72%</span></div><div class="sk-track"><div class="sk-fill" data-w="72%"></div></div></div>
+        <div class="sk-item"><div class="sk-dot green"></div><div><div class="sk-name">Prometheus</div><div class="sk-ctx">scrape configs &middot; alert rules &middot; PromQL &middot; Blackbox probing</div></div></div>
+        <div class="sk-item"><div class="sk-dot green"></div><div><div class="sk-name">Alertmanager</div><div class="sk-ctx">routing &middot; deduplication &middot; dual delivery &middot; fallback</div></div></div>
+        <div class="sk-item"><div class="sk-dot green"></div><div><div class="sk-name">Grafana</div><div class="sk-ctx">dashboards &middot; datasources &middot; real-time visualisation</div></div></div>
+        <div class="sk-item"><div class="sk-dot green"></div><div><div class="sk-name">Zabbix / CheckMK / Nagios</div><div class="sk-ctx">production monitoring &middot; real incident handling</div></div></div>
       </div>
-      <div>
+      <div class="skgroup">
         <div class="skg-h">Cloud &amp; IaC</div>
-        <div class="sk-item"><div class="sk-row"><span class="sk-name">Terraform</span><span class="sk-pct">62%</span></div><div class="sk-track"><div class="sk-fill" data-w="62%"></div></div></div>
-        <div class="sk-item"><div class="sk-row"><span class="sk-name">AWS (EC2/VPC/IAM)</span><span class="sk-pct">58%</span></div><div class="sk-track"><div class="sk-fill" data-w="58%"></div></div></div>
-        <div class="sk-item"><div class="sk-row"><span class="sk-name">Nginx</span><span class="sk-pct">76%</span></div><div class="sk-track"><div class="sk-fill" data-w="76%"></div></div></div>
-        <div class="sk-item"><div class="sk-row"><span class="sk-name">Linux</span><span class="sk-pct">84%</span></div><div class="sk-track"><div class="sk-fill" data-w="84%"></div></div></div>
+        <div class="sk-item"><div class="sk-dot blue"></div><div><div class="sk-name">Terraform</div><div class="sk-ctx">VPC &middot; ECS &middot; ALB &middot; IAM &middot; S3 remote state &middot; DynamoDB lock</div></div></div>
+        <div class="sk-item"><div class="sk-dot blue"></div><div><div class="sk-name">AWS (ECS / ECR / ALB / IAM)</div><div class="sk-ctx">Fargate &middot; target groups &middot; execution roles &middot; CloudWatch</div></div></div>
+        <div class="sk-item"><div class="sk-dot blue"></div><div><div class="sk-name">Nginx</div><div class="sk-ctx">reverse proxy &middot; upstream health &middot; Docker network isolation</div></div></div>
+        <div class="sk-item"><div class="sk-dot blue"></div><div><div class="sk-name">Linux / Windows Server</div><div class="sk-ctx">patching &middot; DNS &middot; SSL &middot; LDAP &middot; SUDO &middot; on-call</div></div></div>
       </div>
-      <div>
+      <div class="skgroup">
         <div class="skg-h">Operations</div>
-        <div class="sk-item"><div class="sk-row"><span class="sk-name">Incident Response</span><span class="sk-pct">92%</span></div><div class="sk-track"><div class="sk-fill" data-w="92%"></div></div></div>
-        <div class="sk-item"><div class="sk-row"><span class="sk-name">Troubleshooting</span><span class="sk-pct">90%</span></div><div class="sk-track"><div class="sk-fill" data-w="90%"></div></div></div>
-        <div class="sk-item"><div class="sk-row"><span class="sk-name">Python / Bash</span><span class="sk-pct">74%</span></div><div class="sk-track"><div class="sk-fill" data-w="74%"></div></div></div>
-        <div class="sk-item"><div class="sk-row"><span class="sk-name">YAML / Config</span><span class="sk-pct">86%</span></div><div class="sk-track"><div class="sk-fill" data-w="86%"></div></div></div>
+        <div class="sk-item"><div class="sk-dot teal"></div><div><div class="sk-name">Incident Response</div><div class="sk-ctx">P1/P2 triage &middot; 24/7 NOC &middot; MTTR reduction &middot; runbooks</div></div></div>
+        <div class="sk-item"><div class="sk-dot teal"></div><div><div class="sk-name">SLA Management</div><div class="sk-ctx">global stakeholder comms &middot; Incident/Problem/Change</div></div></div>
+        <div class="sk-item"><div class="sk-dot teal"></div><div><div class="sk-name">n8n Automation</div><div class="sk-ctx">alert enrichment &middot; Docker API &middot; Prometheus verify &middot; Slack</div></div></div>
+        <div class="sk-item"><div class="sk-dot teal"></div><div><div class="sk-name">DNS / SSL / LDAP / SUDO</div><div class="sk-ctx">Infoblox &middot; cert renewal &middot; user access administration</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="experience" class="section">
+  <div class="wrap">
+    <div class="s-tag reveal">03 &middot; Background</div>
+    <h2 class="s-h reveal"><em>Experience</em></h2>
+    <p class="s-sub reveal">From responding to incidents to building the systems that prevent them.</p>
+    <div class="exp-list">
+      <div class="exp-item reveal" style="border-color:rgba(0,232,138,.25);background:rgba(0,232,138,.03);">
+        <div style="position:absolute;top:0;left:0;width:3px;height:100%;background:var(--green);opacity:1;box-shadow:0 0 10px rgba(0,232,138,.4);"></div>
+        <div class="exp-top">
+          <div class="exp-role" style="color:var(--green);">DevOps Lab &middot; Personal Project</div>
+          <div class="exp-period" style="color:var(--green);border-color:rgba(0,232,138,.25);">Ongoing</div>
+        </div>
+        <div class="exp-company" style="color:var(--green);">Self-directed &middot; github.com/mjec-explorer/devops-lab</div>
+      </div>
+      <div class="exp-item reveal" style="border-color:rgba(179,136,255,.25);background:rgba(179,136,255,.03);">
+        <div style="position:absolute;top:0;left:0;width:3px;height:100%;background:var(--purple);opacity:1;box-shadow:0 0 10px rgba(179,136,255,.4);"></div>
+        <div class="exp-top">
+          <div class="exp-role" style="color:var(--purple);">MSc in Software Engineering</div>
+          <div class="exp-period" style="color:var(--purple);border-color:rgba(179,136,255,.25);">In Progress</div>
+        </div>
+        <div class="exp-company" style="color:var(--purple);">University of Europe for Applied Sciences &middot; Potsdam, Germany</div>
+      </div>
+      <div class="exp-item reveal">
+        <div class="exp-top">
+          <div class="exp-role">Engineer, Design &amp; Operation of Cloud Platforms</div>
+          <div class="exp-period">Aug 2022 &middot; Sep 2024 &middot; <span style="color:var(--ink3);font-size:10px;">2 yrs 1 mo</span></div>
+        </div>
+        <div class="exp-company">Samsung Electronics Philippines Corp.</div>
+      </div>
+      <div class="exp-item reveal">
+        <div class="exp-top">
+          <div class="exp-role">System Administrator</div>
+          <div class="exp-period">Sep 2020 &middot; Aug 2022 &middot; <span style="color:var(--ink3);font-size:10px;">1 yr 11 mos</span></div>
+        </div>
+        <div class="exp-company">Zeta Global</div>
+      </div>
+      <div class="exp-item reveal">
+        <div class="exp-top">
+          <div class="exp-role">DevOps Active Triage Response</div>
+          <div class="exp-period">Oct 2019 &middot; Sep 2020 &middot; <span style="color:var(--ink3);font-size:10px;">11 mos</span></div>
+        </div>
+        <div class="exp-company">Zeta Global</div>
+      </div>
+      <div class="exp-item reveal">
+        <div class="exp-top">
+          <div class="exp-role">IT Operations Engineer (NOC)</div>
+          <div class="exp-period">Jan 2017 &middot; Sep 2019 &middot; <span style="color:var(--ink3);font-size:10px;">2 yrs 8 mos</span></div>
+        </div>
+        <div class="exp-company">Kambi Sports Solutions</div>
+      </div>
+      <div class="exp-item reveal">
+        <div class="exp-top">
+          <div class="exp-role">Technical Support Engineer</div>
+          <div class="exp-period">Oct 2015 &middot; Dec 2016 &middot; <span style="color:var(--ink3);font-size:10px;">1 yr 2 mos</span></div>
+        </div>
+        <div class="exp-company">Coca-Cola (Logistics &amp; Distribution)</div>
       </div>
     </div>
   </div>
@@ -586,55 +702,114 @@ footer{padding:24px 0 0;}
 
 <section id="contact" class="section">
   <div class="wrap">
-    <div class="s-tag">03 &middot; Contact</div>
-    <h2 class="s-h">Let&apos;s <em>Connect</em></h2>
-    <p class="s-sub">Open to DevOps, SRE, and IT Operations roles. Based in Potsdam, Germany &mdash; open to relocation, available to start immediately.</p>
-    <div class="cg">
-      <a class="ccard" href="mailto:mjarcino19@gmail.com"><div class="cico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#f5a623" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg></div><div><div class="c-lbl">Email</div><div class="c-val">mjarcino19@gmail.com</div></div></a>
-      <a class="ccard" href="https://www.linkedin.com/in/mjcastro-itops/" target="_blank"><div class="cico"><svg width="17" height="17" viewBox="0 0 24 24" fill="#00d97e"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></div><div><div class="c-lbl">LinkedIn</div><div class="c-val">mjcastro-itops</div></div></a>
-      <a class="ccard" href="https://github.com/mjec-explorer/devops-lab" target="_blank"><div class="cico"><svg width="17" height="17" viewBox="0 0 24 24" fill="#4d9fff"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844a9.59 9.59 0 012.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg></div><div><div class="c-lbl">GitHub</div><div class="c-val">mjec-explorer/devops-lab</div></div></a>
-      <a class="ccard" href="mailto:mjarcino19@gmail.com"><div class="cico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#ff4d4d" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div><div><div class="c-lbl">Resume / CV</div><div class="c-val">Request via email</div></div></a>
+    <div class="s-tag reveal">04 &middot; Contact</div>
+    <h2 class="s-h reveal">Let's <em>Connect</em></h2>
+    <p class="s-sub reveal">If you are looking for someone who understands how systems fail from the inside, and how to build the systems that prevent it, let's talk.</p>
+    <div class="otw reveal">
+      <div class="otw-txt"><strong>&#9679; Open to work</strong> &middot; DevOps Engineer &middot; SRE &middot; IT Operations roles</div>
+      <div class="otw-loc">Potsdam, Germany &middot; Open to relocation &middot; Available immediately</div>
+    </div>
+    <div class="contact-grid reveal">
+      <a class="ccard" href="/cdn-cgi/l/email-protection#acc1c6cddecfc5c2c39d95eccbc1cdc5c082cfc3c1"><div class="cico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#f5a623" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg></div><div><div class="c-lbl">Email</div><div class="c-val"><span class="__cf_email__" data-cfemail="14797e7566777d7a7b252d547379757d783a777b79">[email&#160;protected]</span></div></div></a>
+      <a class="ccard" href="https://www.linkedin.com/in/mjcastro-itops/" target="_blank"><div class="cico"><svg width="17" height="17" viewBox="0 0 24 24" fill="#00e88a"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></div><div><div class="c-lbl">LinkedIn</div><div class="c-val">mjcastro-itops</div></div></a>
+      <a class="ccard" href="https://github.com/mjec-explorer/devops-lab" target="_blank"><div class="cico"><svg width="17" height="17" viewBox="0 0 24 24" fill="#5aabff"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844a9.59 9.59 0 012.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg></div><div><div class="c-lbl">GitHub</div><div class="c-val">mjec-explorer/devops-lab</div></div></a>
+      <a class="ccard" href="/cdn-cgi/l/email-protection#e38e898291808a8d8cd2daa3848e828a8fcd808c8e"><div class="cico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#ff5555" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div><div><div class="c-lbl">Resume / CV</div><div class="c-val">Request via email</div></div></a>
     </div>
   </div>
 </section>
 
-<footer><div class="wrap"><p class="ft">Mary Joy Castro &middot; <a href="mailto:mjarcino19@gmail.com">mjarcino19@gmail.com</a> &middot; <a href="https://github.com/mjec-explorer/devops-lab" target="_blank">github.com/mjec-explorer</a> &middot; Potsdam, Germany &middot; Available immediately</p></div></footer>
+<footer><div class="wrap"><p class="ft">Mary Joy Castro &middot; <a href="/cdn-cgi/l/email-protection#2e43444f5c4d4740411f176e49434f4742004d4143"><span class="__cf_email__" data-cfemail="9cf1f6fdeefff5f2f3ada5dcfbf1fdf5f0b2fff3f1">[email&#160;protected]</span></a> &middot; <a href="https://github.com/mjec-explorer/devops-lab" target="_blank">github.com/mjec-explorer</a> &middot; Potsdam, Germany &middot; Available immediately</p></div></footer>
 
-<script>
-function sw(id, btn) {
-  document.querySelectorAll('.phase-content').forEach(el => el.classList.remove('active'));
-  document.querySelectorAll('.ptab').forEach(el => el.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  btn.classList.add('active');
-  if (id === 'p1') animatePipe();
-}
-
-function animatePipe() {
-  var stages = document.querySelectorAll('#pipe1 .ps');
-  stages.forEach(function(s) { s.classList.remove('on'); });
-  stages.forEach(function(s, i) {
-    setTimeout(function() { s.classList.add('on'); }, i * 200);
-  });
-}
-
-// Scroll fade-in
-var obs = new IntersectionObserver(function(entries) {
-  entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('show'); });
-}, { threshold: 0.08 });
-document.querySelectorAll('.fi').forEach(function(el) { obs.observe(el); });
-
-// Skill bars
-var skObs = new IntersectionObserver(function(entries) {
-  entries.forEach(function(e) {
-    if (e.isIntersecting) {
-      e.target.querySelectorAll('.sk-fill').forEach(function(b) { b.style.width = b.dataset.w; });
-    }
-  });
-}, { threshold: 0.2 });
-document.querySelectorAll('.sg').forEach(function(el) { skObs.observe(el); });
-
-// Run pipeline on load
-window.addEventListener('load', function() { setTimeout(animatePipe, 600); });
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+var cur=document.getElementById('cursor'),ring=document.getElementById('cursor-ring'),glow=document.getElementById('cursor-glow');
+var mx=window.innerWidth/2,my=window.innerHeight/2,rx=mx,ry=my;
+document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';glow.style.left=mx+'px';glow.style.top=my+'px';});
+(function ringLoop(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(ringLoop);})();
+document.querySelectorAll('a,button,.phase-card,.fl-item,.gallery-card').forEach(function(el){
+  el.addEventListener('mouseenter',function(){cur.style.width='20px';cur.style.height='20px';cur.style.background='var(--green)';ring.style.width='52px';ring.style.height='52px';ring.style.borderColor='rgba(0,232,138,.55)';ring.style.boxShadow='0 0 28px rgba(0,232,138,.25)';glow.style.background='radial-gradient(circle,rgba(0,232,138,.07) 0%,transparent 70%)';});
+  el.addEventListener('mouseleave',function(){cur.style.width='12px';cur.style.height='12px';cur.style.background='var(--amber)';ring.style.width='36px';ring.style.height='36px';ring.style.borderColor='rgba(245,166,35,.5)';ring.style.boxShadow='0 0 18px rgba(245,166,35,.2)';glow.style.background='radial-gradient(circle,rgba(245,166,35,.055) 0%,transparent 70%)';});
+});
+(function(){
+  var c=document.getElementById('bg-canvas'),ctx=c.getContext('2d'),W,H,pts=[],orbs=[];
+  function resize(){W=c.width=window.innerWidth;H=c.height=window.innerHeight;}
+  resize();window.addEventListener('resize',resize);
+  for(var i=0;i<80;i++)pts.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.14,vy:(Math.random()-.5)*.14,r:Math.random()*1.6+.3,color:Math.random()>.65?'245,166,35':Math.random()>.5?'0,232,138':'90,171,255',a:Math.random()*.13+.04});
+  for(var j=0;j<4;j++)orbs.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.035,vy:(Math.random()-.5)*.035,r:Math.random()*180+120,color:j%2===0?'245,166,35':j%3===0?'0,232,138':'90,171,255',a:Math.random()*.02+.007});
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    ctx.strokeStyle='rgba(26,45,64,.38)';ctx.lineWidth=.4;
+    var gs=80;
+    for(var x=0;x<W;x+=gs){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();}
+    for(var y=0;y<H;y+=gs){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
+    for(var j=0;j<orbs.length;j++){var o=orbs[j];o.x+=o.vx;o.y+=o.vy;if(o.x<-o.r)o.x=W+o.r;if(o.x>W+o.r)o.x=-o.r;if(o.y<-o.r)o.y=H+o.r;if(o.y>H+o.r)o.y=-o.r;var g=ctx.createRadialGradient(o.x,o.y,0,o.x,o.y,o.r);g.addColorStop(0,'rgba('+o.color+','+o.a+')');g.addColorStop(1,'rgba('+o.color+',0)');ctx.fillStyle=g;ctx.beginPath();ctx.arc(o.x,o.y,o.r,0,Math.PI*2);ctx.fill();}
+    for(var i=0;i<pts.length;i++){var p=pts[i];p.x+=p.vx;p.y+=p.vy;if(p.x<0)p.x=W;if(p.x>W)p.x=0;if(p.y<0)p.y=H;if(p.y>H)p.y=0;ctx.shadowBlur=5;ctx.shadowColor='rgba('+p.color+',.3)';ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle='rgba('+p.color+','+p.a+')';ctx.fill();ctx.shadowBlur=0;for(var k=i+1;k<pts.length;k++){var q=pts[k],dx=p.x-q.x,dy=p.y-q.y,d=Math.sqrt(dx*dx+dy*dy);if(d<110){ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.strokeStyle='rgba(245,166,35,'+(.032*(1-d/110))+')';ctx.lineWidth=.3;ctx.stroke();}}}
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+function animatePipe(){var s=document.querySelectorAll('#pipe1 .ps');s.forEach(function(x){x.classList.remove('on');});s.forEach(function(x,i){setTimeout(function(){x.classList.add('on');},i*260);});}
+var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('show');});},{threshold:.04});
+document.querySelectorAll('.reveal').forEach(function(el){obs.observe(el);});
+var flObs=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){if(e.isIntersecting){var items=e.target.querySelectorAll('.fl-item');items.forEach(function(item,i){item.style.opacity='0';item.style.transform='translateX(-14px)';item.style.transition='opacity .45s ease '+(i*.1)+'s,transform .45s ease '+(i*.1)+'s';setTimeout(function(el){el.style.opacity='1';el.style.transform='none';},60,item);});}});
+},{threshold:.05});
+document.querySelectorAll('.failures-section').forEach(function(el){flObs.observe(el);});
+var sgObs=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){if(e.isIntersecting){var items=e.target.querySelectorAll('.sk-item');items.forEach(function(item,i){item.style.opacity='0';item.style.transform='translateY(8px)';item.style.transition='opacity .4s ease '+(i*.055)+'s,transform .4s ease '+(i*.055)+'s';setTimeout(function(el){el.style.opacity='1';el.style.transform='none';},60,item);});}});
+},{threshold:.1});
+document.querySelectorAll('.sg').forEach(function(el){sgObs.observe(el);});
+var gcObs=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){if(e.isIntersecting){var cards=e.target.querySelectorAll('.gallery-card');cards.forEach(function(c,i){setTimeout(function(){c.classList.add('gc-visible');},i*110+80);});gcObs.unobserve(e.target);}});
+},{threshold:.08});
+var gg=document.getElementById('gallery-grid');if(gg)gcObs.observe(gg);
+window.addEventListener('load',function(){setTimeout(animatePipe,900);});
+var pipeObs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)setTimeout(animatePipe,400);});},{threshold:.3});
+var p1=document.getElementById('pipe1');if(p1)pipeObs.observe(p1);
+(function(){
+  var out=document.getElementById('typewriter-output');
+  if(!out)return;
+  var seq=[
+    {t:'cmd',v:'docker compose ps'},
+    {t:'out',v:'✓ fastapi      running (healthy)',c:'tw-green'},
+    {t:'out',v:'✓ prometheus   running',c:'tw-green'},
+    {t:'out',v:'✓ alertmanager running',c:'tw-green'},
+    {t:'out',v:'✓ grafana      running',c:'tw-green'},
+    {t:'out',v:'✓ n8n          running',c:'tw-green'},
+    {t:'pause',ms:500},
+    {t:'cmd',v:'curl $ALB/health && curl $ALB/version'},
+    {t:'out',v:'{"status":"ok"} {"version":"0b694c6","host":"ip-10-0-3-193..."}',c:'tw-green'},
+    {t:'pause',ms:500},
+    {t:'cmd',v:'aws ecs describe-services --cluster devopslab-cluster'},
+    {t:'out',v:'status: ACTIVE · runningCount: 1 · desiredCount: 1',c:'tw-green'},
+    {t:'pause',ms:500},
+    {t:'cmd',v:'terraform output alb_dns_name'},
+    {t:'out',v:'devopslab-alb-1455102833.eu-central-1.elb.amazonaws.com',c:'tw-amber'},
+    {t:'pause',ms:1400}
+  ];
+  var cd=36,ld=160,si=0,cursor=null;
+  function mk(){var c=document.createElement('span');c.className='tw-cursor';return c;}
+  function rm(){if(cursor&&cursor.parentNode)cursor.parentNode.removeChild(cursor);cursor=null;}
+  function typeCmd(text,done){
+    var row=document.createElement('div');row.className='tw-line';
+    var pr=document.createElement('span');pr.className='tw-prompt';pr.textContent='❯';
+    var cm=document.createElement('span');cm.className='tw-cmd';
+    row.appendChild(pr);row.appendChild(cm);rm();out.appendChild(row);row.appendChild(cursor=mk());
+    var i=0;(function tick(){if(i<text.length){cm.textContent+=text[i++];rm();row.appendChild(cursor=mk());setTimeout(tick,cd+(Math.random()*14-7));}else{rm();setTimeout(done,ld);}})();
+  }
+  function showOut(text,cls,done){
+    var s=document.createElement('span');s.className='tw-out '+(cls||'');s.textContent=text;
+    rm();out.appendChild(s);out.appendChild(cursor=mk());setTimeout(done,ld);
+  }
+  function run(){
+    if(si>=seq.length){si=0;setTimeout(function(){out.innerHTML='';cursor=null;run();},1800);return;}
+    var st=seq[si++];
+    if(st.t==='cmd')typeCmd(st.v,run);
+    else if(st.t==='out')showOut(st.v,st.c,run);
+    else if(st.t==='pause')setTimeout(run,st.ms);
+    else run();
+  }
+  setTimeout(run,800);
+})();
 </script>
 </body>
 </html>
